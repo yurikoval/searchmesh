@@ -310,4 +310,4 @@ function validateExample(value, path, add) {
 function cleanObject(value) { return Object.fromEntries(Object.entries(value).filter(([, item]) => item !== undefined)); }
 function sortValue(value) { if (Array.isArray(value))
     return value.map(sortValue); if (value && typeof value === 'object')
-    return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b)).map(([key, item]) => [key, sortValue(item)])); return value; }
+    return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([key, item]) => [key, sortValue(item)])); return value; }

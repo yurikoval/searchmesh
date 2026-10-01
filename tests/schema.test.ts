@@ -27,6 +27,7 @@ describe('provider definition trust boundary', () => {
     expect(validated.definition.authentication.fields).toEqual([{ name: 'api_key', label: 'API key' }])
     expect(await checksumCanonicalJson(validated.canonicalJson)).toMatch(/^[a-f0-9]{64}$/)
     expect(canonicalStringify({ b: 1, a: { d: 2, c: 1 } })).toBe('{"a":{"c":1,"d":2},"b":1}')
+    expect(canonicalStringify({ foobar: 1, foo_bar: 2 })).toBe('{"foo_bar":2,"foobar":1}')
   })
 
   it.each([
