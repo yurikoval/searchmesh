@@ -16,14 +16,15 @@ try {
     stdio: 'ignore',
   })
   execFileSync(process.execPath, ['--input-type=module', '--eval',
-    "import('searchmesh').then(({providerAdapters}) => { if (Object.keys(providerAdapters).join(',') !== 'brave,tavily,exa,yep,kagi') process.exit(1) })",
+    "import('searchmesh').then(({providerAdapters}) => { if (Object.keys(providerAdapters).join(',') !== 'brave,tavily,exa,yep,kagi,you,perplexity,mojeek,serpapi,dataforseo') process.exit(1) })",
   ], { cwd: consumer, stdio: 'inherit' })
 
   writeFileSync(join(consumer, 'consumer.ts'), `
-    import { getProviderAdapter, type NormalizedSearchRequest } from 'searchmesh'
+    import { dataForSeoAdapter, getProviderAdapter, type NormalizedSearchRequest } from 'searchmesh'
     const request: NormalizedSearchRequest = { query: 'test', limit: 1 }
     void request
-    void getProviderAdapter('brave')
+    void dataForSeoAdapter
+    void getProviderAdapter('dataforseo')
   `)
   execFileSync(join(root, 'node_modules', '.bin', 'tsc'), [
     '--noEmit', '--strict', '--skipLibCheck', '--target', 'ES2022', '--lib', 'ES2022,DOM',

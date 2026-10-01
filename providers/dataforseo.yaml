@@ -1,0 +1,35 @@
+schema_version: '1'
+id: dataforseo
+name: DataForSEO
+description: Google organic web results from the DataForSEO SERP API.
+website_url: https://dataforseo.com/
+documentation_url: https://docs.dataforseo.com/v3/serp-se-type-live-advanced/
+adapter: dataforseo
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://api.dataforseo.com/v3/serp/google/organic/live/
+  method: POST
+  path: /v3/serp/google/organic/live/advanced
+capabilities:
+  operations: [search]
+  optional_inputs: [language]
+authentication:
+  credential_mode: user
+  fields:
+    - name: login
+      label: API login
+    - name: password
+      label: API password
+request_mapping:
+  query: {}
+  body:
+    query: keyword
+    language: language_code
+response_mapping:
+  results: [tasks, 0, result, 0, items]
+  title: [title]
+  url: [url]
+  snippet: [description]
+  rank: [rank_group]

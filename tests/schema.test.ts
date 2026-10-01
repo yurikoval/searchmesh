@@ -108,19 +108,34 @@ describe('provider definition trust boundary', () => {
   })
 
   it('enforces the compiled HTTPS origin, method, and exact path policy', () => {
-    expect(isAllowedAdapterUrl('brave', 'https://api.search.brave.com/res/v1/')).toBe(true)
-    expect(isAllowedAdapterUrl('brave', 'https://api.search.brave.com/res/v1/web/search')).toBe(true)
-    expect(isAllowedAdapterUrl('brave', 'https://api.search.brave.com/res/v1/other')).toBe(false)
-    expect(isAllowedAdapterUrl('tavily', 'https://api.tavily.com/search')).toBe(true)
-    expect(isAllowedAdapterUrl('tavily', 'https://api.tavily.com/other')).toBe(false)
-    expect(isAllowedAdapterUrl('brave', 'https://example.com/res/v1/')).toBe(false)
+    const policies = [
+      ['brave', 'https://api.search.brave.com/res/v1/', 'https://api.search.brave.com/res/v1/web/search'],
+      ['tavily', 'https://api.tavily.com/', 'https://api.tavily.com/search'],
+      ['you', 'https://ydc-index.io/v1/', 'https://ydc-index.io/v1/search'],
+      ['perplexity', 'https://api.perplexity.ai/', 'https://api.perplexity.ai/search'],
+      ['mojeek', 'https://api.mojeek.com/', 'https://api.mojeek.com/search'],
+      ['serpapi', 'https://serpapi.com/', 'https://serpapi.com/search'],
+      ['dataforseo', 'https://api.dataforseo.com/v3/serp/google/organic/live/', 'https://api.dataforseo.com/v3/serp/google/organic/live/advanced'],
+    ] as const
+    for (const [id, base, endpoint] of policies) {
+      expect(isAllowedAdapterUrl(id, base)).toBe(true)
+      expect(isAllowedAdapterUrl(id, endpoint)).toBe(true)
+      expect(isAllowedAdapterUrl(id, `${endpoint}?api_key=secret`)).toBe(false)
+      expect(isAllowedAdapterUrl(id, endpoint.replace(new URL(endpoint).hostname, 'example.com'))).toBe(false)
+      expect(isAllowedAdapterUrl(id, `${base}other`)).toBe(false)
+    }
     expect(isAllowedAdapterUrl('missing', 'https://api.search.brave.com/res/v1/')).toBe(false)
 
-    const parsed = parseValid()
-    if (!parsed.ok) throw new Error('fixture failed to parse')
-    ;(parsed.value as Record<string, unknown>).endpoint = { api_base_url: 'https://api.search.brave.com/res/v1/', method: 'POST', path: '/res/v1/web/search' }
-    const result = validateProviderDefinition('providers/valid.yaml', parsed.value)
-    expect(result.ok).toBe(false)
-    if (!result.ok) expect(result.errors.map(({ code }) => code)).toContain('adapter_origin_mismatch')
+    for (const id of ['you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo']) {
+      const file = `providers/${id}.yaml`
+      const parsed = parseProviderYaml(file, readFileSync(new URL(`../${file}`, import.meta.url)))
+      if (!parsed.ok) throw new Error(`${file} failed to parse`)
+      const value = parsed.value as Record<string, unknown>
+      const endpoint = value.endpoint as Record<string, unknown>
+      endpoint.method = endpoint.method === 'GET' ? 'POST' : 'GET'
+      const result = validateProviderDefinition(file, value)
+      expect(result.ok).toBe(false)
+      if (!result.ok) expect(result.errors.map(({ code }) => code)).toContain('adapter_origin_mismatch')
+    }
   })
 })

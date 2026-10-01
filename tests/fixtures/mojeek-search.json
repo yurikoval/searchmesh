@@ -1,0 +1,23 @@
+{
+  "response": {
+    "status": "OK",
+    "results": [
+      {
+        "title": "Mojeek first result",
+        "url": "https://docs.example.com/mojeek?q=search",
+        "desc": "An independent search result.",
+        "score": 0.92,
+        "image": "https://cdn.example.com/mojeek.png"
+      },
+      {
+        "title": "Missing URL",
+        "desc": "This malformed entry is skipped."
+      },
+      {
+        "title": "Mojeek third result",
+        "url": "https://example.org/reference",
+        "desc": "Upstream order remains stable."
+      }
+    ]
+  }
+}

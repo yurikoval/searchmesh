@@ -1,0 +1,34 @@
+schema_version: "1"
+id: perplexity
+name: Perplexity Search
+description: Web search results from the Perplexity Search API.
+website_url: https://www.perplexity.ai/
+documentation_url: https://docs.perplexity.ai/api-reference/search-post
+adapter: perplexity
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://api.perplexity.ai/
+  method: POST
+  path: /search
+capabilities:
+  operations: [search]
+  optional_inputs: [language, region, time_range]
+authentication:
+  credential_mode: user
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query: {}
+  body:
+    query: query
+    language: search_language_filter
+    region: country
+    time_range: search_recency_filter
+response_mapping:
+  results: [results]
+  title: [title]
+  url: [url]
+  snippet: [snippet]
