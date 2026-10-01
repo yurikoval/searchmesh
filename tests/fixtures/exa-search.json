@@ -1,0 +1,11 @@
+{
+  "results": [
+    {
+      "title": "Exa result",
+      "url": "https://exa.example/page",
+      "text": "Extracted text",
+      "publishedDate": "2026-01-02T03:04:05Z",
+      "author": "Author"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "title": "Yep result",
+      "url": "https://yep.example/page",
+      "description": "Result text",
+      "published_date": "2026-01-02"
+    }
+  ]
+}

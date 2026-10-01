@@ -1,0 +1,12 @@
+{
+  "data": {
+    "search": [
+      {
+        "title": "Kagi result",
+        "url": "https://kagi.example/page",
+        "snippet": "Result text",
+        "time": "2026-01-02"
+      }
+    ]
+  }
+}
