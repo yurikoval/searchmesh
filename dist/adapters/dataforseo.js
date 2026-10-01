@@ -3,6 +3,9 @@ import { getAdapterPolicy } from '../url-policy.js';
 import { PROVIDER_ADAPTER_LIMITS } from '../types.js';
 const PROVIDER_ID = 'dataforseo';
 const ENDPOINT = 'https://api.dataforseo.com/v3/serp/google/organic/live/advanced';
+// v1 has no region/device inputs, so searches use DataForSEO's US desktop market.
+const DEFAULT_LOCATION_CODE = 2840;
+const DEFAULT_DEVICE = 'desktop';
 export const dataForSeoAdapter = async (request, context) => {
     const configured = validContext(context);
     if (!configured || !validRequest(request))
@@ -18,7 +21,7 @@ export const dataForSeoAdapter = async (request, context) => {
                 Authorization: `Basic ${btoa(`${context.credentials.login}:${context.credentials.password}`)}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify([{ keyword: request.query, location_code: 2840, language_code: request.language ?? 'en', device: 'desktop', depth: request.limit }]),
+            body: JSON.stringify([{ keyword: request.query, location_code: DEFAULT_LOCATION_CODE, language_code: request.language ?? 'en', device: DEFAULT_DEVICE, depth: request.limit }]),
             signal: context.signal,
             redirect: 'error',
         });
