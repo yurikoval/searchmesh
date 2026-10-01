@@ -122,20 +122,6 @@ export function normalizedDate(value) {
 export function finiteNumber(value) {
     return typeof value === 'number' && Number.isFinite(value) ? value : undefined;
 }
-export function normalizeMetadata(value, allowedKeys) {
-    if (!isPlainRecord(value))
-        return;
-    const entries = [];
-    for (const key of allowedKeys.slice(0, PROVIDER_ADAPTER_LIMITS.metadataEntries)) {
-        const item = value[key];
-        if (item === null || typeof item === 'boolean' || typeof item === 'string' || (typeof item === 'number' && Number.isFinite(item)))
-            entries.push([key, typeof item === 'string' ? item.slice(0, 500) : item]);
-    }
-    if (!entries.length)
-        return;
-    const metadata = Object.fromEntries(entries);
-    return encoder.encode(JSON.stringify(metadata)).byteLength <= PROVIDER_ADAPTER_LIMITS.metadataBytes ? metadata : undefined;
-}
 export function boundNormalizedResults(results) {
     const bounded = [];
     for (const result of results.slice(0, PROVIDER_ADAPTER_LIMITS.results)) {

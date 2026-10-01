@@ -17,6 +17,5 @@ export declare function normalizedUrl(value: unknown): {
 } | undefined;
 export declare function normalizedDate(value: unknown): string | undefined;
 export declare function finiteNumber(value: unknown): number | undefined;
-export declare function normalizeMetadata(value: unknown, allowedKeys: readonly string[]): Readonly<Record<string, string | number | boolean | null>> | undefined;
 export declare function boundNormalizedResults(results: NormalizedSearchResult[]): readonly NormalizedSearchResult[];
 export declare function parseRetryAfter(value: string | null, now?: number): number | undefined;

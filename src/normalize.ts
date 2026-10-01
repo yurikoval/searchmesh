@@ -108,18 +108,6 @@ export function finiteNumber(value: unknown): number | undefined {
   return typeof value === 'number' && Number.isFinite(value) ? value : undefined
 }
 
-export function normalizeMetadata(value: unknown, allowedKeys: readonly string[]): Readonly<Record<string, string | number | boolean | null>> | undefined {
-  if (!isPlainRecord(value)) return
-  const entries: Array<[string, string | number | boolean | null]> = []
-  for (const key of allowedKeys.slice(0, PROVIDER_ADAPTER_LIMITS.metadataEntries)) {
-    const item = value[key]
-    if (item === null || typeof item === 'boolean' || typeof item === 'string' || (typeof item === 'number' && Number.isFinite(item))) entries.push([key, typeof item === 'string' ? item.slice(0, 500) : item])
-  }
-  if (!entries.length) return
-  const metadata = Object.fromEntries(entries)
-  return encoder.encode(JSON.stringify(metadata)).byteLength <= PROVIDER_ADAPTER_LIMITS.metadataBytes ? metadata : undefined
-}
-
 export function boundNormalizedResults(results: NormalizedSearchResult[]): readonly NormalizedSearchResult[] {
   const bounded: NormalizedSearchResult[] = []
   for (const result of results.slice(0, PROVIDER_ADAPTER_LIMITS.results)) {
