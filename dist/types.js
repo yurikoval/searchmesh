@@ -1,0 +1,18 @@
+export const PROVIDER_ADAPTER_LIMITS = Object.freeze({
+    queryCharacters: 600,
+    queryWords: 75,
+    results: 20,
+    responseBytes: 1_048_576,
+    normalizedBytes: 262_144,
+    credentialBytes: 4_096,
+    titleCharacters: 500,
+    urlCharacters: 2_048,
+    displayUrlCharacters: 2_048,
+    snippetCharacters: 4_000,
+    contentExcerptCharacters: 4_000,
+    authorCharacters: 200,
+    contentTypeCharacters: 100,
+    metadataEntries: 8,
+    metadataBytes: 2_048,
+    retryAfterMs: 300_000,
+});

@@ -1,0 +1,40 @@
+schema_version: "1"
+id: valid
+name: Valid Search
+description: A safe provider fixture.
+website_url: https://example.com/
+documentation_url: https://example.com/docs
+adapter: brave
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://api.search.brave.com/res/v1/
+  method: GET
+  path: /res/v1/web/search
+capabilities:
+  operations: [search]
+  optional_inputs: [language, region, safe_search, time_range]
+authentication:
+  credential_mode: user
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query:
+    query: q
+    language: search_lang
+  body: {}
+response_mapping:
+  results: [web, results]
+  title: [title]
+  url: [url]
+  snippet: [description]
+metadata:
+  rate_limit: See provider documentation.
+  pricing_url: https://example.com/pricing
+  example_request:
+    q: example query
+  example_response:
+    web:
+      results: []

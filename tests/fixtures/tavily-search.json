@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "title": " First result ",
+      "url": "https://Research.Example.com/report",
+      "content": "A concise research result.",
+      "published_date": "2025-03-04",
+      "score": 0.91
+    },
+    {
+      "title": "Unsafe URL",
+      "url": "javascript:alert(1)",
+      "content": "This malformed item must be skipped."
+    },
+    {
+      "title": "Third result",
+      "url": "https://example.net/notes",
+      "content": "Order and upstream rank remain stable.",
+      "score": 0.42
+    }
+  ]
+}
