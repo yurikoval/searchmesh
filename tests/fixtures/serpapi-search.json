@@ -1,0 +1,26 @@
+{
+  "search_metadata": {
+    "status": "Success"
+  },
+  "organic_results": [
+    {
+      "position": 1,
+      "title": "SerpApi first result",
+      "link": "https://docs.example.com/serpapi?q=search",
+      "displayed_link": "docs.example.com › serpapi",
+      "snippet": "A Google organic result."
+    },
+    {
+      "position": 2,
+      "title": "Missing link",
+      "snippet": "This malformed entry is skipped."
+    },
+    {
+      "position": 4,
+      "title": "SerpApi fourth result",
+      "link": "https://example.org/reference",
+      "displayed_link": "example.org › reference",
+      "snippet": "The documented organic position is retained."
+    }
+  ]
+}

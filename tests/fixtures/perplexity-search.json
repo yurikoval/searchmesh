@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "title": "Perplexity first result",
+      "url": "https://docs.example.com/perplexity?q=search",
+      "snippet": "A structured web result.",
+      "date": "2025-03-04"
+    },
+    {
+      "title": "Missing URL",
+      "snippet": "This malformed entry is skipped."
+    },
+    {
+      "title": "Perplexity third result",
+      "url": "https://example.org/reference",
+      "snippet": "Upstream order remains stable."
+    }
+  ]
+}

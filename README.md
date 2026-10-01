@@ -13,13 +13,11 @@ Provider integrations and validated provider definitions for SearchMesh. This pa
 | [Yep](https://yep.com/) | [Docs](https://platform.yep.com/api-documentation) |
 | [Exa](https://exa.ai/) | [Docs](https://exa.ai/docs/reference/search) |
 | [Kagi](https://kagi.com/) | [Docs](https://help.kagi.com/kagi/api/search.html) |
-
-### Other candidates
-
-- [You.com](https://you.com/) — structured web and news results with extracted page content ([API docs](https://you.com/docs/guides/search))
-- [Perplexity](https://www.perplexity.ai/) — raw ranked web results with search filters ([API docs](https://docs.perplexity.ai/docs/search/quickstart))
-- [Mojeek](https://www.mojeek.com/) — an independent web index that would diversify result sources ([API docs](https://www.mojeek.com/support/api/))
-- [SerpApi](https://serpapi.com/) — structured Google results for SERP-specific use cases ([API docs](https://serpapi.com/search-api))
+| [You.com](https://you.com/) | [Docs](https://you.com/docs/api-reference/search/v1-search) |
+| [Perplexity](https://www.perplexity.ai/) | [Docs](https://docs.perplexity.ai/api-reference/search-post) |
+| [Mojeek](https://www.mojeek.com/) | [Docs](https://www.mojeek.com/support/api/search/) |
+| [SerpApi](https://serpapi.com/) | [Docs](https://serpapi.com/search-api) |
+| [DataForSEO](https://dataforseo.com/) | [Docs](https://docs.dataforseo.com/v3/serp-se-type-live-advanced/) |
 
 ## Install
 
@@ -40,7 +38,7 @@ import {
 } from 'searchmesh'
 ```
 
-The package includes compiled adapters for Brave Search, Tavily Search, Yep, Exa, and Kagi. Their registry definitions live in `providers/` and are validated by the package test suite.
+The package includes compiled adapters for all supported providers. Their registry definitions live in `providers/` and are validated by the package test suite.
 
 ## Development
 

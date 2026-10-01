@@ -1,0 +1,36 @@
+{
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "tasks": [
+    {
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "result": [
+        {
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "title": "DataForSEO first result",
+              "url": "https://docs.example.com/dataforseo?q=search",
+              "description": "A Google organic result."
+            },
+            {
+              "type": "people_also_ask",
+              "rank_group": 2,
+              "title": "Non-organic item",
+              "url": "https://example.com/question"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "title": "DataForSEO fourth result",
+              "url": "https://example.org/reference",
+              "description": "Only organic items are normalized."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "results": {
+    "web": [
+      {
+        "title": "You.com first result",
+        "url": "https://docs.example.com/you?q=search",
+        "description": "A structured web result.",
+        "page_age": "2025-03-04",
+        "thumbnail_url": "https://cdn.example.com/you.png"
+      },
+      {
+        "title": "Missing URL",
+        "description": "This malformed entry is skipped."
+      },
+      {
+        "title": "You.com third result",
+        "url": "https://example.org/reference",
+        "description": "Upstream order remains stable."
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+schema_version: "1"
+id: you
+name: You.com Search
+description: Web search results from the You.com Search API.
+website_url: https://you.com/
+documentation_url: https://you.com/docs/api-reference/search/v1-search
+adapter: you
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://ydc-index.io/v1/
+  method: POST
+  path: /v1/search
+capabilities:
+  operations: [search]
+  optional_inputs: [language, region, safe_search, time_range]
+authentication:
+  credential_mode: user
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query: {}
+  body:
+    query: query
+    language: language
+    region: country
+    safe_search: safesearch
+    time_range: freshness
+response_mapping:
+  results: [results, web]
+  title: [title]
+  url: [url]
+  snippet: [description]

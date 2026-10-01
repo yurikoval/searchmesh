@@ -1,0 +1,33 @@
+schema_version: '1'
+id: mojeek
+name: Mojeek
+description: Independent web search results from the Mojeek Search API.
+website_url: https://www.mojeek.com/
+documentation_url: https://www.mojeek.com/support/api/search/
+adapter: mojeek
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://api.mojeek.com/
+  method: GET
+  path: /search
+capabilities:
+  operations: [search]
+  optional_inputs: [language, region]
+authentication:
+  credential_mode: user
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query:
+    query: q
+    language: lb
+    region: rb
+  body: {}
+response_mapping:
+  results: [response, results]
+  title: [title]
+  url: [url]
+  snippet: [desc]

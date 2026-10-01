@@ -1,0 +1,35 @@
+schema_version: '1'
+id: serpapi
+name: SerpApi
+description: Google organic web results through the SerpApi Search API.
+website_url: https://serpapi.com/
+documentation_url: https://serpapi.com/search-api
+adapter: serpapi
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://serpapi.com/
+  method: GET
+  path: /search
+capabilities:
+  operations: [search]
+  optional_inputs: [language, region, time_range]
+authentication:
+  credential_mode: user
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query:
+    query: q
+    language: hl
+    region: gl
+    time_range: tbs
+  body: {}
+response_mapping:
+  results: [organic_results]
+  title: [title]
+  url: [link]
+  snippet: [snippet]
+  rank: [position]
