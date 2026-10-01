@@ -8,7 +8,7 @@ import {
   readBoundedJson,
   responseFailure,
   PROVIDER_ADAPTER_LIMITS,
-} from '../src/index'
+} from '../src/index.js'
 
 const jsonHeaders = { 'Content-Type': 'application/json' }
 

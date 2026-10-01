@@ -1,5 +1,5 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
-import validSource from './fixtures/valid.yaml?raw'
 import {
   canonicalStringify,
   checksumCanonicalJson,
@@ -7,8 +7,9 @@ import {
   parseProviderYaml,
   validateProviderDefinition,
   validateProviderRevision,
-} from '../src/index'
+} from '../src/index.js'
 
+const validSource = readFileSync(new URL('./fixtures/valid.yaml', import.meta.url), 'utf8')
 const encode = (value: string) => new TextEncoder().encode(value)
 const parseValid = () => parseProviderYaml('providers/valid.yaml', encode(validSource))
 

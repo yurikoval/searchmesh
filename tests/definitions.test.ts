@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
-import { parseProviderYaml, runProviderAdapter, validateProviderRevision } from '../src/index'
+import { parseProviderYaml, runProviderAdapter, validateProviderRevision } from '../src/index.js'
 
 const providerFiles = ['brave', 'tavily'].map((id) => `providers/${id}.yaml`)
 

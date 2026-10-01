@@ -1,13 +1,14 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it, vi } from 'vitest'
-import fixtureSource from './fixtures/tavily-search.json?raw'
 import {
   tavilyAdapter,
   PROVIDER_ADAPTER_LIMITS,
   type NormalizedSearchRequest,
   type ProviderAdapterContext,
   type ProviderDefinition,
-} from '../src/index'
+} from '../src/index.js'
 
+const fixtureSource = readFileSync(new URL('./fixtures/tavily-search.json', import.meta.url), 'utf8')
 const credential = 'credential-canary'
 const query = 'query canary'
 const upstreamError = 'upstream-error-canary'

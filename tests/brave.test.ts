@@ -1,5 +1,5 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it, vi } from 'vitest'
-import fixtureSource from './fixtures/brave-search.json?raw'
 import {
   braveAdapter,
   providerAdapters,
@@ -8,8 +8,9 @@ import {
   type NormalizedSearchRequest,
   type ProviderAdapterContext,
   type ProviderDefinition,
-} from '../src/index'
+} from '../src/index.js'
 
+const fixtureSource = readFileSync(new URL('./fixtures/brave-search.json', import.meta.url), 'utf8')
 const credential = 'credential-canary'
 const query = 'query canary'
 const upstreamError = 'upstream-error-canary'
