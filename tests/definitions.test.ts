@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
 import { parseProviderYaml, runProviderAdapter, validateProviderRevision } from '../src/index.js'
 
-const providerFiles = ['brave', 'tavily'].map((id) => `providers/${id}.yaml`)
+const providerFiles = ['brave', 'tavily', 'yep', 'exa', 'kagi'].map((id) => `providers/${id}.yaml`)
 
 describe('published provider definitions', () => {
   it('ships one valid definition for every executable adapter', async () => {
@@ -16,10 +16,10 @@ describe('published provider definitions', () => {
     const revision = validateProviderRevision(parsed)
     expect(revision.ok).toBe(true)
     if (!revision.ok) return
-    expect(revision.definitions.map(({ definition }) => definition.id)).toEqual(['brave', 'tavily'])
+    expect(revision.definitions.map(({ definition }) => definition.id)).toEqual(['brave', 'exa', 'kagi', 'tavily', 'yep'])
 
     for (const { definition } of revision.definitions) {
-      const payload = definition.id === 'brave' ? { web: { results: [] } } : { results: [] }
+      const payload = definition.id === 'brave' ? { web: { results: [] } } : definition.id === 'kagi' ? { data: { search: [] } } : { results: [] }
       const outcome = await runProviderAdapter(definition.adapter, { query: 'package contract', limit: 1 }, {
         providerId: definition.id,
         definition,

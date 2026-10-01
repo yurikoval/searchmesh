@@ -1,6 +1,9 @@
 const ADAPTER_POLICIES = Object.freeze({
     brave: { origin: 'https://api.search.brave.com', basePath: '/res/v1/', path: '/res/v1/web/search', method: 'GET' },
     tavily: { origin: 'https://api.tavily.com', basePath: '/', path: '/search', method: 'POST' },
+    exa: { origin: 'https://api.exa.ai', basePath: '/', path: '/search', method: 'POST' },
+    yep: { origin: 'https://platform.yep.com', basePath: '/api/', path: '/api/search', method: 'POST' },
+    kagi: { origin: 'https://kagi.com', basePath: '/api/v1/', path: '/api/v1/search', method: 'POST' },
 });
 const FORBIDDEN_HOSTS = /(^|\.)(localhost|local|internal)$/i;
 export function getAdapterPolicy(adapter) {

@@ -16,7 +16,7 @@ try {
     stdio: 'ignore',
   })
   execFileSync(process.execPath, ['--input-type=module', '--eval',
-    "import('searchmesh').then(({providerAdapters}) => { if (Object.keys(providerAdapters).join(',') !== 'brave,tavily') process.exit(1) })",
+    "import('searchmesh').then(({providerAdapters}) => { if (Object.keys(providerAdapters).join(',') !== 'brave,tavily,exa,yep,kagi') process.exit(1) })",
   ], { cwd: consumer, stdio: 'inherit' })
 
   writeFileSync(join(consumer, 'consumer.ts'), `

@@ -1,0 +1,31 @@
+schema_version: '1'
+id: exa
+name: Exa
+description: Neural web search provider.
+website_url: https://exa.ai/
+documentation_url: https://exa.ai/docs/reference/search
+adapter: exa
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://api.exa.ai/
+  method: POST
+  path: /search
+capabilities:
+  operations: [search]
+  optional_inputs: []
+authentication:
+  credential_mode: user
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query: {}
+  body:
+    query: query
+response_mapping:
+  results: [results]
+  title: [title]
+  url: [url]
+  snippet: [text]

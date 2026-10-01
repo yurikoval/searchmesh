@@ -10,12 +10,9 @@ Provider integrations and validated provider definitions for SearchMesh. This pa
 | --- | --- |
 | [Brave Search](https://brave.com/search/api/) | [Docs](https://api-dashboard.search.brave.com/documentation) |
 | [Tavily](https://www.tavily.com/) | [Docs](https://docs.tavily.com/welcome) |
-
-### Todo
-
-- [ ] [Yep](https://yep.com/) ([API](https://platform.yep.com/))
-- [ ] [Exa](https://exa.ai/) ([API docs](https://exa.ai/docs/reference/search))
-- [ ] [Kagi](https://kagi.com/) ([API docs](https://help.kagi.com/kagi/api/search.html))
+| [Yep](https://yep.com/) | [Docs](https://platform.yep.com/api-documentation) |
+| [Exa](https://exa.ai/) | [Docs](https://exa.ai/docs/reference/search) |
+| [Kagi](https://kagi.com/) | [Docs](https://help.kagi.com/kagi/api/search.html) |
 
 ### Other candidates
 
@@ -43,7 +40,7 @@ import {
 } from 'searchmesh'
 ```
 
-The package includes compiled adapters for Brave Search and Tavily Search. Their registry definitions live in `providers/` and are validated by the package test suite.
+The package includes compiled adapters for Brave Search, Tavily Search, Yep, Exa, and Kagi. Their registry definitions live in `providers/` and are validated by the package test suite.
 
 ## Development
 
