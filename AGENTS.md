@@ -45,8 +45,9 @@ Run `npm run check` before considering a change complete. Run `npm pack --dry-ru
 
 Provider definitions and responses are untrusted input. Preserve all existing bounds on bytes, depth, collection sizes, normalized output, errors, and retry delays.
 
-- Keep provider endpoints HTTPS-only and constrained by `src/url-policy.ts`; do not allow arbitrary hosts, credentials in URLs, fragments, IP literals, or local/internal hosts.
-- Never log, persist, return, or place credentials in URLs. Keep examples and fixtures free of real secrets.
+- Keep provider endpoints HTTPS-only and constrained by `src/url-policy.ts`; do not allow arbitrary hosts, credentials in committed provider URLs, fragments, IP literals, or local/internal hosts.
+- Prefer headers or request bodies for credentials. An adapter may place credentials in a request URL only when the provider's official API documentation requires it; add them at request time and never log, persist, return, or expose the resulting URL in errors.
+- Never commit credentials to the repository. Keep provider definitions, examples, fixtures, and generated output free of real secrets.
 - Reject prototype-pollution keys and secret-like fields/values in definitions and examples.
 - Cancel rejected or oversized response bodies where practical.
 - Return normalized provider failures rather than leaking upstream response bodies or sensitive details.
