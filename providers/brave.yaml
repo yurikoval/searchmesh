@@ -1,0 +1,35 @@
+schema_version: "1"
+id: brave
+name: Brave Search
+description: Web search results from the Brave Search API.
+website_url: https://brave.com/search/api/
+documentation_url: https://api-dashboard.search.brave.com/documentation
+adapter: brave
+status: active
+available: true
+enabled_by_default: false
+endpoint:
+  api_base_url: https://api.search.brave.com/res/v1/
+  method: GET
+  path: /res/v1/web/search
+capabilities:
+  operations: [search]
+  optional_inputs: [language, region, safe_search, time_range]
+authentication:
+  credential_mode: user
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query:
+    query: q
+    language: search_lang
+    region: country
+    safe_search: safesearch
+    time_range: freshness
+  body: {}
+response_mapping:
+  results: [web, results]
+  title: [title]
+  url: [url]
+  snippet: [description]

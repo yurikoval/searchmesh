@@ -1,0 +1,24 @@
+{
+  "web": {
+    "results": [
+      {
+        "title": " First result ",
+        "url": "https://Docs.Example.com/guide?topic=search",
+        "description": "A concise search result.",
+        "page_age": "2025-02-03T04:05:06Z",
+        "profile": { "long_name": "docs.example.com/guide" },
+        "thumbnail": { "src": "https://cdn.example.com/first.png" },
+        "type": "article"
+      },
+      {
+        "title": "Missing URL",
+        "description": "This malformed item must be skipped."
+      },
+      {
+        "title": "Third result",
+        "url": "https://example.org/reference",
+        "description": "Order and upstream rank remain stable."
+      }
+    ]
+  }
+}

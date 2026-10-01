@@ -1,0 +1,51 @@
+{
+  "name": "searchmesh",
+  "version": "0.1.0",
+  "description": "Provider integrations and validated provider definitions for SearchMesh.",
+  "author": "Yuri Kovalov <hello@yurikoval.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikoval/searchmesh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikoval/searchmesh/issues"
+  },
+  "homepage": "https://github.com/yurikoval/searchmesh#readme",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "dist",
+    "providers",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:package": "node scripts/test-package.mjs",
+    "check": "npm run typecheck && npm test && npm run build && npm run test:package",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^4.0.2"
+  }
+}
