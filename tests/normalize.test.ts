@@ -91,7 +91,7 @@ describe('provider response normalization', () => {
       httpStatus: 429,
       retryAfterMs: 2_000,
     })
-    expect(JSON.stringify([failure, providerFailure('brave', 'provider_error')])).not.toContain(canaries.join('|'))
-    for (const canary of canaries) expect(JSON.stringify(failure)).not.toContain(canary)
+    const serializedFailures = JSON.stringify([failure, providerFailure('brave', 'provider_error')])
+    for (const canary of canaries) expect(serializedFailures).not.toContain(canary)
   })
 })
