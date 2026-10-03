@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it, vi } from 'vitest'
-import type { ProviderDefinition } from '../src/schema.js'
 import { PROVIDER_ADAPTER_LIMITS, type NormalizedSearchRequest, type ProviderAdapterContext } from '../src/types.js'
 
 vi.mock('../src/url-policy.js', () => ({
@@ -14,18 +13,8 @@ const password = 'password-canary'
 const query = 'query canary'
 const upstreamError = 'upstream-error-canary'
 const request: NormalizedSearchRequest = { query, limit: 3, language: 'fr' }
-const definition: ProviderDefinition = {
-  schema_version: '1', id: 'dataforseo', name: 'DataForSEO', description: 'Search provider.',
-  website_url: 'https://example.com/', documentation_url: 'https://example.com/docs', adapter: 'dataforseo', status: 'active', available: true, enabled_by_default: false,
-  endpoint: { api_base_url: 'https://api.dataforseo.com/v3/serp/google/organic/live/', method: 'POST', path: '/v3/serp/google/organic/live/advanced' },
-  capabilities: { operations: ['search'], optional_inputs: ['language'] },
-  authentication: { credential_mode: 'user', fields: [{ name: 'login', label: 'API login' }, { name: 'password', label: 'API password' }] },
-  request_mapping: { query: {}, body: { query: 'keyword', language: 'language_code' } },
-  response_mapping: { results: ['tasks', 0, 'result', 0, 'items'], title: ['title'], url: ['url'], snippet: ['description'], rank: ['rank_group'] },
-}
-
 function context(fetchMock: typeof fetch, signal = new AbortController().signal, overrides: Partial<ProviderAdapterContext> = {}): ProviderAdapterContext {
-  return { providerId: 'dataforseo', definition: structuredClone(definition), credentials: { login, password }, signal, fetch: fetchMock, ...overrides }
+  return { credentials: { login, password }, signal, fetch: fetchMock, ...overrides }
 }
 function jsonResponse(body = fixtureSource, init: ResponseInit = {}) { return new Response(body, { ...init, headers: { 'Content-Type': 'application/json', ...init.headers } }) }
 async function failureWith(fetchMock: typeof fetch, signal = new AbortController().signal) {
@@ -68,13 +57,12 @@ describe('DataForSEO adapter', () => {
     expect(fetchMock).not.toHaveBeenCalled()
   })
 
-  it('requires exact ASCII login/password credentials and strict context', async () => {
+  it('requires exact ASCII login/password credentials', async () => {
     const fetchMock = vi.fn<typeof fetch>()
     const contexts = [
       context(fetchMock, undefined, { credentials: { login } }),
       context(fetchMock, undefined, { credentials: { login: `${login}:extra`, password } }),
       context(fetchMock, undefined, { credentials: { login, password: 'pässword' } }),
-      context(fetchMock, undefined, { definition: { ...definition, response_mapping: { ...definition.response_mapping, rank: ['rank'] } } }),
     ]
     for (const candidate of contexts) await expect(dataForSeoAdapter(request, candidate)).resolves.toMatchObject({ ok: false, failure: { code: 'provider_configuration_error' } })
     expect(fetchMock).not.toHaveBeenCalled()

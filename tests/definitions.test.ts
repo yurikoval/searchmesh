@@ -34,11 +34,12 @@ describe('published provider definitions', () => {
     ])
 
     for (const { definition } of revision.definitions) {
-      expect(definition.enabled_by_default).toBe(false)
+      expect(definition).not.toHaveProperty('status')
+      expect(definition).not.toHaveProperty('available')
+      expect(definition).not.toHaveProperty('enabled_by_default')
+      expect(definition.authentication).not.toHaveProperty('credential_mode')
       const credentials: Record<string, string> = definition.id === 'dataforseo' ? { login: 'test-login', password: 'test-password' } : { api_key: 'test-credential' }
       const outcome = await runProviderAdapter(definition.adapter, { query: 'package contract', limit: 1 }, {
-        providerId: definition.id,
-        definition,
         credentials,
         signal: new AbortController().signal,
         fetch: async () => Response.json(emptyPayloads[definition.id]),

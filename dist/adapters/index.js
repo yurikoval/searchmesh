@@ -34,7 +34,7 @@ export const providerAdapters = Object.freeze({
 export function getProviderAdapter(adapter) {
     return providerAdapters[adapter];
 }
-export async function runProviderAdapter(adapter, request, context) {
-    const implementation = getProviderAdapter(adapter);
-    return implementation ? implementation(request, context) : { ok: false, failure: providerFailure(context.providerId, 'provider_configuration_error') };
+export async function runProviderAdapter(providerId, request, context) {
+    const implementation = getProviderAdapter(providerId);
+    return implementation ? implementation(request, context) : { ok: false, failure: providerFailure(providerId, 'provider_configuration_error') };
 }

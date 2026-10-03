@@ -3,14 +3,12 @@ import { describe, expect, it, vi } from 'vitest'
 import {
   exaAdapter,
   kagiAdapter,
-  parseProviderYaml,
   PROVIDER_ADAPTER_LIMITS,
   yepAdapter,
   type ExecutableProviderId,
   type NormalizedSearchRequest,
   type ProviderAdapter,
   type ProviderAdapterContext,
-  type ProviderDefinition,
 } from '../src/index.js'
 
 const credential = 'credential-canary'
@@ -23,19 +21,12 @@ const adapters: ReadonlyArray<{ id: ExecutableProviderId; adapter: ProviderAdapt
   { id: 'kagi', adapter: kagiAdapter },
 ]
 
-function definition(id: ExecutableProviderId): ProviderDefinition {
-  const file = `providers/${id}.yaml`
-  const result = parseProviderYaml(file, readFileSync(new URL(`../${file}`, import.meta.url)))
-  if (!result.ok) throw new Error(`${file} did not parse`)
-  return result.value as ProviderDefinition
-}
-
 function fixture(id: ExecutableProviderId): unknown {
   return JSON.parse(readFileSync(new URL(`./fixtures/${id}-search.json`, import.meta.url), 'utf8'))
 }
 
-function context(id: ExecutableProviderId, fetchMock: typeof fetch, signal = new AbortController().signal, overrides: Partial<ProviderAdapterContext> = {}): ProviderAdapterContext {
-  return { providerId: id, definition: definition(id), credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
+function context(_id: ExecutableProviderId, fetchMock: typeof fetch, signal = new AbortController().signal, overrides: Partial<ProviderAdapterContext> = {}): ProviderAdapterContext {
+  return { credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
 }
 
 function jsonResponse(body: string, init: ResponseInit = {}) {
@@ -89,13 +80,10 @@ describe('additional provider adapters', () => {
         expect(fetchMock).not.toHaveBeenCalled()
       })
 
-      it('rejects definition, provider, mapping, and credential mismatches before fetch', async () => {
+      it('rejects credential mismatches before fetch', async () => {
         const fetchMock = vi.fn<typeof fetch>()
         const valid = context(id, fetchMock)
         const contexts: ProviderAdapterContext[] = [
-          { ...valid, providerId: 'other' },
-          { ...valid, definition: { ...valid.definition, endpoint: { ...valid.definition.endpoint, path: '/other' } } },
-          { ...valid, definition: { ...valid.definition, request_mapping: { ...valid.definition.request_mapping, body: { query: 'q' } } } },
           { ...valid, credentials: { api_key: `${credential}\n` } },
         ]
         for (const candidate of contexts) await expect(adapter(request, candidate)).resolves.toMatchObject({ ok: false, failure: { code: 'provider_configuration_error' } })

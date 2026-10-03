@@ -1,5 +1,3 @@
-import type { ProviderDefinition } from './schema.js'
-
 export const PROVIDER_ADAPTER_LIMITS = Object.freeze({
   queryCharacters: 600,
   queryWords: 75,
@@ -68,8 +66,6 @@ export type ProviderAdapterOutcome =
   | Readonly<{ ok: true; providerId: ExecutableProviderId; results: readonly NormalizedSearchResult[] }>
   | Readonly<{ ok: false; failure: ProviderFailure }>
 export type ProviderAdapterContext = Readonly<{
-  providerId: string
-  definition: ProviderDefinition
   credentials: Readonly<Record<string, string>>
   signal: AbortSignal
   fetch?: typeof fetch

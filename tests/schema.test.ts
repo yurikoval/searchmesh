@@ -23,7 +23,10 @@ describe('provider definition trust boundary', () => {
     expect(validated.ok).toBe(true)
     if (!validated.ok) return
 
-    expect(validated.definition.available).toBe(true)
+    expect(validated.definition).not.toHaveProperty('status')
+    expect(validated.definition).not.toHaveProperty('available')
+    expect(validated.definition).not.toHaveProperty('enabled_by_default')
+    expect(validated.definition.authentication).not.toHaveProperty('credential_mode')
     expect(validated.definition.authentication.fields).toEqual([{ name: 'api_key', label: 'API key' }])
     expect(await checksumCanonicalJson(validated.canonicalJson)).toMatch(/^[a-f0-9]{64}$/)
     expect(canonicalStringify({ b: 1, a: { d: 2, c: 1 } })).toBe('{"a":{"c":1,"d":2},"b":1}')
@@ -90,7 +93,7 @@ describe('provider definition trust boundary', () => {
     if (!result.ok) expect(result.errors.map(({ code }) => code)).toContain('adapter_origin_mismatch')
   })
 
-  it('fails the entire revision on any invalid definition and makes unknown adapters unavailable', () => {
+  it('fails the entire revision on any invalid definition and preserves unknown adapter facts', () => {
     const parsed = parseValid()
     if (!parsed.ok) throw new Error('fixture failed to parse')
     const unknown = structuredClone(parsed.value) as Record<string, unknown>
@@ -98,7 +101,7 @@ describe('provider definition trust boundary', () => {
     unknown.adapter = 'future-adapter'
 
     const single = validateProviderDefinition('providers/unknown.yaml', unknown)
-    expect(single.ok && single.definition.available).toBe(false)
+    expect(single.ok && single.definition.adapter).toBe('future-adapter')
 
     const revision = validateProviderRevision([
       { file: 'providers/unknown.yaml', value: unknown },

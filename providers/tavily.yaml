@@ -5,9 +5,6 @@ description: Web search results from the Tavily Search API.
 website_url: https://www.tavily.com/
 documentation_url: https://docs.tavily.com/welcome
 adapter: tavily
-status: active
-available: true
-enabled_by_default: false
 endpoint:
   api_base_url: https://api.tavily.com/
   method: POST
@@ -16,7 +13,6 @@ capabilities:
   operations: [search]
   optional_inputs: []
 authentication:
-  credential_mode: user
   fields:
     - name: api_key
       label: API key

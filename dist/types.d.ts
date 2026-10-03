@@ -1,4 +1,3 @@
-import type { ProviderDefinition } from './schema.js';
 export declare const PROVIDER_ADAPTER_LIMITS: Readonly<{
     queryCharacters: 600;
     queryWords: 75;
@@ -60,8 +59,6 @@ export type ProviderAdapterOutcome = Readonly<{
     failure: ProviderFailure;
 }>;
 export type ProviderAdapterContext = Readonly<{
-    providerId: string;
-    definition: ProviderDefinition;
     credentials: Readonly<Record<string, string>>;
     signal: AbortSignal;
     fetch?: typeof fetch;

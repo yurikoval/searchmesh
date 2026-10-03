@@ -28,15 +28,9 @@ export type ProviderDefinition = {
   website_url: string
   documentation_url: string
   adapter: string
-  status: 'active' | 'degraded' | 'retired'
-  available: boolean
-  enabled_by_default: boolean
   endpoint: { api_base_url: string; method: 'GET' | 'POST'; path: string }
   capabilities: { operations: ['search']; optional_inputs: Array<'language' | 'region' | 'safe_search' | 'time_range'> }
-  authentication: {
-    credential_mode: 'none' | 'user' | 'platform' | 'user_or_platform'
-    fields: Array<{ name: string; label: string }>
-  }
+  authentication: { fields: Array<{ name: string; label: string }> }
   request_mapping: {
     query: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
     body: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
@@ -57,7 +51,7 @@ export type ProviderDefinition = {
   }
 }
 
-const TOP_KEYS = ['schema_version', 'id', 'name', 'description', 'website_url', 'documentation_url', 'adapter', 'status', 'available', 'enabled_by_default', 'endpoint', 'capabilities', 'authentication', 'request_mapping', 'response_mapping', 'metadata'] as const
+const TOP_KEYS = ['schema_version', 'id', 'name', 'description', 'website_url', 'documentation_url', 'adapter', 'endpoint', 'capabilities', 'authentication', 'request_mapping', 'response_mapping', 'metadata'] as const
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const FIELD = /^[A-Za-z][A-Za-z0-9_.-]{0,63}$/
 const PATH_SEGMENT = /^[A-Za-z0-9_-]+$/
@@ -87,10 +81,6 @@ export function validateProviderDefinition(file: string, input: unknown): { ok: 
   const documentationUrl = httpsUrl(root.documentation_url, 'documentation_url', add)
   const adapter = text(root.adapter, 'adapter', 64, add)
   if (adapter && !SLUG.test(adapter)) add('adapter', 'invalid_slug', 'Value must be a lowercase slug')
-  const status = enumValue(root.status, 'status', ['active', 'degraded', 'retired'] as const, add)
-  const available = booleanValue(root.available, 'available', add)
-  const enabledByDefault = booleanValue(root.enabled_by_default, 'enabled_by_default', add)
-
   const endpoint = objectAt(root.endpoint, 'endpoint', ['api_base_url', 'method', 'path'], add)
   const apiBaseUrl = endpoint ? httpsUrl(endpoint.api_base_url, 'endpoint.api_base_url', add) : undefined
   const method = endpoint ? enumValue(endpoint.method, 'endpoint.method', ['GET', 'POST'] as const, add) : undefined
@@ -108,8 +98,7 @@ export function validateProviderDefinition(file: string, input: unknown): { ok: 
   if (operations.length !== 1 || operations[0] !== 'search') add('capabilities.operations', 'invalid_operations', 'Exactly the search operation is required')
   const optionalInputs = capabilities ? stringList(capabilities.optional_inputs, 'capabilities.optional_inputs', OPTIONAL_INPUTS, add) : []
 
-  const authentication = objectAt(root.authentication, 'authentication', ['credential_mode', 'fields'], add)
-  const credentialMode = authentication ? enumValue(authentication.credential_mode, 'authentication.credential_mode', ['none', 'user', 'platform', 'user_or_platform'] as const, add) : undefined
+  const authentication = objectAt(root.authentication, 'authentication', ['fields'], add)
   const fields: Array<{ name: string; label: string }> = []
   if (authentication) {
     if (!Array.isArray(authentication.fields) || authentication.fields.length > PROVIDER_LIMITS.credentials) add('authentication.fields', 'invalid_collection', 'Credential fields must be a bounded list')
@@ -126,8 +115,6 @@ export function validateProviderDefinition(file: string, input: unknown): { ok: 
       })
     }
   }
-  if (credentialMode === 'none' && fields.length) add('authentication.fields', 'unexpected_fields', 'Credential fields are not allowed for this mode')
-
   const requestMapping = objectAt(root.request_mapping, 'request_mapping', ['query', 'body'], add)
   const query = requestMapping ? mapping(requestMapping.query, 'request_mapping.query', add) : {}
   const body = requestMapping ? mapping(requestMapping.body, 'request_mapping.body', add) : {}
@@ -151,13 +138,13 @@ export function validateProviderDefinition(file: string, input: unknown): { ok: 
     }
   }
 
-  if (errors.length || !id || !name || !description || !websiteUrl || !documentationUrl || !adapter || !status || available === undefined || enabledByDefault === undefined || !apiBaseUrl || !method || !requestPath || !credentialMode) return { ok: false, errors }
+  if (errors.length || !id || !name || !description || !websiteUrl || !documentationUrl || !adapter || !apiBaseUrl || !method || !requestPath) return { ok: false, errors }
   const definition: ProviderDefinition = cleanObject({
     schema_version: '1' as const, id, name, description, website_url: websiteUrl, documentation_url: documentationUrl,
-    adapter, status, available: available && Boolean(getAdapterPolicy(adapter)), enabled_by_default: enabledByDefault,
+    adapter,
     endpoint: { api_base_url: apiBaseUrl, method, path: requestPath },
     capabilities: { operations: ['search'] as ['search'], optional_inputs: optionalInputs as ProviderDefinition['capabilities']['optional_inputs'] },
-    authentication: { credential_mode: credentialMode, fields }, request_mapping: { query, body },
+    authentication: { fields }, request_mapping: { query, body },
     response_mapping: cleanObject({ results, title, url, snippet, rank }), metadata,
   })
   const canonicalJson = canonicalStringify(definition)
@@ -210,7 +197,6 @@ function text(value: unknown, path: string, max: number, add: (path: string, cod
   return value.trim()
 }
 function optionalText(value: unknown, path: string, max: number, add: (path: string, code: string, message: string) => void): string | undefined { return value === undefined ? undefined : text(value, path, max, add) }
-function booleanValue(value: unknown, path: string, add: (path: string, code: string, message: string) => void): boolean | undefined { if (typeof value !== 'boolean') { add(path, 'expected_boolean', 'Value must be a boolean'); return }; return value }
 function enumValue<const T extends readonly string[]>(value: unknown, path: string, values: T, add: (path: string, code: string, message: string) => void): T[number] | undefined { if (typeof value !== 'string' || !values.includes(value)) { add(path, 'invalid_value', 'Value is not allowed'); return }; return value as T[number] }
 function httpsUrl(value: unknown, path: string, add: (path: string, code: string, message: string) => void): string | undefined {
   const string = text(value, path, 2_048, add); if (!string) return

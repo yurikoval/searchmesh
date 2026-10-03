@@ -1,5 +1,4 @@
 import { boundNormalizedResults, boundedText, cancelResponseBody, fetchFailure, InvalidProviderResponse, isPlainRecord, normalizedUrl, providerFailure, readBoundedJson, responseFailure } from '../normalize.js'
-import { getAdapterPolicy } from '../url-policy.js'
 import { PROVIDER_ADAPTER_LIMITS, type NormalizedSearchRequest, type NormalizedSearchResult, type ProviderAdapter, type ProviderAdapterContext, type ProviderAdapterOutcome } from '../types.js'
 
 const PROVIDER_ID = 'serpapi'
@@ -7,8 +6,8 @@ const ENDPOINT = 'https://serpapi.com/search'
 const TIME_RANGE = { day: 'qdr:d', week: 'qdr:w', month: 'qdr:m', year: 'qdr:y' } as const
 
 export const serpApiAdapter: ProviderAdapter = async (request, context) => {
-  const configured = validContext(context)
-  if (!configured || !validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, configured ? 'provider_unsupported_parameter' : 'provider_configuration_error') }
+  if (!validContext(context)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_configuration_error') }
+  if (!validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
   if (unsupportedOption(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
 
   const url = new URL(ENDPOINT)
@@ -32,35 +31,7 @@ export const serpApiAdapter: ProviderAdapter = async (request, context) => {
 }
 
 function validContext(context: ProviderAdapterContext): boolean {
-  const { definition } = context
-  const policy = getAdapterPolicy(PROVIDER_ID)
-  return Boolean(policy)
-    && context.providerId === PROVIDER_ID
-    && definition.id === PROVIDER_ID
-    && definition.adapter === PROVIDER_ID
-    && definition.available
-    && definition.status !== 'retired'
-    && definition.endpoint.api_base_url === `${policy!.origin}${policy!.basePath}`
-    && definition.endpoint.path === policy!.path
-    && definition.endpoint.method === policy!.method
-    && definition.capabilities.operations.length === 1
-    && definition.capabilities.operations[0] === 'search'
-    && sameValues(definition.capabilities.optional_inputs, ['language', 'region', 'time_range'])
-    && sameKeys(definition.request_mapping.query, ['query', 'language', 'region', 'time_range'])
-    && definition.request_mapping.query.query === 'q'
-    && definition.request_mapping.query.language === 'hl'
-    && definition.request_mapping.query.region === 'gl'
-    && definition.request_mapping.query.time_range === 'tbs'
-    && Object.keys(definition.request_mapping.body).length === 0
-    && definition.authentication.fields.length === 1
-    && definition.authentication.fields[0].name === 'api_key'
-    && Object.keys(context.credentials).length === 1
-    && validCredential(context.credentials.api_key)
-    && samePath(definition.response_mapping.results, ['organic_results'])
-    && samePath(definition.response_mapping.title, ['title'])
-    && samePath(definition.response_mapping.url, ['link'])
-    && samePath(definition.response_mapping.snippet, ['snippet'])
-    && samePath(definition.response_mapping.rank, ['position'])
+  return Object.keys(context.credentials).length === 1 && validCredential(context.credentials.api_key)
 }
 
 function validRequest(request: NormalizedSearchRequest): boolean {
@@ -108,7 +79,4 @@ function normalize(payload: unknown, limit: number): ProviderAdapterOutcome {
 
 function validRank(value: unknown): number | undefined { return Number.isSafeInteger(value) && (value as number) >= 1 && (value as number) <= PROVIDER_ADAPTER_LIMITS.results ? value as number : undefined }
 function validCredential(value: unknown): value is string { return typeof value === 'string' && value === value.trim() && value.length > 0 && !/[\u0000-\u001f\u007f]/.test(value) && new TextEncoder().encode(value).byteLength <= PROVIDER_ADAPTER_LIMITS.credentialBytes }
-function samePath(actual: readonly (string | number)[] | undefined, expected: readonly (string | number)[]): boolean { return Boolean(actual) && actual!.length === expected.length && actual!.every((value, index) => value === expected[index]) }
-function sameKeys(value: object, expected: readonly string[]): boolean { const keys = Object.keys(value); return keys.length === expected.length && expected.every((key) => keys.includes(key)) }
-function sameValues(actual: readonly string[], expected: readonly string[]): boolean { return actual.length === expected.length && expected.every((value) => actual.includes(value)) }
 function clean<T extends Record<string, unknown>>(value: T): T { return Object.fromEntries(Object.entries(value).filter(([, item]) => item !== undefined)) as T }

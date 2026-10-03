@@ -1,5 +1,4 @@
 import { boundNormalizedResults, boundedText, cancelResponseBody, fetchFailure, InvalidProviderResponse, isPlainRecord, normalizedUrl, providerFailure, readBoundedJson, responseFailure } from '../normalize.js'
-import { getAdapterPolicy } from '../url-policy.js'
 import { PROVIDER_ADAPTER_LIMITS, type NormalizedSearchRequest, type NormalizedSearchResult, type ProviderAdapter, type ProviderAdapterContext, type ProviderAdapterOutcome } from '../types.js'
 
 const PROVIDER_ID = 'dataforseo'
@@ -9,8 +8,8 @@ const DEFAULT_LOCATION_CODE = 2840
 const DEFAULT_DEVICE = 'desktop'
 
 export const dataForSeoAdapter: ProviderAdapter = async (request, context) => {
-  const configured = validContext(context)
-  if (!configured || !validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, configured ? 'provider_unsupported_parameter' : 'provider_configuration_error') }
+  if (!validContext(context)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_configuration_error') }
+  if (!validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
   if (unsupportedOption(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
 
   let response: Response
@@ -35,34 +34,9 @@ export const dataForSeoAdapter: ProviderAdapter = async (request, context) => {
 }
 
 function validContext(context: ProviderAdapterContext): boolean {
-  const { definition } = context
-  const policy = getAdapterPolicy(PROVIDER_ID)
-  return Boolean(policy)
-    && context.providerId === PROVIDER_ID
-    && definition.id === PROVIDER_ID
-    && definition.adapter === PROVIDER_ID
-    && definition.available
-    && definition.status !== 'retired'
-    && definition.endpoint.api_base_url === `${policy!.origin}${policy!.basePath}`
-    && definition.endpoint.path === policy!.path
-    && definition.endpoint.method === policy!.method
-    && sameValues(definition.capabilities.operations, ['search'])
-    && sameValues(definition.capabilities.optional_inputs, ['language'])
-    && Object.keys(definition.request_mapping.query).length === 0
-    && sameKeys(definition.request_mapping.body, ['query', 'language'])
-    && definition.request_mapping.body.query === 'keyword'
-    && definition.request_mapping.body.language === 'language_code'
-    && definition.authentication.fields.length === 2
-    && definition.authentication.fields[0].name === 'login'
-    && definition.authentication.fields[1].name === 'password'
-    && Object.keys(context.credentials).length === 2
+  return Object.keys(context.credentials).length === 2
     && validCredential(context.credentials.login, false)
     && validCredential(context.credentials.password, true)
-    && samePath(definition.response_mapping.results, ['tasks', 0, 'result', 0, 'items'])
-    && samePath(definition.response_mapping.title, ['title'])
-    && samePath(definition.response_mapping.url, ['url'])
-    && samePath(definition.response_mapping.snippet, ['description'])
-    && samePath(definition.response_mapping.rank, ['rank_group'])
 }
 
 function validRequest(request: NormalizedSearchRequest): boolean {
@@ -109,7 +83,4 @@ function normalize(payload: unknown, limit: number): ProviderAdapterOutcome {
 
 function validRank(value: unknown): number | undefined { return Number.isSafeInteger(value) && (value as number) >= 1 && (value as number) <= PROVIDER_ADAPTER_LIMITS.results ? value as number : undefined }
 function validCredential(value: unknown, allowColon: boolean): value is string { return typeof value === 'string' && value === value.trim() && value.length > 0 && (allowColon || !value.includes(':')) && /^[\x20-\x7e]+$/.test(value) && new TextEncoder().encode(value).byteLength <= PROVIDER_ADAPTER_LIMITS.credentialBytes }
-function samePath(actual: readonly (string | number)[] | undefined, expected: readonly (string | number)[]): boolean { return Boolean(actual) && actual!.length === expected.length && actual!.every((value, index) => value === expected[index]) }
-function sameKeys(value: object, expected: readonly string[]): boolean { const keys = Object.keys(value); return keys.length === expected.length && expected.every((key) => keys.includes(key)) }
-function sameValues(actual: readonly string[], expected: readonly string[]): boolean { return actual.length === expected.length && expected.every((value) => actual.includes(value)) }
 function clean<T extends Record<string, unknown>>(value: T): T { return Object.fromEntries(Object.entries(value).filter(([, item]) => item !== undefined)) as T }

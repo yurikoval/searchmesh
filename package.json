@@ -1,6 +1,6 @@
 {
   "name": "searchmesh",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Provider integrations and validated provider definitions for SearchMesh.",
   "author": "Yuri Kovalov <hello@yurikoval.com>",
   "license": "MIT",
