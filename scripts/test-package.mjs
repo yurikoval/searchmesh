@@ -16,13 +16,14 @@ try {
     stdio: 'ignore',
   })
   execFileSync(process.execPath, ['--input-type=module', '--eval',
-    "import('searchmesh').then(({providerAdapters}) => { if (Object.keys(providerAdapters).join(',') !== 'brave,tavily,exa,yep,kagi,you,perplexity,mojeek,serpapi,dataforseo') process.exit(1) })",
+    "import('searchmesh').then(async ({providerAdapters,runProviderAdapter}) => { if (Object.keys(providerAdapters).join(',') !== 'brave,tavily,exa,yep,kagi,you,perplexity,mojeek,serpapi,dataforseo') process.exit(1); const outcome = await runProviderAdapter('missing', { query: 'test', limit: 1 }, { credentials: {}, signal: new AbortController().signal }); if (outcome.ok || outcome.failure.providerId !== 'missing') process.exit(1) })",
   ], { cwd: consumer, stdio: 'inherit' })
 
   writeFileSync(join(consumer, 'consumer.ts'), `
-    import { dataForSeoAdapter, getProviderAdapter, type NormalizedSearchRequest } from 'searchmesh'
+    import { dataForSeoAdapter, getProviderAdapter, runProviderAdapter, type NormalizedSearchRequest, type ProviderAdapterContext } from 'searchmesh'
     const request: NormalizedSearchRequest = { query: 'test', limit: 1 }
-    void request
+    const context: ProviderAdapterContext = { credentials: { api_key: 'test' }, signal: new AbortController().signal }
+    void runProviderAdapter('brave', request, context)
     void dataForSeoAdapter
     void getProviderAdapter('dataforseo')
   `)

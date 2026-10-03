@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it, vi } from 'vitest'
-import type { ProviderDefinition } from '../src/schema.js'
 import { PROVIDER_ADAPTER_LIMITS, type NormalizedSearchRequest, type ProviderAdapterContext } from '../src/types.js'
 
 vi.mock('../src/url-policy.js', () => ({
@@ -13,18 +12,8 @@ const credential = 'credential-canary'
 const query = 'query canary'
 const upstreamError = 'upstream-error-canary'
 const request: NormalizedSearchRequest = { query, limit: 3, language: 'en', region: 'US', timeRange: 'month' }
-const definition: ProviderDefinition = {
-  schema_version: '1', id: 'perplexity', name: 'Perplexity', description: 'Search provider.',
-  website_url: 'https://example.com/', documentation_url: 'https://example.com/docs', adapter: 'perplexity', status: 'active', available: true, enabled_by_default: false,
-  endpoint: { api_base_url: 'https://api.perplexity.ai/', method: 'POST', path: '/search' },
-  capabilities: { operations: ['search'], optional_inputs: ['language', 'region', 'time_range'] },
-  authentication: { credential_mode: 'user', fields: [{ name: 'api_key', label: 'API key' }] },
-  request_mapping: { query: {}, body: { query: 'query', language: 'search_language_filter', region: 'country', time_range: 'search_recency_filter' } },
-  response_mapping: { results: ['results'], title: ['title'], url: ['url'], snippet: ['snippet'] },
-}
-
 function context(fetchMock: typeof fetch, signal = new AbortController().signal, overrides: Partial<ProviderAdapterContext> = {}): ProviderAdapterContext {
-  return { providerId: 'perplexity', definition: structuredClone(definition), credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
+  return { credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
 }
 function jsonResponse(body = fixtureSource, init: ResponseInit = {}) { return new Response(body, { ...init, headers: { 'Content-Type': 'application/json', ...init.headers } }) }
 async function failureWith(fetchMock: typeof fetch, signal = new AbortController().signal) {
@@ -61,12 +50,9 @@ describe('Perplexity adapter', () => {
     expect(fetchMock).not.toHaveBeenCalled()
   })
 
-  it('rejects context and credential mismatches before fetch', async () => {
+  it('rejects credential mismatches before fetch', async () => {
     const fetchMock = vi.fn<typeof fetch>()
     const contexts = [
-      context(fetchMock, undefined, { providerId: 'other' }),
-      context(fetchMock, undefined, { definition: { ...definition, endpoint: { ...definition.endpoint, method: 'GET' } } }),
-      context(fetchMock, undefined, { definition: { ...definition, request_mapping: { ...definition.request_mapping, body: { ...definition.request_mapping.body, region: 'region' } } } }),
       context(fetchMock, undefined, { credentials: { api_key: ` ${credential}` } }),
     ]
     for (const candidate of contexts) await expect(perplexityAdapter(request, candidate)).resolves.toMatchObject({ ok: false, failure: { code: 'provider_configuration_error' } })

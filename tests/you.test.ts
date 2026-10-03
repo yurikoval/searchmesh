@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it, vi } from 'vitest'
-import type { ProviderDefinition } from '../src/schema.js'
 import { PROVIDER_ADAPTER_LIMITS, type NormalizedSearchRequest, type ProviderAdapterContext } from '../src/types.js'
 
 vi.mock('../src/url-policy.js', () => ({
@@ -13,18 +12,8 @@ const credential = 'credential-canary'
 const query = 'query canary'
 const upstreamError = 'upstream-error-canary'
 const request: NormalizedSearchRequest = { query, limit: 3, language: 'pt-br', region: 'US', safeSearch: 'strict', timeRange: 'week' }
-const definition: ProviderDefinition = {
-  schema_version: '1', id: 'you', name: 'You.com', description: 'Search provider.',
-  website_url: 'https://example.com/', documentation_url: 'https://example.com/docs', adapter: 'you', status: 'active', available: true, enabled_by_default: false,
-  endpoint: { api_base_url: 'https://ydc-index.io/v1/', method: 'POST', path: '/v1/search' },
-  capabilities: { operations: ['search'], optional_inputs: ['language', 'region', 'safe_search', 'time_range'] },
-  authentication: { credential_mode: 'user', fields: [{ name: 'api_key', label: 'API key' }] },
-  request_mapping: { query: {}, body: { query: 'query', language: 'language', region: 'country', safe_search: 'safesearch', time_range: 'freshness' } },
-  response_mapping: { results: ['results', 'web'], title: ['title'], url: ['url'], snippet: ['description'] },
-}
-
 function context(fetchMock: typeof fetch, signal = new AbortController().signal, overrides: Partial<ProviderAdapterContext> = {}): ProviderAdapterContext {
-  return { providerId: 'you', definition: structuredClone(definition), credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
+  return { credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
 }
 function jsonResponse(body = fixtureSource, init: ResponseInit = {}) { return new Response(body, { ...init, headers: { 'Content-Type': 'application/json', ...init.headers } }) }
 async function failureWith(fetchMock: typeof fetch, signal = new AbortController().signal) {
@@ -60,12 +49,9 @@ describe('You.com adapter', () => {
     expect(fetchMock).not.toHaveBeenCalled()
   })
 
-  it('rejects definition, provider, mapping, and credential mismatches before fetch', async () => {
+  it('rejects credential mismatches before fetch', async () => {
     const fetchMock = vi.fn<typeof fetch>()
     const contexts = [
-      context(fetchMock, undefined, { providerId: 'other' }),
-      context(fetchMock, undefined, { definition: { ...definition, endpoint: { ...definition.endpoint, path: '/other' } } }),
-      context(fetchMock, undefined, { definition: { ...definition, request_mapping: { ...definition.request_mapping, body: { ...definition.request_mapping.body, region: 'region' } } } }),
       context(fetchMock, undefined, { credentials: { api_key: `${credential}\n` } }),
     ]
     for (const candidate of contexts) await expect(youAdapter(request, candidate)).resolves.toMatchObject({ ok: false, failure: { code: 'provider_configuration_error' } })

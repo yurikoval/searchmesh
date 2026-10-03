@@ -16,7 +16,7 @@ export const PROVIDER_LIMITS = Object.freeze({
     errors: 20,
     errorReportBytes: 8 * 1024,
 });
-const TOP_KEYS = ['schema_version', 'id', 'name', 'description', 'website_url', 'documentation_url', 'adapter', 'status', 'available', 'enabled_by_default', 'endpoint', 'capabilities', 'authentication', 'request_mapping', 'response_mapping', 'metadata'];
+const TOP_KEYS = ['schema_version', 'id', 'name', 'description', 'website_url', 'documentation_url', 'adapter', 'endpoint', 'capabilities', 'authentication', 'request_mapping', 'response_mapping', 'metadata'];
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FIELD = /^[A-Za-z][A-Za-z0-9_.-]{0,63}$/;
 const PATH_SEGMENT = /^[A-Za-z0-9_-]+$/;
@@ -50,9 +50,6 @@ export function validateProviderDefinition(file, input) {
     const adapter = text(root.adapter, 'adapter', 64, add);
     if (adapter && !SLUG.test(adapter))
         add('adapter', 'invalid_slug', 'Value must be a lowercase slug');
-    const status = enumValue(root.status, 'status', ['active', 'degraded', 'retired'], add);
-    const available = booleanValue(root.available, 'available', add);
-    const enabledByDefault = booleanValue(root.enabled_by_default, 'enabled_by_default', add);
     const endpoint = objectAt(root.endpoint, 'endpoint', ['api_base_url', 'method', 'path'], add);
     const apiBaseUrl = endpoint ? httpsUrl(endpoint.api_base_url, 'endpoint.api_base_url', add) : undefined;
     const method = endpoint ? enumValue(endpoint.method, 'endpoint.method', ['GET', 'POST'], add) : undefined;
@@ -68,8 +65,7 @@ export function validateProviderDefinition(file, input) {
     if (operations.length !== 1 || operations[0] !== 'search')
         add('capabilities.operations', 'invalid_operations', 'Exactly the search operation is required');
     const optionalInputs = capabilities ? stringList(capabilities.optional_inputs, 'capabilities.optional_inputs', OPTIONAL_INPUTS, add) : [];
-    const authentication = objectAt(root.authentication, 'authentication', ['credential_mode', 'fields'], add);
-    const credentialMode = authentication ? enumValue(authentication.credential_mode, 'authentication.credential_mode', ['none', 'user', 'platform', 'user_or_platform'], add) : undefined;
+    const authentication = objectAt(root.authentication, 'authentication', ['fields'], add);
     const fields = [];
     if (authentication) {
         if (!Array.isArray(authentication.fields) || authentication.fields.length > PROVIDER_LIMITS.credentials)
@@ -93,8 +89,6 @@ export function validateProviderDefinition(file, input) {
             });
         }
     }
-    if (credentialMode === 'none' && fields.length)
-        add('authentication.fields', 'unexpected_fields', 'Credential fields are not allowed for this mode');
     const requestMapping = objectAt(root.request_mapping, 'request_mapping', ['query', 'body'], add);
     const query = requestMapping ? mapping(requestMapping.query, 'request_mapping.query', add) : {};
     const body = requestMapping ? mapping(requestMapping.body, 'request_mapping.body', add) : {};
@@ -118,14 +112,14 @@ export function validateProviderDefinition(file, input) {
             metadata = cleanObject({ rate_limit: rateLimit, pricing, pricing_url: pricingUrl, example_request: value.example_request, example_response: value.example_response });
         }
     }
-    if (errors.length || !id || !name || !description || !websiteUrl || !documentationUrl || !adapter || !status || available === undefined || enabledByDefault === undefined || !apiBaseUrl || !method || !requestPath || !credentialMode)
+    if (errors.length || !id || !name || !description || !websiteUrl || !documentationUrl || !adapter || !apiBaseUrl || !method || !requestPath)
         return { ok: false, errors };
     const definition = cleanObject({
         schema_version: '1', id, name, description, website_url: websiteUrl, documentation_url: documentationUrl,
-        adapter, status, available: available && Boolean(getAdapterPolicy(adapter)), enabled_by_default: enabledByDefault,
+        adapter,
         endpoint: { api_base_url: apiBaseUrl, method, path: requestPath },
         capabilities: { operations: ['search'], optional_inputs: optionalInputs },
-        authentication: { credential_mode: credentialMode, fields }, request_mapping: { query, body },
+        authentication: { fields }, request_mapping: { query, body },
         response_mapping: cleanObject({ results, title, url, snippet, rank }), metadata,
     });
     const canonicalJson = canonicalStringify(definition);
@@ -192,10 +186,6 @@ function text(value, path, max, add) {
     return value.trim();
 }
 function optionalText(value, path, max, add) { return value === undefined ? undefined : text(value, path, max, add); }
-function booleanValue(value, path, add) { if (typeof value !== 'boolean') {
-    add(path, 'expected_boolean', 'Value must be a boolean');
-    return;
-} ; return value; }
 function enumValue(value, path, values, add) { if (typeof value !== 'string' || !values.includes(value)) {
     add(path, 'invalid_value', 'Value is not allowed');
     return;

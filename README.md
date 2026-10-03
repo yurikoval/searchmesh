@@ -28,17 +28,19 @@ npm install searchmesh
 ## Use
 
 ```ts
-import {
-  getProviderAdapter,
-  parseProviderYaml,
-  runProviderAdapter,
-  validateProviderDefinition,
-  type ProviderAdapterContext,
-  type NormalizedSearchRequest,
-} from 'searchmesh'
+import { runProviderAdapter } from 'searchmesh'
+
+const outcome = await runProviderAdapter(
+  'brave',
+  { query: 'runtime-neutral search', limit: 5 },
+  {
+    credentials: { api_key: 'your-api-key' },
+    signal: new AbortController().signal,
+  },
+)
 ```
 
-The package includes compiled adapters for all supported providers. Their registry definitions live in `providers/` and are validated by the package test suite.
+The package includes compiled adapters for all supported providers. Callers supply only credentials and runtime controls; provider identity, endpoint, capabilities, mappings, and credential contracts are compiled into each adapter. Lean integration definitions live in `providers/` and are validated by the package test suite.
 
 ## Development
 

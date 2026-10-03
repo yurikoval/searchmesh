@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it, vi } from 'vitest'
 import { PROVIDER_ADAPTER_LIMITS, type NormalizedSearchRequest, type ProviderAdapterContext } from '../src/types.js'
-import type { ProviderDefinition } from '../src/schema.js'
 
 vi.mock('../src/url-policy.js', () => ({
   getAdapterPolicy: (id: string) => id === 'mojeek' ? { origin: 'https://api.mojeek.com', basePath: '/', path: '/search', method: 'GET' } : undefined,
@@ -13,18 +12,8 @@ const credential = 'credential canary/+?&'
 const query = 'query canary'
 const upstreamError = 'upstream-error-canary'
 const request: NormalizedSearchRequest = { query, limit: 3, language: 'en', region: 'US' }
-const definition: ProviderDefinition = {
-  schema_version: '1', id: 'mojeek', name: 'Mojeek', description: 'Search provider.',
-  website_url: 'https://example.com/', documentation_url: 'https://example.com/docs', adapter: 'mojeek', status: 'active', available: true, enabled_by_default: false,
-  endpoint: { api_base_url: 'https://api.mojeek.com/', method: 'GET', path: '/search' },
-  capabilities: { operations: ['search'], optional_inputs: ['language', 'region'] },
-  authentication: { credential_mode: 'user', fields: [{ name: 'api_key', label: 'API key' }] },
-  request_mapping: { query: { query: 'q', language: 'lb', region: 'rb' }, body: {} },
-  response_mapping: { results: ['response', 'results'], title: ['title'], url: ['url'], snippet: ['desc'] },
-}
-
 function context(fetchMock: typeof fetch, signal = new AbortController().signal, overrides: Partial<ProviderAdapterContext> = {}): ProviderAdapterContext {
-  return { providerId: 'mojeek', definition: structuredClone(definition), credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
+  return { credentials: { api_key: credential }, signal, fetch: fetchMock, ...overrides }
 }
 function jsonResponse(body = fixtureSource, init: ResponseInit = {}) { return new Response(body, { ...init, headers: { 'Content-Type': 'application/json', ...init.headers } }) }
 async function failureWith(fetchMock: typeof fetch, candidate = request, signal = new AbortController().signal) {
@@ -63,12 +52,9 @@ describe('Mojeek adapter', () => {
     expect(fetchMock).not.toHaveBeenCalled()
   })
 
-  it('rejects context and credentials before fetch', async () => {
+  it('rejects invalid credentials before fetch', async () => {
     const fetchMock = vi.fn<typeof fetch>()
     const contexts = [
-      context(fetchMock, undefined, { providerId: 'other' }),
-      context(fetchMock, undefined, { definition: { ...definition, endpoint: { ...definition.endpoint, path: '/other' } } }),
-      context(fetchMock, undefined, { definition: { ...definition, request_mapping: { ...definition.request_mapping, query: { query: 'query', language: 'lb', region: 'rb' } } } }),
       context(fetchMock, undefined, { credentials: { api_key: ` ${credential}` } }),
     ]
     for (const candidate of contexts) await expect(mojeekAdapter(request, candidate)).resolves.toMatchObject({ ok: false, failure: { code: 'provider_configuration_error' } })

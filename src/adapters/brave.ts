@@ -1,17 +1,15 @@
 import { boundNormalizedResults, boundedText, cancelResponseBody, fetchFailure, InvalidProviderResponse, isPlainRecord, normalizedDate, normalizedUrl, providerFailure, readBoundedJson, responseFailure } from '../normalize.js'
-import { getAdapterPolicy } from '../url-policy.js'
 import { PROVIDER_ADAPTER_LIMITS, type NormalizedSearchRequest, type NormalizedSearchResult, type ProviderAdapter, type ProviderAdapterContext, type ProviderAdapterOutcome } from '../types.js'
 
 const PROVIDER_ID = 'brave'
 const ENDPOINT = 'https://api.search.brave.com/res/v1/web/search'
-const OPTIONAL_MAPPINGS = { language: 'search_lang', region: 'country', safe_search: 'safesearch', time_range: 'freshness' } as const
 const TIME_RANGE = { day: 'pd', week: 'pw', month: 'pm', year: 'py' } as const
 
 export const braveAdapter: ProviderAdapter = async (request, context) => {
-  const configured = validContext(context)
-  if (!configured || !validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, configured ? 'provider_unsupported_parameter' : 'provider_configuration_error') }
+  if (!validContext(context)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_configuration_error') }
+  if (!validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
 
-  const unsupported = unsupportedOption(request, context)
+  const unsupported = unsupportedOption(request)
   if (unsupported) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
 
   const url = new URL(ENDPOINT)
@@ -43,34 +41,7 @@ export const braveAdapter: ProviderAdapter = async (request, context) => {
 }
 
 function validContext(context: ProviderAdapterContext): boolean {
-  const { definition } = context
-  const policy = getAdapterPolicy(PROVIDER_ID)
-  const optional = definition.capabilities.optional_inputs
-  const expectedQuery = ['query', ...optional]
-  const queryMapping = definition.request_mapping.query
-  return context.providerId === PROVIDER_ID
-    && definition.id === PROVIDER_ID
-    && definition.adapter === PROVIDER_ID
-    && definition.available
-    && definition.status !== 'retired'
-    && definition.endpoint.api_base_url === `${policy!.origin}${policy!.basePath}`
-    && definition.endpoint.path === policy!.path
-    && definition.endpoint.method === policy!.method
-    && definition.capabilities.operations.length === 1
-    && definition.capabilities.operations[0] === 'search'
-    && optional.every((key) => OPTIONAL_MAPPINGS[key] === queryMapping[key])
-    && Object.keys(queryMapping).length === expectedQuery.length
-    && queryMapping.query === 'q'
-    && Object.keys(definition.request_mapping.body).length === 0
-    && definition.authentication.fields.length === 1
-    && definition.authentication.fields[0].name === 'api_key'
-    && Object.keys(context.credentials).length === 1
-    && validCredential(context.credentials.api_key)
-    && samePath(definition.response_mapping.results, ['web', 'results'])
-    && samePath(definition.response_mapping.title, ['title'])
-    && samePath(definition.response_mapping.url, ['url'])
-    && samePath(definition.response_mapping.snippet, ['description'])
-    && definition.response_mapping.rank === undefined
+  return Object.keys(context.credentials).length === 1 && validCredential(context.credentials.api_key)
 }
 
 function validRequest(request: NormalizedSearchRequest): boolean {
@@ -83,12 +54,11 @@ function validRequest(request: NormalizedSearchRequest): boolean {
     && request.limit <= PROVIDER_ADAPTER_LIMITS.results
 }
 
-function unsupportedOption(request: NormalizedSearchRequest, context: ProviderAdapterContext): boolean {
-  const supported = new Set(context.definition.capabilities.optional_inputs)
-  return (request.language !== undefined && (!supported.has('language') || !/^[a-z]{2,3}$/.test(request.language)))
-    || (request.region !== undefined && (!supported.has('region') || !/^[A-Z]{2}$/.test(request.region)))
-    || (request.safeSearch !== undefined && (!supported.has('safe_search') || !['off', 'moderate', 'strict'].includes(request.safeSearch)))
-    || (request.timeRange !== undefined && (!supported.has('time_range') || !Object.hasOwn(TIME_RANGE, request.timeRange)))
+function unsupportedOption(request: NormalizedSearchRequest): boolean {
+  return (request.language !== undefined && !/^[a-z]{2,3}$/.test(request.language))
+    || (request.region !== undefined && !/^[A-Z]{2}$/.test(request.region))
+    || (request.safeSearch !== undefined && !['off', 'moderate', 'strict'].includes(request.safeSearch))
+    || (request.timeRange !== undefined && !Object.hasOwn(TIME_RANGE, request.timeRange))
 }
 
 function normalize(payload: unknown, limit: number): ProviderAdapterOutcome {
@@ -119,5 +89,4 @@ function normalize(payload: unknown, limit: number): ProviderAdapterOutcome {
 function validCredential(value: unknown): value is string {
   return typeof value === 'string' && value === value.trim() && value.length > 0 && !/[\u0000-\u001f\u007f]/.test(value) && new TextEncoder().encode(value).byteLength <= PROVIDER_ADAPTER_LIMITS.credentialBytes
 }
-function samePath(actual: readonly (string | number)[] | undefined, expected: readonly (string | number)[]): boolean { return Boolean(actual) && actual!.length === expected.length && actual!.every((value, index) => value === expected[index]) }
 function clean<T extends Record<string, unknown>>(value: T): T { return Object.fromEntries(Object.entries(value).filter(([, item]) => item !== undefined)) as T }

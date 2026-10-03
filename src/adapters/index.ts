@@ -39,7 +39,7 @@ export function getProviderAdapter(adapter: string): ProviderAdapter | undefined
   return providerAdapters[adapter as ExecutableProviderId]
 }
 
-export async function runProviderAdapter(adapter: string, request: NormalizedSearchRequest, context: ProviderAdapterContext): Promise<ProviderAdapterOutcome> {
-  const implementation = getProviderAdapter(adapter)
-  return implementation ? implementation(request, context) : { ok: false, failure: providerFailure(context.providerId, 'provider_configuration_error') }
+export async function runProviderAdapter(providerId: string, request: NormalizedSearchRequest, context: ProviderAdapterContext): Promise<ProviderAdapterOutcome> {
+  const implementation = getProviderAdapter(providerId)
+  return implementation ? implementation(request, context) : { ok: false, failure: providerFailure(providerId, 'provider_configuration_error') }
 }

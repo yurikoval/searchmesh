@@ -30,9 +30,6 @@ export type ProviderDefinition = {
     website_url: string;
     documentation_url: string;
     adapter: string;
-    status: 'active' | 'degraded' | 'retired';
-    available: boolean;
-    enabled_by_default: boolean;
     endpoint: {
         api_base_url: string;
         method: 'GET' | 'POST';
@@ -43,7 +40,6 @@ export type ProviderDefinition = {
         optional_inputs: Array<'language' | 'region' | 'safe_search' | 'time_range'>;
     };
     authentication: {
-        credential_mode: 'none' | 'user' | 'platform' | 'user_or_platform';
         fields: Array<{
             name: string;
             label: string;

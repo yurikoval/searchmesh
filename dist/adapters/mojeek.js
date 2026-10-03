@@ -1,12 +1,12 @@
 import { boundNormalizedResults, boundedText, cancelResponseBody, fetchFailure, finiteNumber, InvalidProviderResponse, isPlainRecord, normalizedUrl, providerFailure, readBoundedJson, responseFailure } from '../normalize.js';
-import { getAdapterPolicy } from '../url-policy.js';
 import { PROVIDER_ADAPTER_LIMITS } from '../types.js';
 const PROVIDER_ID = 'mojeek';
 const ENDPOINT = 'https://api.mojeek.com/search';
 export const mojeekAdapter = async (request, context) => {
-    const configured = validContext(context);
-    if (!configured || !validRequest(request))
-        return { ok: false, failure: providerFailure(PROVIDER_ID, configured ? 'provider_unsupported_parameter' : 'provider_configuration_error') };
+    if (!validContext(context))
+        return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_configuration_error') };
+    if (!validRequest(request))
+        return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') };
     if (unsupportedOption(request))
         return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') };
     const url = new URL(ENDPOINT);
@@ -38,34 +38,7 @@ export const mojeekAdapter = async (request, context) => {
     }
 };
 function validContext(context) {
-    const { definition } = context;
-    const policy = getAdapterPolicy(PROVIDER_ID);
-    return Boolean(policy)
-        && context.providerId === PROVIDER_ID
-        && definition.id === PROVIDER_ID
-        && definition.adapter === PROVIDER_ID
-        && definition.available
-        && definition.status !== 'retired'
-        && definition.endpoint.api_base_url === `${policy.origin}${policy.basePath}`
-        && definition.endpoint.path === policy.path
-        && definition.endpoint.method === policy.method
-        && definition.capabilities.operations.length === 1
-        && definition.capabilities.operations[0] === 'search'
-        && sameValues(definition.capabilities.optional_inputs, ['language', 'region'])
-        && sameKeys(definition.request_mapping.query, ['query', 'language', 'region'])
-        && definition.request_mapping.query.query === 'q'
-        && definition.request_mapping.query.language === 'lb'
-        && definition.request_mapping.query.region === 'rb'
-        && Object.keys(definition.request_mapping.body).length === 0
-        && definition.authentication.fields.length === 1
-        && definition.authentication.fields[0].name === 'api_key'
-        && Object.keys(context.credentials).length === 1
-        && validCredential(context.credentials.api_key)
-        && samePath(definition.response_mapping.results, ['response', 'results'])
-        && samePath(definition.response_mapping.title, ['title'])
-        && samePath(definition.response_mapping.url, ['url'])
-        && samePath(definition.response_mapping.snippet, ['desc'])
-        && definition.response_mapping.rank === undefined;
+    return Object.keys(context.credentials).length === 1 && validCredential(context.credentials.api_key);
 }
 function validRequest(request) {
     return request.query === request.query.trim()
@@ -113,7 +86,4 @@ function normalize(payload, limit) {
     return { ok: true, providerId: PROVIDER_ID, results: boundNormalizedResults(results) };
 }
 function validCredential(value) { return typeof value === 'string' && value === value.trim() && value.length > 0 && !/[\u0000-\u001f\u007f]/.test(value) && new TextEncoder().encode(value).byteLength <= PROVIDER_ADAPTER_LIMITS.credentialBytes; }
-function samePath(actual, expected) { return Boolean(actual) && actual.length === expected.length && actual.every((value, index) => value === expected[index]); }
-function sameKeys(value, expected) { const keys = Object.keys(value); return keys.length === expected.length && expected.every((key) => keys.includes(key)); }
-function sameValues(actual, expected) { return actual.length === expected.length && expected.every((value) => actual.includes(value)); }
 function clean(value) { return Object.fromEntries(Object.entries(value).filter(([, item]) => item !== undefined)); }
