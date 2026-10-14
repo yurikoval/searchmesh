@@ -6,15 +6,26 @@ const ENDPOINT = 'https://kagi.com/api/v1/search'
 
 export const kagiAdapter: ProviderAdapter = async (request, context) => {
   if (!validContext(context)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_configuration_error') }
-  if (!validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
-  if (request.language !== undefined || request.region !== undefined || request.safeSearch !== undefined || request.timeRange !== undefined) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
+  if (!validRequest(request) || unsupportedOption(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
+
+  const filters = clean({
+    region: request.region,
+    after: request.timeRange ? recencyStartDate(request.timeRange) : undefined,
+  })
+  const body = clean({
+    query: request.query,
+    workflow: 'search',
+    limit: request.limit,
+    filters: Object.keys(filters).length ? filters : undefined,
+    safe_search: request.safeSearch === undefined ? undefined : request.safeSearch !== 'off',
+  })
 
   let response: Response
   try {
     response = await (context.fetch ?? fetch)(ENDPOINT, {
       method: 'POST',
-      headers: { Accept: 'application/json', Authorization: `Bot ${context.credentials.api_key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: request.query, workflow: 'search', limit: request.limit }),
+      headers: { Accept: 'application/json', Authorization: `Bearer ${context.credentials.api_key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
       signal: context.signal,
       redirect: 'error',
     })
@@ -38,6 +49,18 @@ function validRequest(request: NormalizedSearchRequest): boolean {
     && Number.isInteger(request.limit)
     && request.limit >= 1
     && request.limit <= PROVIDER_ADAPTER_LIMITS.results
+}
+
+function unsupportedOption(request: NormalizedSearchRequest): boolean {
+  return request.language !== undefined
+    || (request.region !== undefined && !/^[A-Z]{2}$/.test(request.region))
+    || (request.safeSearch !== undefined && !['off', 'moderate', 'strict'].includes(request.safeSearch))
+    || (request.timeRange !== undefined && !['day', 'week', 'month', 'year'].includes(request.timeRange))
+}
+
+function recencyStartDate(timeRange: NonNullable<NormalizedSearchRequest['timeRange']>): string {
+  const days = { day: 1, week: 7, month: 30, year: 365 } as const
+  return new Date(Date.now() - days[timeRange] * 86_400_000).toISOString().slice(0, 10)
 }
 
 function normalize(payload: unknown, limit: number): ProviderAdapterOutcome {
