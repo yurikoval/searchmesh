@@ -1,0 +1,960 @@
+- request:
+    url: https://api.search.brave.com/res/v1/web/search?q=Brave+Search+API&count=3&search_lang=en&country=US&safesearch=moderate
+    method: GET
+    headers:
+      accept: application/json
+      x-subscription-token: recorded-brave-key
+    body: ""
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      content-type: application/json
+    body: |-
+      {
+        "type": "search",
+        "query": {
+          "original": "Brave Search API",
+          "show_strict_warning": false,
+          "is_navigational": true,
+          "is_news_breaking": false,
+          "spellcheck_off": false,
+          "country": "us",
+          "bad_results": false,
+          "should_fallback": false,
+          "postal_code": "",
+          "city": "",
+          "header_country": "",
+          "more_results_available": true,
+          "state": "",
+          "related_queries": [
+            "brave search api pricing",
+            "brave search api free",
+            "brave search api alternative",
+            "brave search api openclaw",
+            "brave search api without credit card",
+            "brave search api documentation",
+            "brave search api free alternative",
+            "brave search api vs tavily",
+            "brave search api login",
+            "brave search api mcp"
+          ]
+        },
+        "discussions": {
+          "type": "search",
+          "results": [
+            {
+              "title": "Honest Brave Search API review after 3 months of using it in production",
+              "url": "https://www.reddit.com/r/scrapingtheweb/comments/1tlkrla/honest_brave_search_api_review_after_3_months_of/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "You know what? its not the first time I hear this apparently its a very common issue and they should look into it",
+              "fetched_content_timestamp": 1791836800,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › scrapingtheweb  › comments  › 1tlkrla  › honest_brave_search_api_review_after_3_months_of"
+              },
+              "age": "June 3, 2026",
+              "data": {
+                "forum_name": "r/scrapingtheweb",
+                "num_answers": 22,
+                "score": "16",
+                "title": "Honest Brave Search API review after 3 months of using it in production",
+                "question": "<p>\n      Spoiler it went pretty bad. We use Brave Search API as the retrieval layer for a research agent for about three months. Most reviews I found were either surface-level or written by someone who used it for a weekend, so I decided to put down a few notes on it\n    </p><p>\n      The independence from google and Bing is valuable right now especially after Microsoft killed the bing api I last year, Brave is one of very few options left that crawls its own index\n    </p><p>\n      <strong>Where it frustrated me</strong>\n    </p><p>\n      400 character query limit becomes a problem when your agent generates verbose searches - that impacted us pretty quickly and we saw our free tier going from 5,000 queries/month to $5 in credits which is fine for production but very annoying when you&#39;re burning through queries during eval runs\n    </p><p>\n      For bigger structural limitation for my use case, Brave gives you search results and not full page content so if your agent needs to read the article or report, you need a separate scraping layer on top. I’m trying to test solutions and turnarounds to this, as well as any alternative that may be more pertaining to my use case.\n    </p><p>\n      Would appreciate any input!\n    </p><p>\n      <em><strong>Quick update:</strong></em> we still use brave as a search source, but we replace the scraping layer with Firecrawl and that solved most of the issues we were running into with fetching and parsing pages, and the whole pipeline is much simpler\n    </p>",
+                "top_comment": "You know what? its not the first time I hear this apparently its a very common issue and they should look into it"
+              }
+            },
+            {
+              "title": "Brave API",
+              "url": "https://www.reddit.com/r/openclaw/comments/1r9umvw/brave_api/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "Tell your agent to install searXNG and run something similar locally.",
+              "fetched_content_timestamp": 1791968268,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › openclaw  › comments  › 1r9umvw  › brave_api"
+              },
+              "age": "February 20, 2026",
+              "data": {
+                "forum_name": "r/openclaw",
+                "num_answers": 58,
+                "score": "22",
+                "title": "Brave API",
+                "question": "<p>\n      Hello,\n    </p><p>\n      Any of you guys uses the Brave API and actually pay for it to let openclaw use it? is it really worth it?\n    </p><p>\n      I believe that it should be faster and better than using the chrome horrible extension but I wanted to see if someone could confirm it for me.\n    </p>",
+                "top_comment": "Tell your agent to install searXNG and run something similar locally."
+              }
+            },
+            {
+              "title": "PSA: Brave Search API no longer free, other changes and features added",
+              "url": "https://www.reddit.com/r/openclaw/comments/1r340jz/psa_brave_search_api_no_longer_free_other_changes/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "Anyone who already subscribed to the Free Plan with 2,000 requests free per month will continue to have access to the plan. So this only affects new customers.",
+              "fetched_content_timestamp": 1791834427,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › openclaw  › comments  › 1r340jz  › psa_brave_search_api_no_longer_free_other_changes"
+              },
+              "age": "February 13, 2026",
+              "data": {
+                "forum_name": "r/openclaw",
+                "num_answers": 58,
+                "score": "40",
+                "title": "PSA: Brave Search API no longer free, other changes and features added",
+                "question": "<p>\n      Brave released a major Search API update. The new LLM Context API goes beyond standard search results. It extracts the most relevant content chunks from pages, ranks them, and formats everything for LLM consumption.\n    </p><p>\n      Their research shows cheaper open-weight models like Qwen3 outperform ChatGPT and Perplexity when fed this higher-quality context. Good data matters more than expensive models.\n    </p><p>\n      Pricing: They have removed Free Api plan. $5 per 1,000 requests for Search (includes LLM Context, web, images, news). $4 per 1,000 searches plus $5 per million tokens for Answers. Both plans include $5 free monthly credit.\n    </p><p>\n      EDIT: Existing users of the free plan should still be subscribed to that plan, based on the email they have sent out to current subscribers: <em>&quot;Your current subscriptions are not affected—you can continue using the API with the same functionality and price.&quot;</em>\n    </p><p>\n      EDIT 2: You can set your plan to have a limit of the $5 credit that they provide you which essentially means you get to use the api for free without concern of having to pay for it. Thank you for the explanation <a rpl class=\" a\n  \n  \n  \n  \n  hover:underline\n  \n  cursor-pointer\" href=\"/user/dimeford/\">u/dimeford</a>\n    </p><p>\n      More details and graphs of their research can be found here: <a rpl class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"https://brave.com/blog/most-powerful-search-api-for-ai/\" rel=\"noopener nofollow ugc\" target=\"_blank\"> https://brave.com/blog/most-powerful-search-api-for-ai/ </a>\n    </p>",
+                "top_comment": "Anyone who already subscribed to the Free Plan with 2,000 requests free per month will continue to have access to the plan. So this only affects new customers."
+              }
+            },
+            {
+              "title": "What’s the best alternative to Brave Search API in 2026?",
+              "url": "https://www.reddit.com/r/learnmachinelearning/comments/1t4hjr9/whats_the_best_alternative_to_brave_search_api_in/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "If you’re trying alternatives, one big difference is how much control you want. Some tools give you clean markdown/json out of the box, others require more setup but give you full flexibility",
+              "fetched_content_timestamp": 1791371499,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › learnmachinelearning  › comments  › 1t4hjr9  › whats_the_best_alternative_to_brave_search_api_in"
+              },
+              "age": "May 6, 2026",
+              "data": {
+                "forum_name": "r/learnmachinelearning",
+                "num_answers": 26,
+                "score": "19",
+                "title": "What’s the best alternative to Brave Search API in 2026?",
+                "question": "<p>\n      Hey all, could use some input. I’ve been using Brave API since 2022 but after the recent updates it feels less reliable and a bit annoying to work with. I’m in the middle of reworking the search layer for a new app and trying to figure out if it’s still worth relying on external APIs or if I should move toward a more custom setup with caching and tighter query control. What’s been working well for you lately?\n    </p><p>\n      Edit: thanks for the advices, I&#39;m trying firecrawl and exa!\n    </p>",
+                "top_comment": "If you’re trying alternatives, one big difference is how much control you want. Some tools give you clean markdown/json out of the box, others require more setup but give you full flexibility"
+              }
+            },
+            {
+              "title": "Thoughts on Brave Search Engine?",
+              "url": "https://www.reddit.com/r/degoogle/comments/1p7lko9/thoughts_on_brave_search_engine/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "Brave Search is a good search engine, it's biggest advantage compared to other privacy-friendly search engines is that it has its own index. For example, DuckDuckGo and Qwant are dependent on Microsoft for results and do share some data with them. Brave doesn't have to do this. The downside of Brave Search is that they are using captcha's, which may slow down your experience or even make it impossible to use Brave Search if your browser has WebAssembly disabled.",
+              "fetched_content_timestamp": 1791893952,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › degoogle  › comments  › 1p7lko9  › thoughts_on_brave_search_engine"
+              },
+              "age": "November 26, 2025",
+              "data": {
+                "forum_name": "r/degoogle",
+                "num_answers": 32,
+                "score": "47",
+                "title": "Thoughts on Brave Search Engine?",
+                "question": "<p>\n      Is it a good choice for privacy, or are there any better options? I don&#39;t like DuckDuckGo&#39;s UI, and from what I&#39;ve seen, Brave has better results. Another one I&#39;ve seen is Startpage, but I&#39;m not sure if it&#39;s any better than Brave&#39;s at privacy.\n    </p>",
+                "top_comment": "Brave Search is a good search engine, it's biggest advantage compared to other privacy-friendly search engines is that it has its own index. For example, DuckDuckGo and Qwant are dependent on Microsoft for results and do share some data with them. Brave doesn't have to do this. The downside of Brave Search is that they are using captcha's, which may slow down your experience or even make it impossible to use Brave Search if your browser has WebAssembly disabled."
+              }
+            },
+            {
+              "title": "llama.cpp + Brave search MCP - not gonna lie, it is pretty addictive",
+              "url": "https://www.reddit.com/r/LocalLLaMA/comments/1rrycc6/llamacpp_brave_search_mcp_not_gonna_lie_it_is/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "Would be really impressive if it wasn't absolutely wrong",
+              "fetched_content_timestamp": 1791371498,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › LocalLLaMA  › comments  › 1rrycc6  › llamacpp_brave_search_mcp_not_gonna_lie_it_is"
+              },
+              "age": "March 12, 2026",
+              "data": {
+                "forum_name": "r/LocalLLaMA",
+                "num_answers": 92,
+                "score": "281",
+                "title": "llama.cpp + Brave search MCP - not gonna lie, it is pretty addictive",
+                "question": "<p>\n      You should really invest some time into enabling this for your-self.\n    </p><p>\n      It is pretty funny (and also addictive) to see fans of your graphic card spinning up, while you utilize &quot;Your own Google&quot;.\n    </p>",
+                "top_comment": "Would be really impressive if it wasn't absolutely wrong"
+              }
+            },
+            {
+              "title": "Why are my search results on Brave so bad?",
+              "url": "https://www.reddit.com/r/browsers/comments/1o8opgu/why_are_my_search_results_on_brave_so_bad/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "Brave uses it's own search Index. It's one of the few that's fully independent. Now, while that is a good thing, unfortunately, it means it has a very, very, very long way to go.The team also dropped Bing’s API when they went fully independent, so they lost that extra layer of fallback results. On top of that, there’s no personalization or profile data feeding into it, so everything you see is purely unfiltered. The search engine is still maturing, it’s going to take time before it catches up to the bigger search engines. Now",
+              "fetched_content_timestamp": 1789327284,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › browsers  › comments  › 1o8opgu  › why_are_my_search_results_on_brave_so_bad"
+              },
+              "age": "October 17, 2025",
+              "data": {
+                "forum_name": "r/browsers",
+                "num_answers": 42,
+                "score": "39",
+                "title": "Why are my search results on Brave so bad?",
+                "question": "<p>\n      No matter what I search, I can never seem to find anything I am looking for, at all.\n    </p>",
+                "top_comment": "Brave uses it's own search Index. It's one of the few that's fully independent. Now, while that is a good thing, unfortunately, it means it has a very, very, very long way to go.The team also dropped Bing’s API when they went fully independent, so they lost that extra layer of fallback results. On top of that, there’s no personalization or profile data feeding into it, so everything you see is purely unfiltered. The search engine is still maturing, it’s going to take time before it catches up to the bigger search engines. Now"
+              }
+            },
+            {
+              "title": "Which search API should I use between Tavily.com, Exa.ai and Linkup.so? Building a RAG app that needs internet access.",
+              "url": "https://www.reddit.com/r/Rag/comments/1gr8jnr/which_search_api_should_i_use_between_tavilycom/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "I like Tavily, easy to implement and super accurate retrieval. Others are ok but Tavily is just stronger imo",
+              "fetched_content_timestamp": 1791842839,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › Rag  › comments  › 1gr8jnr  › which_search_api_should_i_use_between_tavilycom"
+              },
+              "age": "November 14, 2024",
+              "data": {
+                "forum_name": "r/Rag",
+                "num_answers": 69,
+                "score": "37",
+                "title": "Which search API should I use between Tavily.com, Exa.ai and Linkup.so? Building a RAG app that needs internet access.",
+                "question": "<p>\n      I have tried the 3 of them and Linkup seems to have a slightly different approach, with connections to premium sources while Exa seems to be a bit faster. Curious what is your preferred option out of the 3 (or if you have other solutions).\n    </p><p>\n      <a rpl class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"http://exa.ai\" rel=\"noopener nofollow ugc\" target=\"_blank\">exa.ai</a>\n    </p><p>\n      <a rpl class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"http://linkup.so\" rel=\"noopener nofollow ugc\" target=\"_blank\">linkup.so</a>\n    </p><p>\n      <a rpl class=\"relative pointer-events-auto a\n  \n  \n  \n  \n  underline\n  \n  cursor-pointer\" href=\"http://tavily.com\" rel=\"noopener nofollow ugc\" target=\"_blank\">tavily.com</a>\n    </p>",
+                "top_comment": "I like Tavily, easy to implement and super accurate retrieval. Others are ok but Tavily is just stronger imo"
+              }
+            },
+            {
+              "title": "Claude uses Brave Search but isn't using Brave's new API that was literally built for LLMs. Why?",
+              "url": "https://www.reddit.com/r/ClaudeAI/comments/1rh38bw/claude_uses_brave_search_but_isnt_using_braves/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "BONJOUR",
+              "fetched_content_timestamp": 1791483330,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › ClaudeAI  › comments  › 1rh38bw  › claude_uses_brave_search_but_isnt_using_braves"
+              },
+              "age": "February 28, 2026",
+              "data": {
+                "forum_name": "r/ClaudeAI",
+                "num_answers": 2,
+                "score": "7",
+                "title": "Claude uses Brave Search but isn't using Brave's new API that was literally built for LLMs. Why?",
+                "question": "<p>\n      Sorry if it’s already been asked.\n    </p><p>\n      Brave just dropped their LLM Context API on Feb 12. Instead of giving Al models raw HTML and URLs like a traditional search API, it returns pre-extracted clean content (text chunks, tables, code blocks, forum posts, and even YouTube captions) all formatted and ranked specifically for LLMs to use.\n    </p><p>\n      Brave tested it with their own chatbot running on Qwen3 (an open-weights model way less powerful than Claude). According to them, It beat ChatGPT, Perplexity, and Google Al Mode in answer quality.\n    </p><p>\n      Claude already uses Brave Search as its search backend. But it&#39;s using the regular web search API, not this new LLM-optimized one. And yeah, Anthropic built dynamic filtering on Feb 9 where Claude writes code to clean up messy web pages before reading them. Cool, and it improved accuracy ~11%. But Brave&#39;s new API does that cleanup at the search engine level before results even get to Claude. Less tokens wasted, faster, cleaner. Also, the new Brave API handles YouTube captions natively. Claude currently can&#39;t touch YouTube content without third-party MCP plugins.\n    </p><p>\n      So we&#39;ve got the #1 ranked search model running on the standard version of an API when a strictly better version exists from the same provider they already pay for. Feels like a pretty obvious upgrade no? Like genuinely, am I missing something?\n    </p>",
+                "top_comment": "BONJOUR"
+              }
+            },
+            {
+              "title": "The AI in brave search is the best",
+              "url": "https://www.reddit.com/r/brave_browser/comments/1hpbx0q/the_ai_in_brave_search_is_the_best/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "It’s been hit and miss for me. Mostly depends on subject matter/context. I’ve typically had better luck with Copilot.",
+              "fetched_content_timestamp": 1791391526,
+              "language": "en",
+              "family_friendly": true,
+              "type": "discussion",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "reddit.com",
+                "hostname": "www.reddit.com",
+                "favicon": "https://imgs.search.brave.com/U-eHNCapRHVNWWCVPPMTIvOofZULh0_A_FQKe8xTE4I/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvN2ZiNTU0M2Nj/MTFhZjRiYWViZDlk/MjJiMjBjMzFjMDRk/Y2IzYWI0MGI0MjVk/OGY5NzQzOGQ5NzQ5/NWJhMWI0NC93d3cu/cmVkZGl0LmNvbS8",
+                "path": "› r  › brave_browser  › comments  › 1hpbx0q  › the_ai_in_brave_search_is_the_best"
+              },
+              "age": "December 30, 2024",
+              "data": {
+                "forum_name": "r/brave_browser",
+                "num_answers": 4,
+                "score": "28",
+                "title": "The AI in brave search is the best",
+                "question": "<p>\n      I&#39;ve tried using chat gpt and gemini extensions for search queries. I&#39;ve also tried google sge and bing&#39;s copilot. My go-to has been brave search AI in the past few weeks. However, I wish they could let me upload pdf, images and other files like copilot or gemini or chatgpt.\n    </p>",
+                "top_comment": "It’s been hit and miss for me. Mostly depends on subject matter/context. I’ve typically had better luck with Copilot."
+              }
+            }
+          ],
+          "mutated_by_goggles": false
+        },
+        "faq": {
+          "type": "faq",
+          "results": [
+            {
+              "question": "What are the key benefits of the Brave Search API?",
+              "answer": "The Brave Search API offers world-class search engine capabilities at a significantly lower cost than other Search and AI Search APIs. The data is fresh, high-quality, and scales with small to large businesses. The Brave Search API is provisioned to manage thousands of requests per second (and growing) and offers customers the speed and reliability necessary for applications with millions of users around the world. Importantly, the Brave Search API is not a scraper that uses bots to query Google or Bing and repackage their results — it is an independent index of the Web with its own ranking mo",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            },
+            {
+              "question": "Can I store results retrieved from the Brave Search API?",
+              "answer": "If you would like to store the <strong>API</strong> results in part or whole (for example, to train or tune an LLM), you will need to subscribe to a plan that explicitly grants storage rights. Plans with storage rights grant special permissions which are not covered in the general Terms of Service.",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            },
+            {
+              "question": "Does the Brave Search API surface recent events?",
+              "answer": "Yes. <strong>Brave</strong> <strong>Search</strong> fetches millions of webpages every day, offering extensive coverage of recent events around the world.",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            },
+            {
+              "question": "What other web search API options can the Brave Search API complement or replace?",
+              "answer": "The <strong>Brave</strong> <strong>Search</strong> <strong>API</strong> can replace several competing options that may have smaller indexes (Tavily or Exa), higher latencies (SerpAPI or Serper), or more limited access (Google and Bing). It can also serve as a complement to localized <strong>API</strong> options like Baidu, Naver, Yahoo, and Yandex. The <strong>Brave</strong> <strong>Search</strong> <strong>API</strong> is powered by <strong>Brave</strong> <strong>Search</strong>, a completely independent index of the Web, which is tuned to reduce SEO spam and increase quality and recency of results.",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            },
+            {
+              "question": "Does the Brave Search API follow security and privacy best practices?",
+              "answer": "Yes. The <strong>Brave</strong> <strong>Search</strong> <strong>API</strong> is SOC 2 Type II attested, with its strict security and privacy controls independently verified by a third-party auditor. It also offers Zero Data Retention (ZDR), meaning companies can meet growing compliance obligations. For full details, see the <strong>API</strong> privacy and security help page at <strong>api</strong>-dashboard.<strong>search</strong>.<strong>brave</strong>.com/documentation/resources/security.",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            },
+            {
+              "question": "Where does the data come from?",
+              "answer": "Every search engine that has its own index necessarily has its own Web crawler. The Brave Search crawler does not advertise a differentiated user-agent because it must avoid discrimination from websites that allow only Google to crawl them. However, if a domain or page is not crawlable by any search engine (for example, because it has a noindex tag), or if it is not crawlable by Googlebot, then Brave Search's bot will not crawl it either. Brave Search is also built on more than just Web crawlers: its privacy-preserving Web Discovery Project (WDP) allows Brave browser users to opt in and contri",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            },
+            {
+              "question": "What about copyright?",
+              "answer": "<strong>Brave</strong> <strong>Search</strong> <strong>API</strong> offers a ranked list of webpages that are publicly available, including information to support why the webpage is relevant to the query (for instance, via query-dependent snippets based on the content of the webpage). The <strong>Brave</strong> <strong>Search</strong> <strong>API</strong> does not grant any rights to third-party content such as webpages. Customers who access URLs displayed in the <strong>Brave</strong> <strong>Search</strong> <strong>API</strong> must ensure their access to those webpages complies with the copyright terms of the page publishers.",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            },
+            {
+              "question": "Why is a credit card required when I only plan to use the free credits?",
+              "answer": "The credit card requirement serves as an anti-fraud measure to protect <strong>Brave</strong> from bad actors who want to abuse the <strong>API</strong>. For users who only plan to use the free monthly credits, the card is only used to confirm your identity and will not be charged.",
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              }
+            }
+          ]
+        },
+        "mixed": {
+          "type": "mixed",
+          "main": [
+            {
+              "type": "web",
+              "index": 0,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 1,
+              "all": false
+            },
+            {
+              "type": "discussions",
+              "all": true
+            },
+            {
+              "type": "faq",
+              "all": true
+            },
+            {
+              "type": "videos",
+              "all": true
+            },
+            {
+              "type": "web",
+              "index": 2,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 3,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 4,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 5,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 6,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 7,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 8,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 9,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 10,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 11,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 12,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 13,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 14,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 15,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 16,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 17,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 18,
+              "all": false
+            },
+            {
+              "type": "web",
+              "index": 19,
+              "all": false
+            }
+          ],
+          "top": [],
+          "side": []
+        },
+        "videos": {
+          "type": "videos",
+          "results": [
+            {
+              "type": "video_result",
+              "url": "https://www.youtube.com/watch?v=_Pb81J-uGjk",
+              "title": "How to Enable Web Search in OpenClaw - Brave API Key - on EC2 ...",
+              "description": "In this video, I show how to enable OpenClaw’s built-in web search tool using the Brave Search API. We’ll configure the API key on an AWS EC2 Ubuntu instance...",
+              "age": "February 5, 2026",
+              "page_age": "2026-02-05T19:13:49",
+              "fetched_content_timestamp": 1791305334,
+              "video": {
+                "duration": "03:25",
+                "creator": "Tech With James",
+                "publisher": "YouTube"
+              },
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "youtube.com",
+                "hostname": "www.youtube.com",
+                "favicon": "https://imgs.search.brave.com/Wg4wjE5SHAargkzePU3eSLmWgVz84BEZk1SjSglJK_U/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOTkyZTZiMWU3/YzU3Nzc5YjExYzUy/N2VhZTIxOWNlYjM5/ZGVjN2MyZDY4Nzdh/ZDYzMTYxNmI5N2Rk/Y2Q3N2FkNy93d3cu/eW91dHViZS5jb20v",
+                "path": "› watch"
+              },
+              "thumbnail": {
+                "src": "https://imgs.search.brave.com/bZLTadbqqFVX4aHwXufG-FFmhwR9VeD7UWm3OUQnSTs/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9pLnl0/aW1nLmNvbS92aS9f/UGI4MUotdUdqay9t/YXhyZXNkZWZhdWx0/LmpwZw",
+                "original": "https://i.ytimg.com/vi/_Pb81J-uGjk/maxresdefault.jpg"
+              }
+            },
+            {
+              "type": "video_result",
+              "url": "https://www.youtube.com/watch?v=XnDrPyMBBWg",
+              "title": "Brave Search API Index to Train AI LLMs - YouTube",
+              "description": "This video reviews Brave Search API which gives you access to an independent, global search index to train LLMs and power AI applications.#bravesearchapi #br...",
+              "age": "June 18, 2023",
+              "page_age": "2023-06-18T06:02:07",
+              "fetched_content_timestamp": 1791764777,
+              "video": {
+                "duration": "05:01",
+                "creator": "Fahd Mirza",
+                "publisher": "YouTube"
+              },
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "youtube.com",
+                "hostname": "www.youtube.com",
+                "favicon": "https://imgs.search.brave.com/Wg4wjE5SHAargkzePU3eSLmWgVz84BEZk1SjSglJK_U/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOTkyZTZiMWU3/YzU3Nzc5YjExYzUy/N2VhZTIxOWNlYjM5/ZGVjN2MyZDY4Nzdh/ZDYzMTYxNmI5N2Rk/Y2Q3N2FkNy93d3cu/eW91dHViZS5jb20v",
+                "path": "› watch"
+              },
+              "thumbnail": {
+                "src": "https://imgs.search.brave.com/Oi65UxT9vVQm_CCRPK6QlgxGLrd7fvpvCrzmAqcCdNk/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9pLnl0/aW1nLmNvbS92aS9Y/bkRyUHlNQkJXZy9t/YXhyZXNkZWZhdWx0/LmpwZw",
+                "original": "https://i.ytimg.com/vi/XnDrPyMBBWg/maxresdefault.jpg"
+              }
+            },
+            {
+              "type": "video_result",
+              "url": "https://www.youtube.com/shorts/jkuF_VAW0BQ?vl=en",
+              "title": "How to Get Brave Search API Key (Brave Search API Setup Guide) ...",
+              "description": "Hey guys, it's Chisom here! This video explains how to obtain a Brave Search API key, guiding viewers through signing up, verifying their email, and selectin...",
+              "age": "March 27, 2026",
+              "page_age": "2026-03-27T14:06:32",
+              "fetched_content_timestamp": 1791292102,
+              "video": {
+                "duration": "01:22",
+                "creator": "Chisom Nwanonenyi",
+                "publisher": "YouTube"
+              },
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "youtube.com",
+                "hostname": "www.youtube.com",
+                "favicon": "https://imgs.search.brave.com/Wg4wjE5SHAargkzePU3eSLmWgVz84BEZk1SjSglJK_U/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOTkyZTZiMWU3/YzU3Nzc5YjExYzUy/N2VhZTIxOWNlYjM5/ZGVjN2MyZDY4Nzdh/ZDYzMTYxNmI5N2Rk/Y2Q3N2FkNy93d3cu/eW91dHViZS5jb20v",
+                "path": "› shorts  › jkuF_VAW0BQ"
+              },
+              "thumbnail": {
+                "src": "https://imgs.search.brave.com/iKDO9UrGZz-lMaOLCwStCqGpfC4F-MHHRbAPKmcl2pM/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9pLnl0/aW1nLmNvbS92aS9q/a3VGX1ZBVzBCUS9v/YXJkZWZhdWx0Lmpw/Zz9zcXA9LW9heW13/RWtDT0FERU5BRlNG/cVFBZ0h5cTRxcEF4/TUlBUlVBQUFBQUpR/QUF5RUk5QUlDaVEz/Z0ImYW1wO3JzPUFP/bjRDTERQbHpDZzFF/TzhsT29feFFSaElj/dFJrWVBtblEmYW1w/O3VzcXA9Q0Nr",
+                "original": "https://i.ytimg.com/vi/jkuF_VAW0BQ/oardefault.jpg?sqp=-oaymwEkCOADENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&amp;rs=AOn4CLDPlzCg1EO8lOo_xQRhIctRkYPmnQ&amp;usqp=CCk"
+              }
+            },
+            {
+              "type": "video_result",
+              "url": "https://www.youtube.com/shorts/4ZuKot6zPS8",
+              "title": "How to Set Brave Search API Limits & Get Your Key FREE! - YouTube",
+              "description": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
+              "age": "April 17, 2026",
+              "page_age": "2026-04-17T14:00:08",
+              "fetched_content_timestamp": 1791787191,
+              "video": {
+                "duration": "00:25",
+                "creator": "Kris Torrington | AI Automation",
+                "publisher": "YouTube"
+              },
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "youtube.com",
+                "hostname": "www.youtube.com",
+                "favicon": "https://imgs.search.brave.com/Wg4wjE5SHAargkzePU3eSLmWgVz84BEZk1SjSglJK_U/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOTkyZTZiMWU3/YzU3Nzc5YjExYzUy/N2VhZTIxOWNlYjM5/ZGVjN2MyZDY4Nzdh/ZDYzMTYxNmI5N2Rk/Y2Q3N2FkNy93d3cu/eW91dHViZS5jb20v",
+                "path": "› shorts  › 4ZuKot6zPS8"
+              },
+              "thumbnail": {
+                "src": "https://imgs.search.brave.com/86ZZvae3h63c_rBqEBQlEBd3MTocrbkRxS8QAr4cow8/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9pLnl0/aW1nLmNvbS92aS80/WnVLb3Q2elBTOC9v/YXIyLmpwZz9zcXA9/LW9heW13RW9DSlVE/RU5BRlNGcVFBZ0h5/cTRxcEF4Y0lBUlVB/QUloQzJBRUI0Z0VL/Q0JnUUFoZ0dPQUZB/QVE9PSZhbXA7cnM9/QU9uNENMQ1JDdGd3/YXFSVWxyc29Jemp4/bkJ5U3ZoYjhGQSZh/bXA7dXNxcD1DQ2s",
+                "original": "https://i.ytimg.com/vi/4ZuKot6zPS8/oar2.jpg?sqp=-oaymwEoCJUDENAFSFqQAgHyq4qpAxcIARUAAIhC2AEB4gEKCBgQAhgGOAFAAQ==&amp;rs=AOn4CLCRCtgwaqRUlrsoIzjxnBySvhb8FA&amp;usqp=CCk"
+              }
+            },
+            {
+              "type": "video_result",
+              "url": "https://www.youtube.com/watch?v=vl-dH4oklKw&t=11",
+              "title": "Connect OpenClaw to the Web with Brave Search API (3-Min ...",
+              "description": "To learn more, please visit the YouTube Help Center: https://www.youtube.com/help",
+              "fetched_content_timestamp": 1791328840,
+              "video": {},
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "youtube.com",
+                "hostname": "www.youtube.com",
+                "favicon": "https://imgs.search.brave.com/Wg4wjE5SHAargkzePU3eSLmWgVz84BEZk1SjSglJK_U/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOTkyZTZiMWU3/YzU3Nzc5YjExYzUy/N2VhZTIxOWNlYjM5/ZGVjN2MyZDY4Nzdh/ZDYzMTYxNmI5N2Rk/Y2Q3N2FkNy93d3cu/eW91dHViZS5jb20v",
+                "path": "› watch"
+              },
+              "thumbnail": {
+                "src": "https://imgs.search.brave.com/KgiSity1W7w-Ae5byEJzlVdBeoDr5Xn35-mcvSR8JYw/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9pLnl0/aW1nLmNvbS92aS85/eHAxWFdtSl9Xby9t/YXhyZXNkZWZhdWx0/LmpwZz9zcXA9LW9h/eW13RW1DSUFLRU5B/RjhxdUtxUU1hOEFF/Qi1BSC1DWUFDMEFX/S0Fnd0lBQkFCR0dV/Z1pTaGxNQTg9JmFt/cDtycz1BT240Q0xB/czlZdW5obUNadk5D/VVhZX2x4U293TFZm/dlZB",
+                "original": "https://i.ytimg.com/vi/9xp1XWmJ_Wo/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&amp;rs=AOn4CLAs9YunhmCZvNCUXY_lxSowLVfvVA"
+              }
+            }
+          ],
+          "mutated_by_goggles": false
+        },
+        "web": {
+          "type": "search",
+          "results": [
+            {
+              "title": "Brave Search API | Brave",
+              "url": "https://brave.com/search/api/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "<strong>Enterprise-grade Web search API accessing an index of 40+ billion pages</strong>. Specialized endpoints to train models, power search, and more. Real-time indexing, low latencies, and flexible pricing.",
+              "page_age": "2026-07-01T00:00:00",
+              "profile": {
+                "name": "Brave",
+                "url": "https://brave.com/search/api/",
+                "long_name": "brave.com",
+                "img": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v"
+              },
+              "language": "en",
+              "family_friendly": true,
+              "type": "search_result",
+              "subtype": "faq",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "brave.com",
+                "hostname": "brave.com",
+                "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                "path": "  › home  › search api"
+              },
+              "thumbnail": {
+                "src": "https://imgs.search.brave.com/4Nc6OjRyfRUSoWGZiQf53ZsFQlcrKXppCf2GKTj_Prg/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9icmF2/ZS5jb20vc2VhcmNo/L2FwaS9pbWFnZXMv/c2VhcmNoLWFwaS1v/Zy5wbmc",
+                "original": "https://brave.com/search/api/images/search-api-og.png",
+                "logo": false
+              },
+              "age": "July 1, 2026",
+              "faq": {
+                "items": [
+                  {
+                    "question": "What is the Brave Search API?",
+                    "answer": "The Brave Search API is a developer tool for building applications with data from the Web. It is powered by Brave's independent Web index, the same index that powers Brave Search. It is commonly used in traditional search engine products, AI search engines, AI training, and agentic (autonomous AI) search.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "Why is a credit card required when I only plan to use the free credits?",
+                    "answer": "The credit card requirement serves as an anti-fraud measure to protect Brave from bad actors who want to abuse the API. For users who only plan to use the free monthly credits, the card is only used to confirm your identity and will not be charged.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "What other web search API options can the Brave Search API complement or replace?",
+                    "answer": "The Brave Search API can replace several competing options that may have smaller indexes (Tavily or Exa), higher latencies (SerpAPI or Serper), or more limited access (Google and Bing). It can also serve as a complement to localized API options like Baidu, Naver, Yahoo, and Yandex. The Brave Search API is powered by Brave Search, a completely independent index of the Web, which is tuned to reduce SEO spam and increase quality and recency of results.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "Where does the data come from?",
+                    "answer": "Every search engine that has its own index necessarily has its own Web crawler. The Brave Search crawler does not advertise a differentiated user-agent because it must avoid discrimination from websites that allow only Google to crawl them. However, if a domain or page is not crawlable by any search engine (for example, because it has a noindex tag), or if it is not crawlable by Googlebot, then Brave Search's bot will not crawl it either. Brave Search is also built on more than just Web crawlers: its privacy-preserving Web Discovery Project (WDP) allows Brave browser users to opt in and contribute data about searches and webpage visits. This level of voluntary human contribution to an index is unique in the world of API search and training data. WDP uses several privacy safeguards to prevent Brave from knowing who is contributing what, and the code is open-source for auditing by anyone.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "What are the key benefits of the Brave Search API?",
+                    "answer": "The Brave Search API offers world-class search engine capabilities at a significantly lower cost than other Search and AI Search APIs. The data is fresh, high-quality, and scales with small to large businesses. The Brave Search API is provisioned to manage thousands of requests per second (and growing) and offers customers the speed and reliability necessary for applications with millions of users around the world. Importantly, the Brave Search API is not a scraper that uses bots to query Google or Bing and repackage their results — it is an independent index of the Web with its own ranking models.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "Does the Brave Search API surface recent events?",
+                    "answer": "Yes. Brave Search fetches millions of webpages every day, offering extensive coverage of recent events around the world.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "Can I store results retrieved from the Brave Search API?",
+                    "answer": "If you would like to store the API results in part or whole (for example, to train or tune an LLM), you will need to subscribe to a plan that explicitly grants storage rights. Plans with storage rights grant special permissions which are not covered in the general Terms of Service.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "What about copyright?",
+                    "answer": "Brave Search API offers a ranked list of webpages that are publicly available, including information to support why the webpage is relevant to the query (for instance, via query-dependent snippets based on the content of the webpage). The Brave Search API does not grant any rights to third-party content such as webpages. Customers who access URLs displayed in the Brave Search API must ensure their access to those webpages complies with the copyright terms of the page publishers.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  },
+                  {
+                    "question": "Does the Brave Search API follow security and privacy best practices?",
+                    "answer": "Yes. The Brave Search API is SOC 2 Type II attested, with its strict security and privacy controls independently verified by a third-party auditor. It also offers Zero Data Retention (ZDR), meaning companies can meet growing compliance obligations. For full details, see the API privacy and security help page at api-dashboard.search.brave.com/documentation/resources/security.",
+                    "title": "Brave Search API | Brave",
+                    "url": "https://brave.com/search/api/",
+                    "meta_url": {
+                      "scheme": "https",
+                      "netloc": "brave.com",
+                      "hostname": "brave.com",
+                      "favicon": "https://imgs.search.brave.com/vnilI-MeUh5_v9ywDuoJrW0Q4m2J3p50IzXyFgVktSA/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvZTg1MzQ2NjVk/ZGY5NDczMmYzN2I4/MjYwN2Y4MDdlMDlj/ZjJlZTM3ZjMxOWVl/MTQ0MDFlZDk0MjZh/MWQ3OGU3MC9icmF2/ZS5jb20v",
+                      "path": "  › home  › search api"
+                    }
+                  }
+                ]
+              },
+              "cluster_type": "generic",
+              "cluster": [
+                {
+                  "title": "Browser AI",
+                  "url": "https://brave.com/leo/",
+                  "is_source_local": false,
+                  "is_source_both": false,
+                  "description": "The smart AI assistant built right in your browser. Ask questions, get answers, with unparalleled privacy.",
+                  "family_friendly": true
+                },
+                {
+                  "title": "Desktop",
+                  "url": "https://brave.com/download/",
+                  "is_source_local": false,
+                  "is_source_both": false,
+                  "description": "The latest version of the <strong>Brave</strong> browser with ad and tracker blocking capabilities is available to download here. Stand by for an entirely new way of thinking about how the web can work.",
+                  "family_friendly": true
+                },
+                {
+                  "title": "VPN",
+                  "url": "https://brave.com/firewall-vpn/",
+                  "is_source_local": false,
+                  "is_source_both": false,
+                  "description": "<strong>Brave</strong> VPN encrypts your traffic for added privacy. Hide your IP address, mask your location, and access your favorite content on the go.",
+                  "family_friendly": true
+                },
+                {
+                  "title": "Privacy features",
+                  "url": "https://brave.com/privacy-features/",
+                  "is_source_local": false,
+                  "is_source_both": false,
+                  "description": "<strong>Brave</strong> has the strongest privacy &amp; security protections of any popular web browser. The integrated privacy features are built right into the <strong>Brave</strong> browser.",
+                  "family_friendly": true
+                }
+              ],
+              "organization": {
+                "type": "organization",
+                "name": "Brave Software",
+                "contact_points": []
+              },
+              "extra_snippets": [
+                "Chatbots, coding assistants, and AI-search engines all need real-time data to reduce hallucinations and ground their responses with multiple sources. The Brave Search API excels in RAG pipelines, and it’s the leading search tool for applications that use Claude MCP.",
+                "The open Web is a critical source of training data for today’s state-of-the-art AI models. With up to five snippets from an index of 40+ billion pages, the Brave Search API is the best blend of scale, quality, and cost.",
+                "Build comprehensive company profiles in CRM platforms, gather citations for ed-tech apps, or fetch the latest news for a stock trading assistant. Thousands of teams rely on the Brave Search API to connect their apps to the Web.",
+                "The only search API built with privacy at its core is also the only search API that can offer true Zero Data Retention. With ZDR, companies can meet ever-growing compliance obligations and gain a competitive advantage. Learn more about ZDR. Engineered for large-scale deployments, the Brave Search API can handle the capacity needs of even the largest global enterprises."
+              ]
+            },
+            {
+              "title": "Brave Search API | AWS Marketplace - Amazon.com",
+              "url": "https://aws.amazon.com/marketplace/pp/prodview-qjlabherxghtq",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "The <strong>Brave</strong> <strong>Search</strong> <strong>API</strong> is the largest commercially-available developer tool for programmable Web <strong>search</strong> used to connect apps and AI to the global internet.",
+              "profile": {
+                "name": "AWS Marketplace",
+                "url": "https://aws.amazon.com/marketplace/pp/prodview-qjlabherxghtq",
+                "long_name": "aws.amazon.com",
+                "img": "https://imgs.search.brave.com/w1pARvp0PsgKW9VIQkl3hv9-fqD3BFvfwsgJeUDHdUQ/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8"
+              },
+              "language": "en",
+              "family_friendly": true,
+              "type": "search_result",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "aws.amazon.com",
+                "hostname": "aws.amazon.com",
+                "favicon": "https://imgs.search.brave.com/w1pARvp0PsgKW9VIQkl3hv9-fqD3BFvfwsgJeUDHdUQ/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvOWFkODM4NDk0/MTRjNzUyMTM3OTQ5/MmI4MjRkZjFhNDcw/MTIxYzI3NmZmMmNm/MDFkZWRjNmFkZjYz/NzVhZmIzMC9hd3Mu/YW1hem9uLmNvbS8",
+                "path": "› marketplace  › pp  › prodview-qjlabherxghtq"
+              },
+              "extra_snippets": [
+                "The Brave Search API offers programmatic access to a web index of more than 30 billion web pages, enabling developers to seamlessly integrate deep web search capabilities into their AI applications for grounding and real-time knowledge.",
+                "API-Based Agents and Tools integrate through standard web protocols. Your applications can make API calls to access agent capabilities and receive responses. ... The Brave Search API can be conveniently used via Brave's official Brave Search MCP server.",
+                "A docker image for the Brave Search MCP server: the #1 solution for connecting LLMs to the Web. ... Querit Search API Enterprise delivers real-time, high-precision web search for production AI agents, RAG pipelines, and enterprise applications.",
+                "The Brave Search API can retrieve real-time search results across the web, including standard link results, news, videos, and more."
+              ]
+            },
+            {
+              "title": "Brave Search API: Trust Center",
+              "url": "https://trust.brave.app/",
+              "is_source_local": false,
+              "is_source_both": false,
+              "description": "Power your AI with the world&#x27;s largest Web search API",
+              "profile": {
+                "name": "Brave",
+                "url": "https://trust.brave.app/",
+                "long_name": "trust.brave.app",
+                "img": "https://imgs.search.brave.com/yFdjluf_y9OgYctC6Y5l_ZEBJfh80IAl8Y3I411OYag/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMzcyOThhYzg3/ZWQxNWJjNTYyYzMx/ZjRhNDlhYTNjOTc3/ZTcyMDFiOWY4YTA5/YmNhMmQ1OTNlMDk2/Y2M5YmY5Ny90cnVz/dC5icmF2ZS5hcHAv"
+              },
+              "language": "en",
+              "family_friendly": true,
+              "type": "search_result",
+              "subtype": "generic",
+              "is_live": false,
+              "meta_url": {
+                "scheme": "https",
+                "netloc": "trust.brave.app",
+                "hostname": "trust.brave.app",
+                "favicon": "https://imgs.search.brave.com/yFdjluf_y9OgYctC6Y5l_ZEBJfh80IAl8Y3I411OYag/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvMzcyOThhYzg3/ZWQxNWJjNTYyYzMx/ZjRhNDlhYTNjOTc3/ZTcyMDFiOWY4YTA5/YmNhMmQ1OTNlMDk2/Y2M5YmY5Ny90cnVz/dC5icmF2ZS5hcHAv",
+                "path": ""
+              },
+              "thumbnail": {
+                "src": "https://imgs.search.brave.com/VI0VzejngE7MbFKWe41yRo7C_0aM18iG9z2IIWDbizs/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9hcHAu/dmFudGEuY29tL2Rv/Yz9zPWlqamc0Yzdj/Y2JqMmZpMjVkbWN5/aG0",
+                "original": "https://app.vanta.com/doc?s=ijjg4c7ccbj2fi25dmcyhm",
+                "logo": false
+              }
+            }
+          ],
+          "family_friendly": true
+        }
+      }
+    bodyEncoding: utf8
