@@ -1,0 +1,55 @@
+- request:
+    url: https://api.perplexity.ai/search
+    method: POST
+    headers:
+      accept: application/json
+      authorization: Bearer recorded-perplexity-key
+      content-type: application/json
+    body: '{"query":"Perplexity Search
+      API","max_results":3,"search_language_filter":["en"],"country":"US"}'
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      alt-svc: h3=":443"; ma=86400
+      cf-cache-status: DYNAMIC
+      cf-ray: a4a6fc602824ff87-SIN
+      connection: keep-alive
+      content-type: application/json
+      date: Wed, 14 Oct 2026 13:38:42 GMT
+      server: cloudflare
+      strict-transport-security: max-age=31536000; includeSubDomains; preload
+      transfer-encoding: chunked
+      x-ratelimit-limit: "50"
+      x-ratelimit-remaining: "49"
+      x-ratelimit-reset: "1791985123"
+      x-ratelimit-used: "1"
+      x-request-id: 82b3d29c-a33e-40f9-94c2-ad0f01b1194c
+    body: >-
+      {
+        "id": "82b3d29c-a33e-40f9-94c2-ad0f01b1194c",
+        "results": [
+          {
+            "last_updated": "2026-10-06",
+            "snippet": "# Perplexity Search API\n> Access real-time web search results with Perplexity's Search API.\nGet ranked results, domain filtering, multi-query search, and content extraction for developers.\n...\nPerplexity's Search API returns real-time, ranked web results as structured data, with controls for domains, languages, regions\n, and extracted content.\nUse the Search API when you need raw results for your own processing.\nFor an LLM-generated answer with citations, use the [Agent API](/docs/agent-api/quickstart).\n...\nAsk your agent to install the Perplexity Search skill:\n...\nRead https://github.com/perplexityai/api-platform-developers/blob/main/skills/pplx-cli/SKILL.md and install this skill.\n...\nYou can also [try Perplexity Search in the interactive Playground](https://\nconsole.perplexity.ai/project/playground/search) with no API key required.\n...\nYou can now run Perplexity Search straight from your terminal.\nThe [Perplexity CLI](/docs/cli/overview) returns the same ranked results as JSON, ready for shell pipelines and agent tool calls, with no code to write.\n...\nInstall one of our [official SDKs](/docs/sdk/overview) for a convenient, type-safe integration:\n<CodeGroup>\n```bash Python theme={null}\npip install perplexityai\n```\n```bash Ty\npescript theme={null}\nnpm install @perplexity-ai/perplexity_ai\n```\n...\n## Authentication\nSet your API key as an environment variable.\nThe official SDKs read it automatically, but you can also pass it explicitly:\n<Tabs>\n<Tab title=\"macOS/Linux\">\n```bash theme={null}\nexport PERPLEXITY_API_KEY=\"your_api_key_here\"\n```\n</Tab>\n<Tab title=\"Windows\">\n```powershell theme={null}\nsetx PERPLEXITY_API_KEY \"your_api_key_here\"\n```\n...\nStart with \na basic search query to get relevant web results.\n`max_results` accepts values from 1 to 20 and defaults to 10.\nSee the [API Reference](/api-reference/search-post) for all parameters and [pricing](/docs/getting-started/pricing) for search costs.\n...\n```bash cURL theme={null}\ncurl -X POST 'https://api.perplexity.ai/search' \\\n-H \"Authorization: Bearer $PERPLEXITY_API_KEY\" \\\n-H 'Content-Type: application/json' \\\n-d '\n...\nNeed lower latency or lower cost?\nSet `search_type: \"fast\"` in the Search API request body.\nFast Search costs \\$1.00 per 1,000 requests.\n...\nSet `country` to an ISO 3166-1 alpha-2 code such as `US`, `GB`, `DE`, or `JP` to get more geographically relevant results.\nThis is useful for local news, regulations, and other region-specific queries:\n...\nPass up to five related queries in one request to explore different angles of a topic.\nEach query is processed independently:\n...\nThe `search_domain_filter` parameter allows you to limit search results to specific domains (allowlist) or exclude certain domains (denylist) for focused research.\nThe filter works in two modes:\n* **Allowlist mode**: Include only specified domains (no `-` prefix)\n* **Denylist mode**: Exclude specified domains (use `-` prefix)\n...\nYou can add a maximum of 20 domains to the `search_domain_filter` list.\nThe filter works in eit\n...\nThe `search_language_filter` parameter allows you to filter search results by language using ISO 639-1 language codes\n:\n...\nLanguage codes must be valid 2-letter ISO 639-1 codes (e.g., \"en\", \"ru\", \"fr\").\nYou can add a maximum of 10 language codes per request.\n...\nUse `max_tokens` and `max_tokens_per_page` to control how much content is extracted from result pages, whether for response size, total tokens returned, evaluations, or downstream context-window and cost management.\n...\n* `max_tokens_per_page` caps content extracted from each result page.",
+            "title": "Perplexity Search API",
+            "url": "https://docs.perplexity.ai/docs/search/quickstart"
+          },
+          {
+            "date": "2026-08-06",
+            "last_updated": "2026-10-03",
+            "snippet": "Perplexity API Platform — AI Search & Grounded LLM APIs for Developers\n...\n# Build with the AI power of Perplexity's platform.\nDrive your products with the fastest, cheapest search APIs out there.\nGet started in minutes.\n...\n## Perplexity APIs\n### Search\nAccess real-time web search results with Perplexity’s Search API.\nGet ranked results, domain filtering, multi-query search, and content extraction for developers.\nLow-latency hybrid search, combining semantic methods, LLM ranking, and human feedback.\n...\n### Embeddings\nTurn text into high-quality vector representations for RAG, semantic search, and recommendations across your internal data including documents and knowledge bases.\n...\nGenerate high-quality text embeddings for semantic search, RAG, and machine learning applications.",
+            "title": "Perplexity API Platform — AI Search & Grounded LLM APIs for ...",
+            "url": "https://www.perplexity.ai/api-platform"
+          },
+          {
+            "date": "2025-09-25",
+            "last_updated": "2026-10-02",
+            "snippet": "# Introducing the Perplexity Search API\nProviding access to the same global-scale infrastructure that powers Perplexity’s public answer engine\n...\n## Providing access to the same global-scale infrastructure that powers Perplexity’s public answer engine\nToday, we’re answering that call by launching the Perplexity Search API.\nOur API provides access to the same global-scale infrastructure that powers Perplexity’s public answer engine.\nWith an index covering hundreds of billions of webpages, developers can now tap information from across the internet with one simple yet powerful interface.\nWe’re also releasing an SDK, open-source evaluation framework, and deep dive by Perplexity Research into how we designed, optimized, and evaluated our Search API.\n...\n## Built for modern AI workloads\nPerplexity Search API is designed for the unique demands of AI applications.\nUnlike other API offerings that expose a restricted universe of information, our API provides rich structured responses that are ready for use in AI and traditional applications alike.\n...\nOur indexing and retrieval infrastructure divides documents up into fine-grained units.\nThese sub-document units are individually surfaced and scored against the original query parameters, allowing our API to return documents with the most relevant snippets already ranked.\nThis means less preprocessing, faster integration, and more valuable downstream results.\n...\n## Market-leading performance, pricing, and ergonomics\nWe’re releasing an open-source evaluation framework, `search_evals`, to enable researchers and developers to rigorously test any publicly available search API.\n...\nWe’ve also carefully designed our API to prioritize ease of use for both human developers and AI agents.\nThis includes our newly-launched API Platform (which now houses the developer console and documentation for both our Search and Sonar APIs) and our Search SDK.\n...\n## Democratizing access to knowledge across humans and code\n[Get started on API Platform]\n[Install our SDK]",
+            "title": "Introducing the Perplexity Search API",
+            "url": "https://www.perplexity.ai/hub/blog/introducing-the-perplexity-search-api"
+          }
+        ]
+      }
+    bodyEncoding: utf8
