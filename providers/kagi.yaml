@@ -11,7 +11,7 @@ endpoint:
   path: /api/v1/search
 capabilities:
   operations: [search]
-  optional_inputs: []
+  optional_inputs: [region, safe_search, time_range]
 authentication:
   fields:
     - name: api_key
@@ -20,6 +20,9 @@ request_mapping:
   query: {}
   body:
     query: query
+    region: filters.region
+    safe_search: safe_search
+    time_range: filters.after
 response_mapping:
   results: [data, search]
   title: [title]

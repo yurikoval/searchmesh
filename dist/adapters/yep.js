@@ -5,16 +5,23 @@ const ENDPOINT = 'https://platform.yep.com/api/search';
 export const yepAdapter = async (request, context) => {
     if (!validContext(context))
         return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_configuration_error') };
-    if (!validRequest(request))
+    if (!validRequest(request) || unsupportedOption(request))
         return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') };
-    if (request.language !== undefined || request.region !== undefined || request.safeSearch !== undefined || request.timeRange !== undefined)
-        return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') };
+    const body = clean({
+        query: request.query,
+        type: 'basic',
+        limit: request.limit,
+        language: request.language ? [request.language] : undefined,
+        location: request.region,
+        safe_search: request.safeSearch === undefined ? undefined : request.safeSearch !== 'off',
+        start_published_date: request.timeRange ? recencyStartDate(request.timeRange) : undefined,
+    });
     let response;
     try {
         response = await (context.fetch ?? fetch)(ENDPOINT, {
             method: 'POST',
             headers: { Accept: 'application/json', Authorization: `Bearer ${context.credentials.api_key}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: request.query, type: 'basic', limit: request.limit }),
+            body: JSON.stringify(body),
             signal: context.signal,
             redirect: 'error',
         });
@@ -45,6 +52,16 @@ function validRequest(request) {
         && Number.isInteger(request.limit)
         && request.limit >= 1
         && request.limit <= PROVIDER_ADAPTER_LIMITS.results;
+}
+function unsupportedOption(request) {
+    return (request.language !== undefined && !/^[a-z]{2}$/.test(request.language))
+        || (request.region !== undefined && !/^[A-Z]{2}$/.test(request.region))
+        || (request.safeSearch !== undefined && !['off', 'moderate', 'strict'].includes(request.safeSearch))
+        || (request.timeRange !== undefined && !['day', 'week', 'month', 'year'].includes(request.timeRange));
+}
+function recencyStartDate(timeRange) {
+    const days = { day: 1, week: 7, month: 30, year: 365 };
+    return new Date(Date.now() - days[timeRange] * 86_400_000).toISOString().slice(0, 10);
 }
 function normalize(payload, limit) {
     if (!isPlainRecord(payload) || !Array.isArray(payload.results))

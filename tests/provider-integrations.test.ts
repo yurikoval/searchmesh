@@ -54,6 +54,34 @@ describe('additional provider adapters', () => {
     expect(outcome).toEqual({ ok: true, providerId: 'yep', results: [{ providerId: 'yep', providerRank: 1, title: 'Yep result', url: 'https://yep.example/page', domain: 'yep.example', snippet: 'Result text', publishedAt: '2026-01-02T00:00:00.000Z' }] })
   })
 
+  it('maps supported Yep search options to the request body', async () => {
+    const now = vi.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 0, 15))
+    try {
+      const fetchMock = vi.fn<typeof fetch>().mockImplementation(async () => Response.json(fixture('yep')))
+      await yepAdapter({ ...request, language: 'en', region: 'US', safeSearch: 'strict', timeRange: 'week' }, context('yep', fetchMock))
+      await yepAdapter({ ...request, safeSearch: 'off' }, context('yep', fetchMock))
+      expect(fetchMock.mock.calls[0][1]).toMatchObject({
+        body: JSON.stringify({ query, type: 'basic', limit: 2, language: ['en'], location: 'US', safe_search: true, start_published_date: '2026-01-08' }),
+      })
+      expect(fetchMock.mock.calls[1][1]).toMatchObject({
+        body: JSON.stringify({ query, type: 'basic', limit: 2, safe_search: false }),
+      })
+    } finally {
+      now.mockRestore()
+    }
+  })
+
+  it.each([
+    ['language', { ...request, language: 'en-US' }],
+    ['region', { ...request, region: 'usa' }],
+    ['safe search', { ...request, safeSearch: 'unsafe' }],
+    ['time range', { ...request, timeRange: 'forever' }],
+  ])('rejects an invalid Yep %s before fetch', async (_label, badRequest) => {
+    const fetchMock = vi.fn<typeof fetch>()
+    await expect(yepAdapter(badRequest as NormalizedSearchRequest, context('yep', fetchMock))).resolves.toMatchObject({ ok: false, failure: { code: 'provider_unsupported_parameter' } })
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
   it('sends and normalizes an Exa search', async () => {
     const { outcome, call: [url, init] } = await run(exaAdapter, 'exa')
     expect(url.toString()).toBe('https://api.exa.ai/search')
@@ -64,14 +92,49 @@ describe('additional provider adapters', () => {
   it('sends and normalizes a Kagi v1 search once', async () => {
     const { outcome, call: [url, init] } = await run(kagiAdapter, 'kagi')
     expect(url.toString()).toBe('https://kagi.com/api/v1/search')
-    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', Authorization: `Bot ${credential}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query, workflow: 'search', limit: 2 }), redirect: 'error' })
+    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query, workflow: 'search', limit: 2 }), redirect: 'error' })
     expect(outcome).toEqual({ ok: true, providerId: 'kagi', results: [{ providerId: 'kagi', providerRank: 1, title: 'Kagi result', url: 'https://kagi.example/page', domain: 'kagi.example', snippet: 'Result text', publishedAt: '2026-01-02T00:00:00.000Z' }] })
+  })
+
+  it('maps supported Kagi search options to the v1 request body', async () => {
+    const now = vi.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 0, 15))
+    try {
+      const fetchMock = vi.fn<typeof fetch>().mockImplementation(async () => Response.json(fixture('kagi')))
+      await kagiAdapter({ ...request, region: 'US', safeSearch: 'strict', timeRange: 'week' }, context('kagi', fetchMock))
+      await kagiAdapter({ ...request, safeSearch: 'off' }, context('kagi', fetchMock))
+      expect(fetchMock.mock.calls[0][1]).toMatchObject({
+        body: JSON.stringify({ query, workflow: 'search', limit: 2, filters: { region: 'US', after: '2026-01-08' }, safe_search: true }),
+      })
+      expect(fetchMock.mock.calls[1][1]).toMatchObject({
+        body: JSON.stringify({ query, workflow: 'search', limit: 2, safe_search: false }),
+      })
+    } finally {
+      now.mockRestore()
+    }
+  })
+
+  it.each([
+    ['region', { ...request, region: 'us' }],
+    ['safe search', { ...request, safeSearch: 'unsafe' }],
+    ['time range', { ...request, timeRange: 'forever' }],
+  ])('rejects an invalid Kagi %s before fetch', async (_label, badRequest) => {
+    const fetchMock = vi.fn<typeof fetch>()
+    await expect(kagiAdapter(badRequest as NormalizedSearchRequest, context('kagi', fetchMock))).resolves.toMatchObject({ ok: false, failure: { code: 'provider_unsupported_parameter' } })
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
+  it.each([
+    ['exa', exaAdapter],
+    ['kagi', kagiAdapter],
+  ] as const)('%s rejects an unsupported language before fetch', async (id, adapter) => {
+    const fetchMock = vi.fn<typeof fetch>()
+    await expect(adapter({ ...request, language: 'en' }, context(id, fetchMock))).resolves.toMatchObject({ ok: false, failure: { code: 'provider_unsupported_parameter' } })
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 
   for (const { id, adapter } of adapters) {
     describe(id, () => {
       it.each([
-        [{ ...request, language: 'en' }, 'optional input'],
         [{ ...request, limit: PROVIDER_ADAPTER_LIMITS.results + 1 }, 'invalid limit'],
         [{ ...request, query: `${query} ` }, 'untrimmed query'],
       ])('rejects %s before fetch', async (badRequest) => {
