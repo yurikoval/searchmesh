@@ -1,0 +1,36 @@
+- request:
+    url: https://api.mojeek.com/search?q=Mojeek+search+API&t=3&fmt=json&lb=en&rb=GB&api_key=recorded-mojeek-key
+    method: GET
+    headers:
+      accept: application/json
+    body: ""
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      content-length: "1239"
+      content-type: application/json; charset=utf-8
+      date: Wed, 14 Oct 2026 09:58:56 GMT
+      server: lighttpd/1.4.59
+    body: "{\"response\":{\"status\":\"OK\",\"head\":{\"query\":\"Mojeek search
+      API\",\"nword\":3,\"rankm\":168,\"dups\":0,\"nph\":0,\"more\":3365,\"words\
+      \":[{\"full\":\"mojeek\",\"stem\":\"mojeek\",\"plus\":1,\"hits\":442169},{\
+      \"full\":\"search\",\"stem\":\"search\",\"plus\":1,\"hits\":1024830969},{\
+      \"full\":\"api\",\"stem\":\"api\",\"plus\":1,\"hits\":77841921}],\"timer\
+      \":0.07,\"start\":1,\"return\":3,\"exact\":true,\"results\":4501},\"resul\
+      ts\":[{\"url\":\"https://www.mojeek.com/services/search/\",\"title\":\"Se\
+      arch services with Mojeek\",\"desc\":\"Embed web search capability into
+      websites or applications using the Mojeek Search API. ... API access and
+      on-demand indexing to power your website
+      ...\",\"mres\":12,\"score\":1.2940303087234497},{\"url\":\"https://www.mo\
+      jeek.com/support/api/search/\",\"title\":\"API Documentation -
+      Search\",\"desc\":\"If you are a larger organisation or have multiple
+      websites you might like to check out Mojeek's Organisation Search API
+      .\",\"mres\":12,\"score\":1.2104761600494385},{\"url\":\"https://www.moje\
+      ek.com/support/api/search/request_parameters.html\",\"title\":\"API
+      Documentation - Search Request Parameters\",\"desc\":\"Below are the
+      available parameters for querying the Mojeek Search API . ... Comma
+      separated domain names will be included in Mojeek search
+      results.\",\"mres\":0,\"score\":1.1595038175582886}]}}"
+    bodyEncoding: utf8
