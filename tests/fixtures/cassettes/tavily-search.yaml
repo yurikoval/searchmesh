@@ -1,0 +1,56 @@
+- request:
+    url: https://api.tavily.com/search
+    method: POST
+    headers:
+      accept: application/json
+      content-type: application/json
+    body: '{"api_key":"recorded-tavily-key","query":"Tavily Search
+      API","max_results":3,"search_depth":"basic","include_answer":false,"include_raw_content":false,"include_images":false}'
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      connection: keep-alive
+      content-length: "4733"
+      content-security-policy: default-src 'none'; script-src 'self'; connect-src
+        'self'; img-src 'self'; style-src 'self';base-uri 'self';form-action
+        'self'; require-trusted-types-for 'script'; upgrade-insecure-requests;
+      content-type: application/json
+      date: Thu, 15 Oct 2026 01:20:13 GMT
+    body: >-
+      {
+        "query": "Tavily Search API",
+        "follow_up_questions": null,
+        "answer": null,
+        "images": [],
+        "results": [
+          {
+            "url": "https://medium.com/@minhle_0210/boost-your-rag-performance-with-tavily-search-api-607a6437ab8e",
+            "title": "Medium",
+            "content": "Tavily Search API is a specialized search engine designed to supercharge AI applications. Unlike traditional search engines, Tavily is optimized for Large Language Models (LLMs) and Retrieval Augmented Generation (RAG) tasks. It delivers efficient, quick, and persistent search results, focusing on providing the most relevant information for AI developers and autonomous agents. [...] The Tavily Search API is suitable for that job. It is a search engine designed specifically for LLMs and RAG, with the goal of providing efficient, rapid, and permanent search results. Tavily specializes in improving search results for AI developers and autonomous AI agents. Furthermore, Tavily uses private financial, coding, news, and other internal data sources to supplement web content. As a result, Tavily empowers developers to build more accurate, insightful, and contextually aware AI [...] ## Conclusion\n\nIn our exploration of the Tavily Search API, we’ve delved into its functionalities, demystifying how it harnesses AI to enhance search. The Tavily Search API emerges as a vital tool for developers seeking to build more robust and reliable LLMs and RAG systems. By providing accurate, contextually relevant information, Tavily helps mitigate the challenges of hallucinations and outdated knowledge, paving the way for more trustworthy and insightful AI applications.",
+            "score": 0.96030545,
+            "raw_content": null,
+            "id": "b04b5e-00"
+          },
+          {
+            "url": "https://ai.plainenglish.io/tavily-the-ai-powered-search-api-you-need-to-know-about-52717d277894",
+            "title": "Tavily: The AI-Powered Search API You Need to Know About",
+            "content": "Tavily is an AI-first search engine and API built for developers and businesses. Instead of just indexing pages like Google, it focuses on retrieval augmented generation (RAG), AI agent integrations, and structured search results that LLMs can easily consume.\n\nWhether you’re building an AI chatbot, a legal research assistant, or a content aggregator, Tavily is designed to be the search layer for AI applications.\n\n### Why Tavily Matters ? [...] Traditional search engines are optimized for human browsing. But AI agents don’t need ads, links, or SEO-optimized fluff — they need clean, structured, and up-to-date knowledge.\n\nTavily solves this by:\n\n   🔍 Providing fast, developer-friendly APIs\n   📚 Returning structured JSON results instead of messy HTML\n   ⚡ Optimized for AI retrieval pipelines (RAG)\n   🌍 Covering web, news, finance, and domain-specific knowledge\n   🧩 Easy to plug into LangChain, LlamaIndex, and other frameworks [...] ### Conclusion\n\nTavily is more than just a search engine — it’s an AI-native knowledge retrieval platform. By focusing on structured, real-time, and reliable search results, it empowers developers to build smarter, faster, and more trustworthy AI applications.\n\nSo the next time you’re working on a chatbot, research tool, or AI assistant, don’t just rely on outdated model knowledge — let Tavily do the searching for you.\n\n👉 Ready to try it out? Head over to _Tavily_and start building today.",
+            "score": 0.9227683,
+            "raw_content": null,
+            "id": "c0315f-01"
+          },
+          {
+            "url": "https://docs.langchain.com/oss/javascript/integrations/tools/tavily_search",
+            "title": "Tavily search integration - Docs by LangChain",
+            "content": "Tavily’s Search API is a search engine built specifically for AI agents (LLMs), delivering real-time, accurate, and factual results at speed.\n\n## ​ Overview\n\n### ​ Integration details\n\n| Class | Package | PY support | Downloads | Version |\n ---  --- \n| `TavilySearch` | `@langchain/tavily` | ✅ |\n\n### ​ Tool features\n\n| Returns artifact | Native async | Return data | Pricing |\n ---  --- |\n| ❌ | ✅ | title, URL, content snippet, raw\\_content, answer, images | 1,000 free searches / month | [...] ## ​ API reference\n\nFor detailed documentation of all Tavily Search API features and configurations head to the API reference: docs.tavily.com/documentation/api-reference/endpoint/search \n\nConnect these docs to your agent of choice via MCP for real-time answers.\n\nEdit this page on GitHub or file an issue.\n\nWas this page helpful?",
+            "score": 0.9170729,
+            "raw_content": null,
+            "id": "d5a6d1-02"
+          }
+        ],
+        "response_time": 1.16,
+        "request_id": "07d28a5e-9807-44d9-a660-6adbb206bae0"
+      }
+    bodyEncoding: utf8
