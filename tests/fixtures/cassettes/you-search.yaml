@@ -1,0 +1,79 @@
+- request:
+    url: https://ydc-index.io/v1/search
+    method: POST
+    headers:
+      accept: application/json
+      content-type: application/json
+      x-api-key: recorded-you-key
+    body: '{"query":"You.com Search
+      API","count":3,"language":"EN","country":"US","safesearch":"moderate"}'
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      connection: keep-alive
+      content-type: application/json
+      date: Thu, 15 Oct 2026 01:39:58 GMT
+      server: Server
+      vary: Accept-Encoding
+      x-amz-apigw-id: FQxFLHwpvHcFiKA=
+      x-amzn-remapped-date: Thu, 15 Oct 2026 01:39:56 GMT
+      x-amzn-remapped-server: uvicorn
+      x-amzn-requestid: 8a0695ce-df75-4e3e-a642-55692c32ef48
+      x-amzn-trace-id: Root=1-6ad02eed-02df1f3f52a2b0f360b83c54
+    body: >-
+      {
+        "results": {
+          "web": [
+            {
+              "url": "https://you.com/apis",
+              "title": "API Docs | Real-Time Web Intelligence for AI Apps | You.com | ...",
+              "description": "With the You.com suite of tools, your agent can search the web, extract webpage content, generate grounded answers and execute deep research with better accuracy, freshness, and performance. ... Give your agent access to the live web. Start for free without an account or API key.",
+              "thumbnail_url": "https://you.com/docs/api/fern-docs/og?slug=docs%2Fwelcome",
+              "original_thumbnail_url": "https://you.com/docs/api/fern-docs/og?slug=docs%2Fwelcome",
+              "favicon_url": "https://you.com/favicon?domain=you.com&size=128",
+              "snippets": [
+                "Compose them to build complex agentic workflows. Web Search APIReturns real-time, LLM-ready web and news resultsContents APIClean Markdown or HTML from any URL you provideAnswer APIReturns a cited, synthesized answer from a single queryResearch APIAgentic multi-step research with cited synthesisFinance Research APIAgentic research, focused on financial and numerical dataChoose the Right APICompare job fit, latency, and price across all five",
+                "Web Search, Answer, Contents, Research, and Finance Research APIs that give your AI app real-time web intelligence. Start with free credits—no credit card required.",
+                "Web Search APIsEndpoints, parameters, and response schemas, with an interactive playgroundBuild with your agentMCP servers, skills, and harnesses for Claude Code, Cursor, Codex, and morePython SDKTyped Python client for all five APIs, plus the CLI and OpenAPI specs",
+                "/ Hide breadcrumb / .fern-breadcrumb-item"
+              ]
+            },
+            {
+              "url": "https://you.com/",
+              "title": "The Leading Web Search APIs for AI | You.com",
+              "description": "Skip the groundwork with our AI-ready Web Search APIs, delivering advanced search capabilities to power your next product.",
+              "thumbnail_url": "https://cdn.you.com/marketing/og-ydc.jpg",
+              "original_thumbnail_url": "https://cdn.you.com/marketing/og-ydc.jpg",
+              "favicon_url": "https://you.com/favicon?domain=you.com&size=128",
+              "snippets": [
+                "It is the world’s first comprehensive, horizontal law for artificial intelligence, and — like the GDPR — it reaches well beyond the EU’s borders. ... Take advantage of the world's best Search API, delivering real-time results at record speed.Learn More →",
+                "Search the web, extract clean content, and generate grounded answers for your agents and LLMs—with better accuracy, freshness, and performance. ... The AI Act is the first-ever legal framework on AI, which addresses the risks of AI and positions Europe to play a leading role globally. The AI Act (Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence) is the first-ever comprehensive legal framework on AI worldwide.",
+                "from youdotcom import You with You() as you: results = you.search(query=\"best practices for scaling microservices\") if results.results and results.results.web: for result in results.results.web: print(result.title) print(result.url) if result.snippets: print(result.snippets[0]) Proven accuracy, freshness and latency tailored for next-generation AI agents — setting the standard for the industry.Get a Free Eval ... Our APIs are enterprise-grade and built to give developers complete creative freedom, empowering them to build advanced tools without blockers.",
+                "NEW Knowledge for Web Search: live stock prices, crypto, weather, and prediction markets."
+              ]
+            },
+            {
+              "url": "https://docs.you.com/search/overview",
+              "title": "Web Search API Overview | You.com | You.com | Documentation",
+              "description": "Get structured, LLM-optimized search results from web and news sources.",
+              "thumbnail_url": "https://you.com/docs/api/fern-docs/og?slug=docs%2Fguides%2Fsearch",
+              "original_thumbnail_url": "https://you.com/docs/api/fern-docs/og?slug=docs%2Fguides%2Fsearch",
+              "favicon_url": "https://you.com/favicon?domain=docs.you.com&size=128",
+              "snippets": [
+                "Every search returns structured JSON with two main result types, plus knowledge results when you ask for them: ... All results are returned in clean, structured JSON requiring no HTML parsing or post-processing. Each result can carry three levels of text. The right one depends on whether a person or a model is reading it. See Retrieve page content for highlights vs. full page, extraction_source, crawl timeout, and the Contents API comparison.",
+                "If you already have URLs and do not need to search first, use the Contents API. ... Send parameters as a JSON body on POST /v1/search. Array fields are plain JSON arrays. GET /v1/search still works and existing integrations will keep running, but it will not receive new feature updates. New features will be added to POST only, and extraction and knowledge are only available there. On GET, domain filters must also fit in a single comma-separated query string value and are subject to URL length limits.",
+                "Cache frequent queries to reduce API calls and improve response times. Consider a 5-15 minute TTL for most use cases. Always check if results.web or results.news arrays are empty before processing: ... Use search operators and request controls to reduce noise and get more relevant results. $5.00 per 1,000 calls (up to 100 results per call) See the Billing page for complete pricing details.",
+                "Organizations operating under strict privacy, compliance, or security mandates can add Zero Data Retention (ZDR) to an enterprise agreement. ZDR restricts retention of Web Search API request and response content account-wide and requires no changes to your integration."
+              ]
+            }
+          ]
+        },
+        "metadata": {
+          "query": "You.com Search API",
+          "search_uuid": "985db735-3b8f-47a1-ba4a-a6023fd4f150",
+          "latency": 0.6291058999486268
+        }
+      }
+    bodyEncoding: utf8
