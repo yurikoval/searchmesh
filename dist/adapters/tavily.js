@@ -25,7 +25,7 @@ export const tavilyAdapter = async (request, context) => {
                 include_images: false,
             }),
             signal: context.signal,
-            redirect: 'error',
+            redirect: 'manual',
         });
     }
     catch {

@@ -30,7 +30,7 @@ describe('SerpApi adapter', () => {
     const [url, init] = fetchMock.mock.calls[0]
     expect(url).toBeInstanceOf(URL)
     expect(url.toString()).toBe('https://serpapi.com/search?engine=google&q=query+canary&num=3&hl=en&gl=us&tbs=qdr%3Aw&api_key=credential+canary%2F%2B%3F%26')
-    expect(init).toEqual({ method: 'GET', headers: { Accept: 'application/json' }, signal, redirect: 'error' })
+    expect(init).toEqual({ method: 'GET', headers: { Accept: 'application/json' }, signal, redirect: 'manual' })
     expect(outcome).toEqual({ ok: true, providerId: 'serpapi', results: [
       { providerId: 'serpapi', providerRank: 1, title: 'SerpApi first result', url: 'https://docs.example.com/serpapi?q=search', domain: 'docs.example.com', displayUrl: 'docs.example.com › serpapi', snippet: 'A Google organic result.' },
       { providerId: 'serpapi', providerRank: 4, title: 'SerpApi fourth result', url: 'https://example.org/reference', domain: 'example.org', displayUrl: 'example.org › reference', snippet: 'The documented organic position is retained.' },

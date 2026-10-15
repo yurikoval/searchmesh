@@ -21,7 +21,7 @@ export const serpApiAdapter: ProviderAdapter = async (request, context) => {
 
   let response: Response
   try {
-    response = await (context.fetch ?? fetch)(url, { method: 'GET', headers: { Accept: 'application/json' }, signal: context.signal, redirect: 'error' })
+    response = await (context.fetch ?? fetch)(url, { method: 'GET', headers: { Accept: 'application/json' }, signal: context.signal, redirect: 'manual' })
   } catch { return { ok: false, failure: fetchFailure(PROVIDER_ID, context.signal) } }
 
   const failed = responseFailure(PROVIDER_ID, response)

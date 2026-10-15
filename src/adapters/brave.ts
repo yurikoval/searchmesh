@@ -26,7 +26,7 @@ export const braveAdapter: ProviderAdapter = async (request, context) => {
       method: 'GET',
       headers: { Accept: 'application/json', 'X-Subscription-Token': context.credentials.api_key },
       signal: context.signal,
-      redirect: 'error',
+      redirect: 'manual',
     })
   } catch { return { ok: false, failure: fetchFailure(PROVIDER_ID, context.signal) } }
 

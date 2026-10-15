@@ -28,7 +28,7 @@ export const braveAdapter = async (request, context) => {
             method: 'GET',
             headers: { Accept: 'application/json', 'X-Subscription-Token': context.credentials.api_key },
             signal: context.signal,
-            redirect: 'error',
+            redirect: 'manual',
         });
     }
     catch {

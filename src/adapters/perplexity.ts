@@ -23,7 +23,7 @@ export const perplexityAdapter: ProviderAdapter = async (request, context) => {
         search_recency_filter: request.timeRange && TIME_RANGE[request.timeRange],
       })),
       signal: context.signal,
-      redirect: 'error',
+      redirect: 'manual',
     })
   } catch { return { ok: false, failure: fetchFailure(PROVIDER_ID, context.signal) } }
 

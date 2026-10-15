@@ -28,7 +28,7 @@ describe('You.com adapter', () => {
     const signal = new AbortController().signal
     const outcome = await youAdapter(request, context(fetchMock, signal))
     expect(fetchMock).toHaveBeenCalledWith('https://ydc-index.io/v1/search', {
-      method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'X-API-Key': credential }, signal, redirect: 'error',
+      method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'X-API-Key': credential }, signal, redirect: 'manual',
       body: JSON.stringify({ query, count: 3, language: 'PT-BR', country: 'US', safesearch: 'strict', freshness: 'week' }),
     })
     expect(outcome).toEqual({ ok: true, providerId: 'you', results: [

@@ -23,7 +23,7 @@ export const perplexityAdapter = async (request, context) => {
                 search_recency_filter: request.timeRange && TIME_RANGE[request.timeRange],
             })),
             signal: context.signal,
-            redirect: 'error',
+            redirect: 'manual',
         });
     }
     catch {

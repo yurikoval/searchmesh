@@ -30,7 +30,7 @@ describe('Mojeek adapter', () => {
     const [url, init] = fetchMock.mock.calls[0]
     expect(url).toBeInstanceOf(URL)
     expect(url.toString()).toBe('https://api.mojeek.com/search?q=query+canary&t=3&fmt=json&lb=en&rb=US&api_key=credential+canary%2F%2B%3F%26')
-    expect(init).toEqual({ method: 'GET', headers: { Accept: 'application/json' }, signal, redirect: 'error' })
+    expect(init).toEqual({ method: 'GET', headers: { Accept: 'application/json' }, signal, redirect: 'manual' })
     expect(outcome).toEqual({ ok: true, providerId: 'mojeek', results: [
       { providerId: 'mojeek', providerRank: 1, title: 'Mojeek first result', url: 'https://docs.example.com/mojeek?q=search', domain: 'docs.example.com', snippet: 'An independent search result.', imageUrl: 'https://cdn.example.com/mojeek.png', providerScore: 0.92 },
       { providerId: 'mojeek', providerRank: 3, title: 'Mojeek third result', url: 'https://example.org/reference', domain: 'example.org', snippet: 'Upstream order remains stable.' },

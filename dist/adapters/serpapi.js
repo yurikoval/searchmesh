@@ -23,7 +23,7 @@ export const serpApiAdapter = async (request, context) => {
     url.searchParams.set('api_key', context.credentials.api_key);
     let response;
     try {
-        response = await (context.fetch ?? fetch)(url, { method: 'GET', headers: { Accept: 'application/json' }, signal: context.signal, redirect: 'error' });
+        response = await (context.fetch ?? fetch)(url, { method: 'GET', headers: { Accept: 'application/json' }, signal: context.signal, redirect: 'manual' });
     }
     catch {
         return { ok: false, failure: fetchFailure(PROVIDER_ID, context.signal) };
