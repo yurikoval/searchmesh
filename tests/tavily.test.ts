@@ -34,7 +34,7 @@ describe('Tavily adapter', () => {
     const [url, init] = fetchMock.mock.calls[0]
     expect(url).toBe('https://api.tavily.com/search')
     expect(init).toEqual({
-      method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, signal, redirect: 'error',
+      method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, signal, redirect: 'manual',
       body: JSON.stringify({ api_key: credential, query, max_results: 3, search_depth: 'basic', include_answer: false, include_raw_content: false, include_images: false }),
     })
     expect(outcome).toEqual({ ok: true, providerId: 'tavily', results: [

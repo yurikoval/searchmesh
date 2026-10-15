@@ -28,7 +28,7 @@ describe('Perplexity adapter', () => {
     const signal = new AbortController().signal
     const outcome = await perplexityAdapter(request, context(fetchMock, signal))
     expect(fetchMock).toHaveBeenCalledWith('https://api.perplexity.ai/search', {
-      method: 'POST', headers: { Accept: 'application/json', Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json' }, signal, redirect: 'error',
+      method: 'POST', headers: { Accept: 'application/json', Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json' }, signal, redirect: 'manual',
       body: JSON.stringify({ query, max_results: 3, search_language_filter: ['en'], country: 'US', search_recency_filter: 'month' }),
     })
     expect(outcome).toEqual({ ok: true, providerId: 'perplexity', results: [

@@ -16,7 +16,7 @@ export const exaAdapter: ProviderAdapter = async (request, context) => {
       headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'x-api-key': context.credentials.api_key },
       body: JSON.stringify({ query: request.query, numResults: request.limit, type: 'auto', contents: { text: { maxCharacters: PROVIDER_ADAPTER_LIMITS.snippetCharacters } } }),
       signal: context.signal,
-      redirect: 'error',
+      redirect: 'manual',
     })
   } catch { return { ok: false, failure: fetchFailure(PROVIDER_ID, context.signal) } }
 

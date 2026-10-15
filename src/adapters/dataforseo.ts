@@ -23,7 +23,7 @@ export const dataForSeoAdapter: ProviderAdapter = async (request, context) => {
       },
       body: JSON.stringify([{ keyword: request.query, location_code: DEFAULT_LOCATION_CODE, language_code: request.language ?? 'en', device: DEFAULT_DEVICE, depth: request.limit }]),
       signal: context.signal,
-      redirect: 'error',
+      redirect: 'manual',
     })
   } catch { return { ok: false, failure: fetchFailure(PROVIDER_ID, context.signal) } }
 

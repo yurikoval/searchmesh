@@ -26,7 +26,7 @@ export const tavilyAdapter: ProviderAdapter = async (request, context) => {
         include_images: false,
       }),
       signal: context.signal,
-      redirect: 'error',
+      redirect: 'manual',
     })
   } catch { return { ok: false, failure: fetchFailure(PROVIDER_ID, context.signal) } }
 

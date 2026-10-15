@@ -43,7 +43,7 @@ describe('Brave adapter', () => {
     expect(fetchMock).toHaveBeenCalledOnce()
     const [url, init] = fetchMock.mock.calls[0]
     expect(url.toString()).toBe('https://api.search.brave.com/res/v1/web/search?q=query+canary&count=3&search_lang=en&country=US&safesearch=strict&freshness=pw')
-    expect(init).toEqual({ method: 'GET', headers: { Accept: 'application/json', 'X-Subscription-Token': credential }, signal, redirect: 'error' })
+    expect(init).toEqual({ method: 'GET', headers: { Accept: 'application/json', 'X-Subscription-Token': credential }, signal, redirect: 'manual' })
     expect(outcome).toEqual({ ok: true, providerId: 'brave', results: [
       {
         providerId: 'brave', providerRank: 1, title: 'First result', url: 'https://docs.example.com/guide?topic=search', domain: 'docs.example.com',

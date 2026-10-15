@@ -23,7 +23,7 @@ export const yepAdapter = async (request, context) => {
             headers: { Accept: 'application/json', Authorization: `Bearer ${context.credentials.api_key}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
             signal: context.signal,
-            redirect: 'error',
+            redirect: 'manual',
         });
     }
     catch {

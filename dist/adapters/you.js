@@ -26,7 +26,7 @@ export const youAdapter = async (request, context) => {
                 freshness: request.timeRange && TIME_RANGE[request.timeRange],
             })),
             signal: context.signal,
-            redirect: 'error',
+            redirect: 'manual',
         });
     }
     catch {

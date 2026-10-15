@@ -50,7 +50,7 @@ describe('additional provider adapters', () => {
   it('sends and normalizes a Yep search', async () => {
     const { outcome, call: [url, init] } = await run(yepAdapter, 'yep')
     expect(url.toString()).toBe('https://platform.yep.com/api/search')
-    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query, type: 'basic', limit: 2 }), redirect: 'error' })
+    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query, type: 'basic', limit: 2 }), redirect: 'manual' })
     expect(outcome).toEqual({ ok: true, providerId: 'yep', results: [{ providerId: 'yep', providerRank: 1, title: 'Yep result', url: 'https://yep.example/page', domain: 'yep.example', snippet: 'Result text', publishedAt: '2026-01-02T00:00:00.000Z' }] })
   })
 
@@ -85,14 +85,14 @@ describe('additional provider adapters', () => {
   it('sends and normalizes an Exa search', async () => {
     const { outcome, call: [url, init] } = await run(exaAdapter, 'exa')
     expect(url.toString()).toBe('https://api.exa.ai/search')
-    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'x-api-key': credential }, body: JSON.stringify({ query, numResults: 2, type: 'auto', contents: { text: { maxCharacters: 4000 } } }), redirect: 'error' })
+    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'x-api-key': credential }, body: JSON.stringify({ query, numResults: 2, type: 'auto', contents: { text: { maxCharacters: 4000 } } }), redirect: 'manual' })
     expect(outcome).toEqual({ ok: true, providerId: 'exa', results: [{ providerId: 'exa', providerRank: 1, title: 'Exa result', url: 'https://exa.example/page', domain: 'exa.example', snippet: 'Extracted text', publishedAt: '2026-01-02T03:04:05.000Z', author: 'Author' }] })
   })
 
   it('sends and normalizes a Kagi v1 search once', async () => {
     const { outcome, call: [url, init] } = await run(kagiAdapter, 'kagi')
     expect(url.toString()).toBe('https://kagi.com/api/v1/search')
-    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query, workflow: 'search', limit: 2 }), redirect: 'error' })
+    expect(init).toMatchObject({ method: 'POST', headers: { Accept: 'application/json', Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query, workflow: 'search', limit: 2 }), redirect: 'manual' })
     expect(outcome).toEqual({ ok: true, providerId: 'kagi', results: [{ providerId: 'kagi', providerRank: 1, title: 'Kagi result', url: 'https://kagi.example/page', domain: 'kagi.example', snippet: 'Result text', publishedAt: '2026-01-02T00:00:00.000Z' }] })
   })
 
@@ -165,6 +165,23 @@ describe('additional provider adapters', () => {
         expect(outcome).toMatchObject({ failure: { code, httpStatus: status } })
         if (status === 429) expect(outcome).toMatchObject({ failure: { retryAfterMs: 4_000 } })
         expect(JSON.stringify(outcome)).not.toContain(upstreamError)
+      })
+
+      it.each([301, 302, 307, 308])('rejects HTTP %i redirects without following or leaking details', async (status) => {
+        let cancelled = false
+        const body = new ReadableStream<Uint8Array>({ cancel() { cancelled = true } })
+        const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(new Response(body, {
+          status,
+          headers: { Location: 'https://redirect.example/location-canary' },
+        }))
+
+        const outcome = await failureWith(adapter, id, fetchMock)
+
+        expect(outcome).toMatchObject({ failure: { code: 'provider_error', retryable: false, httpStatus: status } })
+        expect(fetchMock).toHaveBeenCalledOnce()
+        expect(fetchMock.mock.calls[0][1]).toMatchObject({ redirect: 'manual' })
+        expect(cancelled).toBe(true)
+        expect(JSON.stringify(outcome)).not.toMatch(/credential-canary|query-canary|location-canary/)
       })
 
       it('maps network and aborted fetch failures without leaking canaries', async () => {

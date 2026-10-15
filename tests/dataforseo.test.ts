@@ -29,7 +29,7 @@ describe('DataForSEO adapter', () => {
     const signal = new AbortController().signal
     const outcome = await dataForSeoAdapter(request, context(fetchMock, signal))
     expect(fetchMock).toHaveBeenCalledWith('https://api.dataforseo.com/v3/serp/google/organic/live/advanced', {
-      method: 'POST', headers: { Accept: 'application/json', Authorization: `Basic ${btoa(`${login}:${password}`)}`, 'Content-Type': 'application/json' }, signal, redirect: 'error',
+      method: 'POST', headers: { Accept: 'application/json', Authorization: `Basic ${btoa(`${login}:${password}`)}`, 'Content-Type': 'application/json' }, signal, redirect: 'manual',
       body: JSON.stringify([{ keyword: query, location_code: 2840, language_code: 'fr', device: 'desktop', depth: 3 }]),
     })
     expect(outcome).toEqual({ ok: true, providerId: 'dataforseo', results: [
