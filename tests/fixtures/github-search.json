@@ -1,0 +1,42 @@
+{
+  "total_count": 2,
+  "incomplete_results": false,
+  "items": [
+    {
+      "name": "searchmesh",
+      "full_name": "example/searchmesh",
+      "private": false,
+      "visibility": "public",
+      "html_url": "https://github.com/example/searchmesh",
+      "description": "A runtime-neutral search adapter package.",
+      "stargazers_count": 321,
+      "language": "TypeScript",
+      "topics": ["search", "typescript", "cloudflare-workers"],
+      "updated_at": "2026-10-18T12:34:56Z",
+      "score": 1.5
+    },
+    {
+      "name": "missing-url",
+      "full_name": "example/missing-url",
+      "description": "This malformed entry is skipped.",
+      "stargazers_count": 1,
+      "language": null,
+      "topics": [],
+      "updated_at": "2026-10-17T12:34:56Z",
+      "score": 1.0
+    },
+    {
+      "name": "repository-search",
+      "full_name": "example/repository-search",
+      "private": false,
+      "visibility": "public",
+      "html_url": "https://github.com/example/repository-search",
+      "description": null,
+      "stargazers_count": 42,
+      "language": "Rust",
+      "topics": [],
+      "updated_at": "2026-10-16T01:02:03Z",
+      "score": 0.75
+    }
+  ]
+}

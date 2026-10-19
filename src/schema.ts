@@ -29,11 +29,11 @@ export type ProviderDefinition = {
   documentation_url: string
   adapter: string
   endpoint: { api_base_url: string; method: 'GET' | 'POST'; path: string }
-  capabilities: { operations: ['search']; optional_inputs: Array<'language' | 'region' | 'safe_search' | 'time_range'> }
+  capabilities: { operations: ['search']; optional_inputs: Array<'page' | 'language' | 'region' | 'safe_search' | 'time_range'> }
   authentication: { fields: Array<{ name: string; label: string; required?: boolean }> }
   request_mapping: {
-    query: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
-    body: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
+    query: Partial<Record<'query' | 'page' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
+    body: Partial<Record<'query' | 'page' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
   }
   response_mapping: {
     results: PathSegment[]
@@ -58,7 +58,7 @@ const PATH_SEGMENT = /^[A-Za-z0-9_-]+$/
 const SECRET_KEY = /(^|[_-])(authorization|cookie|password|secret|token|private[_-]?key|api[_-]?key|env)([_-]|$)/i
 const SECRET_VALUE = /(?:\bBearer\s+\S+|-----BEGIN [A-Z ]*PRIVATE KEY-----|\bgh(?:p|o|u|s|r)_[A-Za-z0-9_]{16,}|\bgithub_pat_[A-Za-z0-9_]{16,}|\bsk_live_[A-Za-z0-9]{16,}|\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.)/i
 const PROTOTYPE_KEYS = new Set(['__proto__', 'prototype', 'constructor'])
-const OPTIONAL_INPUTS = new Set(['language', 'region', 'safe_search', 'time_range'])
+const OPTIONAL_INPUTS = new Set(['page', 'language', 'region', 'safe_search', 'time_range'])
 const SOURCE_FIELDS = new Set(['query', ...OPTIONAL_INPUTS])
 
 export function validateProviderDefinition(file: string, input: unknown): { ok: true; definition: ProviderDefinition; canonicalJson: string } | { ok: false; errors: ValidationError[] } {

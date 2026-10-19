@@ -56,7 +56,8 @@ function validRequest(request) {
         && request.limit <= PROVIDER_ADAPTER_LIMITS.results;
 }
 function unsupportedOption(request) {
-    return (request.language !== undefined && !/^[a-z]{2}$/.test(request.language))
+    return request.page !== undefined
+        || (request.language !== undefined && !/^[a-z]{2}$/.test(request.language))
         || request.region !== undefined
         || request.safeSearch !== undefined
         || request.timeRange !== undefined;

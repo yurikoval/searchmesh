@@ -11,6 +11,7 @@ import { mojeekAdapter } from './mojeek.js'
 import { serpApiAdapter } from './serpapi.js'
 import { dataForSeoAdapter } from './dataforseo.js'
 import { gitlabAdapter } from './gitlab.js'
+import { githubAdapter } from './github.js'
 
 export { braveAdapter } from './brave.js'
 export { tavilyAdapter } from './tavily.js'
@@ -23,6 +24,7 @@ export { mojeekAdapter } from './mojeek.js'
 export { serpApiAdapter } from './serpapi.js'
 export { dataForSeoAdapter } from './dataforseo.js'
 export { gitlabAdapter } from './gitlab.js'
+export { githubAdapter } from './github.js'
 
 export const providerAdapters: Readonly<Record<ExecutableProviderId, ProviderAdapter>> = Object.freeze({
   brave: braveAdapter,
@@ -36,6 +38,7 @@ export const providerAdapters: Readonly<Record<ExecutableProviderId, ProviderAda
   serpapi: serpApiAdapter,
   dataforseo: dataForSeoAdapter,
   gitlab: gitlabAdapter,
+  github: githubAdapter,
 })
 
 export function getProviderAdapter(adapter: string): ProviderAdapter | undefined {

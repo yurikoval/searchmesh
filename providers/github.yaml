@@ -1,0 +1,30 @@
+schema_version: "1"
+id: github
+name: GitHub Repository Search
+description: Public repository search results from the GitHub REST API.
+website_url: https://github.com/
+documentation_url: https://docs.github.com/en/rest/search/search
+adapter: github
+endpoint:
+  api_base_url: https://api.github.com/
+  method: GET
+  path: /search/repositories
+capabilities:
+  operations: [search]
+  optional_inputs: [page]
+authentication:
+  fields:
+    - name: api_key
+      label: Personal access token
+request_mapping:
+  query:
+    query: q
+    page: page
+  body: {}
+response_mapping:
+  results: [items]
+  title: [full_name]
+  url: [html_url]
+  snippet: [description]
+metadata:
+  rate_limit: GitHub applies a separate rate limit to search requests.

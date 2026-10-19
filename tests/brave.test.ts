@@ -29,7 +29,7 @@ async function failureWith(fetchMock: typeof fetch, signal = new AbortController
 
 describe('Brave adapter', () => {
   it('exposes the compiled adapters and fails unknown adapters closed', async () => {
-    expect(Object.keys(providerAdapters)).toEqual(['brave', 'tavily', 'exa', 'yep', 'kagi', 'you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab'])
+    expect(Object.keys(providerAdapters)).toEqual(['brave', 'tavily', 'exa', 'yep', 'kagi', 'you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab', 'github'])
     const fetchMock = vi.fn<typeof fetch>()
     await expect(runProviderAdapter('unknown', request, context(fetchMock))).resolves.toMatchObject({ ok: false, failure: { code: 'provider_configuration_error' } })
     expect(fetchMock).not.toHaveBeenCalled()
@@ -54,6 +54,7 @@ describe('Brave adapter', () => {
   })
 
   it.each([
+    [{ ...request, page: 2 }, 'unsupported page'],
     [{ ...request, language: 'EN' }, 'unsupported language'],
     [{ ...request, safeSearch: 'unsafe' } as unknown as NormalizedSearchRequest, 'invalid safe search'],
     [{ ...request, timeRange: 'forever' } as unknown as NormalizedSearchRequest, 'invalid time range'],

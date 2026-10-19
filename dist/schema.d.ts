@@ -37,7 +37,7 @@ export type ProviderDefinition = {
     };
     capabilities: {
         operations: ['search'];
-        optional_inputs: Array<'language' | 'region' | 'safe_search' | 'time_range'>;
+        optional_inputs: Array<'page' | 'language' | 'region' | 'safe_search' | 'time_range'>;
     };
     authentication: {
         fields: Array<{
@@ -47,8 +47,8 @@ export type ProviderDefinition = {
         }>;
     };
     request_mapping: {
-        query: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>;
-        body: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>;
+        query: Partial<Record<'query' | 'page' | 'language' | 'region' | 'safe_search' | 'time_range', string>>;
+        body: Partial<Record<'query' | 'page' | 'language' | 'region' | 'safe_search' | 'time_range', string>>;
     };
     response_mapping: {
         results: PathSegment[];

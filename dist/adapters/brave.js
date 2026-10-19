@@ -60,7 +60,8 @@ function validRequest(request) {
         && request.limit <= PROVIDER_ADAPTER_LIMITS.results;
 }
 function unsupportedOption(request) {
-    return (request.language !== undefined && !/^[a-z]{2,3}$/.test(request.language))
+    return request.page !== undefined
+        || (request.language !== undefined && !/^[a-z]{2,3}$/.test(request.language))
         || (request.region !== undefined && !/^[A-Z]{2}$/.test(request.region))
         || (request.safeSearch !== undefined && !['off', 'moderate', 'strict'].includes(request.safeSearch))
         || (request.timeRange !== undefined && !Object.hasOwn(TIME_RANGE, request.timeRange));

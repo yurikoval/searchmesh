@@ -7,7 +7,7 @@ const ENDPOINT = 'https://api.exa.ai/search'
 export const exaAdapter: ProviderAdapter = async (request, context) => {
   if (!validContext(context)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_configuration_error') }
   if (!validRequest(request)) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
-  if (request.language !== undefined || request.region !== undefined || request.safeSearch !== undefined || request.timeRange !== undefined) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
+  if (request.page !== undefined || request.language !== undefined || request.region !== undefined || request.safeSearch !== undefined || request.timeRange !== undefined) return { ok: false, failure: providerFailure(PROVIDER_ID, 'provider_unsupported_parameter') }
 
   let response: Response
   try {

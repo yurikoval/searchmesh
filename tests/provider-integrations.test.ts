@@ -135,6 +135,7 @@ describe('additional provider adapters', () => {
   for (const { id, adapter } of adapters) {
     describe(id, () => {
       it.each([
+        [{ ...request, page: 2 }, 'unsupported page'],
         [{ ...request, limit: PROVIDER_ADAPTER_LIMITS.results + 1 }, 'invalid limit'],
         [{ ...request, query: `${query} ` }, 'untrimmed query'],
       ])('rejects %s before fetch', async (badRequest) => {

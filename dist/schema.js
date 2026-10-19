@@ -23,7 +23,7 @@ const PATH_SEGMENT = /^[A-Za-z0-9_-]+$/;
 const SECRET_KEY = /(^|[_-])(authorization|cookie|password|secret|token|private[_-]?key|api[_-]?key|env)([_-]|$)/i;
 const SECRET_VALUE = /(?:\bBearer\s+\S+|-----BEGIN [A-Z ]*PRIVATE KEY-----|\bgh(?:p|o|u|s|r)_[A-Za-z0-9_]{16,}|\bgithub_pat_[A-Za-z0-9_]{16,}|\bsk_live_[A-Za-z0-9]{16,}|\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.)/i;
 const PROTOTYPE_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
-const OPTIONAL_INPUTS = new Set(['language', 'region', 'safe_search', 'time_range']);
+const OPTIONAL_INPUTS = new Set(['page', 'language', 'region', 'safe_search', 'time_range']);
 const SOURCE_FIELDS = new Set(['query', ...OPTIONAL_INPUTS]);
 export function validateProviderDefinition(file, input) {
     const errors = [];
