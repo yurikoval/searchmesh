@@ -1,0 +1,138 @@
+- request:
+    url: https://gitlab.com/api/v4/projects?search=gitlab&visibility=public&per_page=3
+    method: GET
+    headers:
+      accept: application/json
+    body: ""
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      cache-control: max-age=0, private, must-revalidate
+      cf-cache-status: BYPASS
+      cf-ray: a4ccc6844db8ce6e-SIN
+      connection: keep-alive
+      content-security-policy: default-src 'none'
+      content-type: application/json
+      date: Mon, 19 Oct 2026 03:42:55 GMT
+      etag: W/"21e4aa4cef3bf169a9a1a9d66a5ea60b"
+      gitlab-lb: haproxy-main-17-lb-gprd
+      gitlab-sv: api-gke-us-east1-c
+      link: <https://gitlab.com/api/v4/projects?imported=false&include_hidden=false&membership=false&order_by=created_at&owned=false&page=2&per_page=3&repository_checksum_failed=false&search=gitlab&simple=false&sort=desc&starred=false&statistics=false&visibility=public&wiki_checksum_failed=false&with_custom_attributes=false&with_issues_enabled=false&with_merge_requests_enabled=false>; rel="next", <https://gitlab.com/api/v4/projects?imported=false&include_hidden=false&membership=false&order_by=created_at&owned=false&page=1&per_page=3&repository_checksum_failed=false&search=gitlab&simple=false&sort=desc&starred=false&statistics=false&visibility=public&wiki_checksum_failed=false&with_custom_attributes=false&with_issues_enabled=false&with_merge_requests_enabled=false>; rel="first"
+      nel: '{"max_age": 0}'
+      ratelimit-limit: "500"
+      ratelimit-name: throttle_unauthenticated_api
+      ratelimit-observed: "1"
+      ratelimit-remaining: "499"
+      ratelimit-reset: "1792381380"
+      referrer-policy: strict-origin-when-cross-origin
+      server: cloudflare
+      strict-transport-security: max-age=31536000
+      vary: Origin
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-gitlab-meta: '{"correlation_id":"a4ccc6844db8ce6e-SIN","version":"1"}'
+      x-next-page: "2"
+      x-page: "1"
+      x-per-page: "3"
+      x-prev-page: ""
+      x-request-id: a4ccc6844db8ce6e-SIN
+      x-runtime: "0.924944"
+    body: |-
+      [
+        {
+          "id": 87797926,
+          "description": "Bifocal: agentic QA for GitLab merge requests (GitLab Duo Agent Platform), applied to linkding. Fork of https://github.com/sissbruecker/linkding (MIT) at v1.47.0. GitLab Transcend 'Life After Code' hackathon, Path B.",
+          "name": "bifocal",
+          "name_with_namespace": "GitLab AI Hackathon / Transcend October 2026 / wqyeo / bifocal",
+          "path": "bifocal",
+          "path_with_namespace": "gitlab-ai-hackathon/transcend-october-2026/2676619/bifocal",
+          "created_at": "2026-10-19T03:24:46.791Z",
+          "default_branch": "main",
+          "tag_list": [],
+          "topics": [],
+          "ssh_url_to_repo": "git@gitlab.com:gitlab-ai-hackathon/transcend-october-2026/2676619/bifocal.git",
+          "http_url_to_repo": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/2676619/bifocal.git",
+          "web_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/2676619/bifocal",
+          "readme_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/2676619/bifocal/-/blob/main/README.md",
+          "forks_count": 0,
+          "avatar_url": null,
+          "star_count": 0,
+          "last_activity_at": "2026-10-19T03:24:46.698Z",
+          "visibility": "public",
+          "namespace": {
+            "id": 144457543,
+            "name": "wqyeo",
+            "path": "2676619",
+            "kind": "group",
+            "full_path": "gitlab-ai-hackathon/transcend-october-2026/2676619",
+            "parent_id": 142538134,
+            "avatar_url": null,
+            "web_url": "https://gitlab.com/groups/gitlab-ai-hackathon/transcend-october-2026/2676619"
+          }
+        },
+        {
+          "id": 87796926,
+          "description": "Hands-off DevSecOps control plane. GitLab Duo conducts, Sentinel proves, the policy kernel signs the release.",
+          "name": "aegismind-devsecops",
+          "name_with_namespace": "Rykiel Kameni / aegismind-devsecops",
+          "path": "aegismind-devsecops",
+          "path_with_namespace": "rykiel.kameni/aegismind-devsecops",
+          "created_at": "2026-10-19T02:28:07.326Z",
+          "default_branch": "main",
+          "tag_list": [],
+          "topics": [],
+          "ssh_url_to_repo": "git@gitlab.com:rykiel.kameni/aegismind-devsecops.git",
+          "http_url_to_repo": "https://gitlab.com/rykiel.kameni/aegismind-devsecops.git",
+          "web_url": "https://gitlab.com/rykiel.kameni/aegismind-devsecops",
+          "readme_url": "https://gitlab.com/rykiel.kameni/aegismind-devsecops/-/blob/main/README.md",
+          "forks_count": 0,
+          "avatar_url": null,
+          "star_count": 0,
+          "last_activity_at": "2026-10-19T02:28:07.231Z",
+          "visibility": "public",
+          "namespace": {
+            "id": 118325603,
+            "name": "Rykiel Kameni",
+            "path": "rykiel.kameni",
+            "kind": "user",
+            "full_path": "rykiel.kameni",
+            "parent_id": null,
+            "avatar_url": "https://secure.gravatar.com/avatar/01151de50d4d704b8b7ad7bcfefe76453dd38652133a847c0a6e1b3e04be6491?s=80&d=identicon",
+            "web_url": "https://gitlab.com/rykiel.kameni"
+          }
+        },
+        {
+          "id": 87796200,
+          "description": "How to contribute to GitLab project templates.",
+          "name": "CONTRIBUTING",
+          "name_with_namespace": "ferenc kovács / CONTRIBUTING",
+          "path": "contributing",
+          "path_with_namespace": "szponzorferi/contributing",
+          "created_at": "2026-10-19T01:40:05.087Z",
+          "default_branch": "main",
+          "tag_list": [],
+          "topics": [],
+          "ssh_url_to_repo": "git@gitlab.com:szponzorferi/contributing.git",
+          "http_url_to_repo": "https://gitlab.com/szponzorferi/contributing.git",
+          "web_url": "https://gitlab.com/szponzorferi/contributing",
+          "readme_url": "https://gitlab.com/szponzorferi/contributing/-/blob/main/README.md",
+          "forks_count": 0,
+          "avatar_url": null,
+          "star_count": 0,
+          "last_activity_at": "2026-10-19T01:40:05.012Z",
+          "visibility": "public",
+          "namespace": {
+            "id": 145128224,
+            "name": "ferenc kovács",
+            "path": "szponzorferi",
+            "kind": "user",
+            "full_path": "szponzorferi",
+            "parent_id": null,
+            "avatar_url": "https://secure.gravatar.com/avatar/9770faf66988b019cb9d48b0fe1dd5442d94c7493e2cabcf3022e60f750c9135?s=80&d=identicon",
+            "web_url": "https://gitlab.com/szponzorferi"
+          }
+        }
+      ]
+    bodyEncoding: utf8

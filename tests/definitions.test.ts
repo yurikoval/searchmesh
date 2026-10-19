@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
 import { parseProviderYaml, runProviderAdapter, validateProviderRevision } from '../src/index.js'
 
-const providerFiles = ['brave', 'tavily', 'yep', 'exa', 'kagi', 'you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo'].map((id) => `providers/${id}.yaml`)
+const providerFiles = ['brave', 'tavily', 'yep', 'exa', 'kagi', 'you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab'].map((id) => `providers/${id}.yaml`)
 
 const emptyPayloads: Record<string, unknown> = {
   brave: { web: { results: [] } },
@@ -15,6 +15,7 @@ const emptyPayloads: Record<string, unknown> = {
   mojeek: { response: { status: 'OK', results: [] } },
   serpapi: { organic_results: [] },
   dataforseo: { status_code: 20000, tasks: [{ status_code: 20000, result: [{ items: [] }] }] },
+  gitlab: [],
 }
 
 describe('published provider definitions', () => {
@@ -30,7 +31,7 @@ describe('published provider definitions', () => {
     expect(revision.ok).toBe(true)
     if (!revision.ok) return
     expect(revision.definitions.map(({ definition }) => definition.id)).toEqual([
-      'brave', 'dataforseo', 'exa', 'kagi', 'mojeek', 'perplexity', 'serpapi', 'tavily', 'yep', 'you',
+      'brave', 'dataforseo', 'exa', 'gitlab', 'kagi', 'mojeek', 'perplexity', 'serpapi', 'tavily', 'yep', 'you',
     ])
 
     for (const { definition } of revision.definitions) {
@@ -38,7 +39,7 @@ describe('published provider definitions', () => {
       expect(definition).not.toHaveProperty('available')
       expect(definition).not.toHaveProperty('enabled_by_default')
       expect(definition.authentication).not.toHaveProperty('credential_mode')
-      const credentials: Record<string, string> = definition.id === 'dataforseo' ? { login: 'test-login', password: 'test-password' } : { api_key: 'test-credential' }
+      const credentials: Record<string, string> = definition.id === 'dataforseo' ? { login: 'test-login', password: 'test-password' } : definition.id === 'gitlab' ? {} : { api_key: 'test-credential' }
       const outcome = await runProviderAdapter(definition.adapter, { query: 'package contract', limit: 1 }, {
         credentials,
         signal: new AbortController().signal,

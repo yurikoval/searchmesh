@@ -9,6 +9,7 @@ import { perplexityAdapter } from './perplexity.js';
 import { mojeekAdapter } from './mojeek.js';
 import { serpApiAdapter } from './serpapi.js';
 import { dataForSeoAdapter } from './dataforseo.js';
+import { gitlabAdapter } from './gitlab.js';
 export { braveAdapter } from './brave.js';
 export { tavilyAdapter } from './tavily.js';
 export { exaAdapter } from './exa.js';
@@ -19,6 +20,7 @@ export { perplexityAdapter } from './perplexity.js';
 export { mojeekAdapter } from './mojeek.js';
 export { serpApiAdapter } from './serpapi.js';
 export { dataForSeoAdapter } from './dataforseo.js';
+export { gitlabAdapter } from './gitlab.js';
 export const providerAdapters = Object.freeze({
     brave: braveAdapter,
     tavily: tavilyAdapter,
@@ -30,6 +32,7 @@ export const providerAdapters = Object.freeze({
     mojeek: mojeekAdapter,
     serpapi: serpApiAdapter,
     dataforseo: dataForSeoAdapter,
+    gitlab: gitlabAdapter,
 });
 export function getProviderAdapter(adapter) {
     return providerAdapters[adapter];

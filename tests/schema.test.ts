@@ -47,6 +47,25 @@ describe('provider definition trust boundary', () => {
     expect(JSON.stringify(result)).not.toContain('second')
   })
 
+  it('supports root result arrays and optional credentials without weakening nested paths', () => {
+    const parsed = parseValid()
+    if (!parsed.ok) throw new Error('fixture failed to parse')
+    const value = parsed.value as Record<string, unknown>
+    ;(value.response_mapping as Record<string, unknown>).results = []
+    ;((value.authentication as { fields: Array<Record<string, unknown>> }).fields[0]).required = false
+
+    const validated = validateProviderDefinition('providers/valid.yaml', value)
+    expect(validated.ok).toBe(true)
+    if (!validated.ok) return
+    expect(validated.definition.response_mapping.results).toEqual([])
+    expect(validated.definition.authentication.fields).toEqual([{ name: 'api_key', label: 'API key', required: false }])
+
+    ;(value.response_mapping as Record<string, unknown>).title = []
+    const invalid = validateProviderDefinition('providers/valid.yaml', value)
+    expect(invalid.ok).toBe(false)
+    if (!invalid.ok) expect(invalid.errors).toContainEqual(expect.objectContaining({ path: 'response_mapping.title', code: 'invalid_path' }))
+  })
+
   it('rejects unsafe semantic fields and keeps errors redacted', () => {
     const parsed = parseValid()
     if (!parsed.ok) throw new Error('fixture failed to parse')
@@ -119,6 +138,7 @@ describe('provider definition trust boundary', () => {
       ['mojeek', 'https://api.mojeek.com/', 'https://api.mojeek.com/search'],
       ['serpapi', 'https://serpapi.com/', 'https://serpapi.com/search'],
       ['dataforseo', 'https://api.dataforseo.com/v3/serp/google/organic/live/', 'https://api.dataforseo.com/v3/serp/google/organic/live/advanced'],
+      ['gitlab', 'https://gitlab.com/api/v4/', 'https://gitlab.com/api/v4/projects'],
     ] as const
     for (const [id, base, endpoint] of policies) {
       expect(isAllowedAdapterUrl(id, base)).toBe(true)
@@ -129,7 +149,7 @@ describe('provider definition trust boundary', () => {
     }
     expect(isAllowedAdapterUrl('missing', 'https://api.search.brave.com/res/v1/')).toBe(false)
 
-    for (const id of ['you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo']) {
+    for (const id of ['you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab']) {
       const file = `providers/${id}.yaml`
       const parsed = parseProviderYaml(file, readFileSync(new URL(`../${file}`, import.meta.url)))
       if (!parsed.ok) throw new Error(`${file} failed to parse`)
