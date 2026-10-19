@@ -1,0 +1,116 @@
+- request:
+    url: https://api.x.com/2/tweets/search/all?query=TypeScript+lang%3Auk+-is%3Aretweet&max_results=10&tweet.fields=created_at%2Cauthor_id%2Ctext
+    method: GET
+    headers:
+      accept: application/json
+      authorization: Bearer recorded-x-token
+    body: ""
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      api-version: "2.172"
+      cache-control: no-cache, no-store, max-age=0
+      cf-cache-status: DYNAMIC
+      connection: keep-alive
+      content-disposition: attachment; filename=json.json
+      content-type: application/json; charset=utf-8
+      date: Mon, 19 Oct 2026 04:51:41 GMT
+      perf: "7402827104"
+      server: cloudflare envoy
+      strict-transport-security: max-age=631138519; includeSubdomains
+      vary: accept-encoding
+      x-access-level: read
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-rate-limit-limit: "300"
+      x-rate-limit-remaining: "296"
+      x-rate-limit-reset: "1792386371"
+      x-response-time: "98"
+      x-served-by: t4_p
+      x-xss-protection: "0"
+    body: |-
+      {
+        "data": [
+          {
+            "author_id": "1397557895181611012",
+            "created_at": "2026-10-16T15:02:56.000Z",
+            "edit_history_tweet_ids": [
+              "2111110651217113142"
+            ],
+            "id": "2111110651217113142",
+            "text": "ШІ-експеримент за $24 000. Ютубер переписав компілятор TypeScript на Rust, перевершивши за швидкістю версію від Microsoft\n\nhttps://t.co/Zsk2vVBZ7a https://t.co/oLAhUuE8in"
+          },
+          {
+            "author_id": "2079219855752941568",
+            "created_at": "2026-10-14T17:40:07.000Z",
+            "edit_history_tweet_ids": [
+              "2110425432310853918"
+            ],
+            "id": "2110425432310853918",
+            "text": "🔥 Нова вакансія: Full-Stack Developer PHP+Angular (Middle, Офіс) - Intobi\n\nРозробник повного стеку, який створює та підтримує функціонал на Angular (TypeScript) і PHP, проєктує й інтегрує REST/GraphQL API та оптимізує роботу з реляційними базами...\n\nhttps://t.co/iBg9bAjhxE"
+          },
+          {
+            "author_id": "997036980784451584",
+            "created_at": "2026-10-05T15:02:54.000Z",
+            "edit_history_tweet_ids": [
+              "2107124377053536542"
+            ],
+            "id": "2107124377053536542",
+            "text": "Anthropic відкрила Claude Code для модів — TypeScript-функцій, що перехоплюють події: правлять промпт, блокують інструменти, прибирають секрети, додають UI. Без ізоляції — мають той самий доступ, що й Claude Code. Ставити лише з довірених джерел. https://t.co/xGjGIuiRr8"
+          },
+          {
+            "author_id": "1397557895181611012",
+            "created_at": "2026-10-02T13:29:41.000Z",
+            "edit_history_tweet_ids": [
+              "2106013755780026834"
+            ],
+            "id": "2106013755780026834",
+            "text": "Anthropic додала можливість кастомізувати Claude Code за допомогою нових модів на TypeScript\n\nhttps://t.co/vFOwQrIBSq https://t.co/kiScXiJOYE"
+          },
+          {
+            "author_id": "1720665183188922368",
+            "created_at": "2026-09-26T18:16:27.000Z",
+            "edit_history_tweet_ids": [
+              "2103911592530161804"
+            ],
+            "id": "2103911592530161804",
+            "text": "@desugar_64 @i_am_vladyslav Так, усе так. HarmonyOS має дві гілки: глобальну (на AOSP, сумісну з Android-додатками) і китайську чисту (NEXT/5–7) на власному мікроядрі HongMeng без Android-коду. Для чистої версії основна мова — ArkTS (розширення TypeScript зі строгішою статикою), також є Cangjie."
+          },
+          {
+            "author_id": "1859813309182066688",
+            "created_at": "2026-09-22T15:17:57.000Z",
+            "edit_history_tweet_ids": [
+              "2102417122303639964"
+            ],
+            "id": "2102417122303639964",
+            "text": "Написав книжку, ніхто не читає, всі на TypeScript в 6-й раз ГСЦ сайт переписують.\n\nhttps://t.co/0CtKj4Yqca"
+          },
+          {
+            "author_id": "749985812553621504",
+            "created_at": "2026-09-21T18:41:09.000Z",
+            "edit_history_tweet_ids": [
+              "2102105868959371341"
+            ],
+            "id": "2102105868959371341",
+            "text": "@russalena @sanitaravel @marcbennetts1 Да не обращай внимания, там react typescript js. Потрачено"
+          },
+          {
+            "author_id": "1568879880",
+            "created_at": "2026-09-21T12:28:44.000Z",
+            "edit_history_tweet_ids": [
+              "2102012148952244396"
+            ],
+            "id": "2102012148952244396",
+            "text": "Front-end Digest № 170: як ШІ порушує закони UX, оптимальне вирівнювання іконок в CSS та TypeScript-хитрощі https://t.co/diuQelh7Ex"
+          }
+        ],
+        "meta": {
+          "newest_id": "2111110651217113142",
+          "next_token": "b26v89c19zqg8o3juziwmgz5qo45zbf6w58hylcflzo1p",
+          "oldest_id": "2102012148952244396",
+          "result_count": 8
+        }
+      }
+    bodyEncoding: utf8

@@ -11,6 +11,7 @@ import { serpApiAdapter } from './serpapi.js';
 import { dataForSeoAdapter } from './dataforseo.js';
 import { gitlabAdapter } from './gitlab.js';
 import { githubAdapter } from './github.js';
+import { xAdapter } from './x.js';
 export { braveAdapter } from './brave.js';
 export { tavilyAdapter } from './tavily.js';
 export { exaAdapter } from './exa.js';
@@ -23,6 +24,7 @@ export { serpApiAdapter } from './serpapi.js';
 export { dataForSeoAdapter } from './dataforseo.js';
 export { gitlabAdapter } from './gitlab.js';
 export { githubAdapter } from './github.js';
+export { xAdapter } from './x.js';
 export const providerAdapters = Object.freeze({
     brave: braveAdapter,
     tavily: tavilyAdapter,
@@ -36,6 +38,7 @@ export const providerAdapters = Object.freeze({
     dataforseo: dataForSeoAdapter,
     gitlab: gitlabAdapter,
     github: githubAdapter,
+    x: xAdapter,
 });
 export function getProviderAdapter(adapter) {
     return providerAdapters[adapter];

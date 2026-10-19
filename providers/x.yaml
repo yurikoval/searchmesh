@@ -1,0 +1,27 @@
+schema_version: "1"
+id: x
+name: X
+description: Search all public posts on X.
+website_url: https://x.com
+documentation_url: https://docs.x.com/x-api/posts/search-all-posts
+adapter: x
+endpoint:
+  api_base_url: https://api.x.com/2/
+  method: GET
+  path: /2/tweets/search/all
+capabilities:
+  operations: [search]
+  optional_inputs: []
+authentication:
+  fields:
+    - name: api_key
+      label: Bearer token
+request_mapping:
+  query:
+    query: query
+  body: {}
+response_mapping:
+  results: [data]
+  title: [text]
+  url: [id]
+  snippet: [text]
