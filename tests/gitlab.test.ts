@@ -65,11 +65,21 @@ describe('GitLab adapter', () => {
     expect(fetch).not.toHaveBeenCalled()
   })
 
+  it('rejects private projects and non-GitLab result URLs', async () => {
+    const payload = [
+      { name_with_namespace: 'Private', web_url: 'https://gitlab.com/group/private', visibility: 'private' },
+      { name_with_namespace: 'Wrong host', web_url: 'https://attacker.example/project', visibility: 'public' },
+      { name_with_namespace: 'Wrong scheme', web_url: 'http://gitlab.com/group/project', visibility: 'public' },
+    ]
+    const fetch = vi.fn<typeof globalThis.fetch>().mockResolvedValue(json(JSON.stringify(payload)))
+    await expect(gitlabAdapter(request, context(fetch))).resolves.toEqual({ ok: true, providerId: 'gitlab', results: [] })
+  })
+
   it('accepts empty results and bounds metadata bytes', async () => {
     const huge = '🧪'.repeat(PROVIDER_ADAPTER_LIMITS.metadataBytes)
     const fetch = vi.fn<typeof globalThis.fetch>()
       .mockResolvedValueOnce(json('[]'))
-      .mockResolvedValueOnce(json(JSON.stringify([{ name_with_namespace: 'Group / Project', name: huge, namespace: { full_path: huge }, web_url: 'https://gitlab.com/group/project', star_count: 1, forks_count: 2, topics: Array(20).fill(huge), readme_url: `https://gitlab.com/${'x'.repeat(1_900)}` }])))
+      .mockResolvedValueOnce(json(JSON.stringify([{ name_with_namespace: 'Group / Project', name: huge, namespace: { full_path: huge }, web_url: 'https://gitlab.com/group/project', visibility: 'public', star_count: 1, forks_count: 2, topics: Array(20).fill(huge), readme_url: `https://gitlab.com/${'x'.repeat(1_900)}` }])))
     await expect(gitlabAdapter(request, context(fetch))).resolves.toEqual({ ok: true, providerId: 'gitlab', results: [] })
     const outcome = await gitlabAdapter(request, context(fetch))
     expect(outcome.ok).toBe(true)

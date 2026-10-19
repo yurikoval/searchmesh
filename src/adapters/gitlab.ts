@@ -57,8 +57,8 @@ function normalize(payload: unknown, limit: number): ProviderAdapterOutcome {
   for (const [index, value] of payload.slice(0, Math.min(limit, PROVIDER_ADAPTER_LIMITS.results)).entries()) {
     if (!isPlainRecord(value)) continue
     const title = boundedText(value.name_with_namespace, PROVIDER_ADAPTER_LIMITS.titleCharacters)
-    const target = normalizedUrl(value.web_url)
-    if (!title || !target) continue
+    const target = gitlabUrl(value.web_url)
+    if (!title || !target || value.visibility !== 'public') continue
     results.push(clean({
       providerId: PROVIDER_ID,
       providerRank: index + 1,
@@ -79,7 +79,7 @@ function metadata(value: Record<string, unknown>): Record<string, string | numbe
     ['star_count', validCount(value.star_count)],
     ['forks_count', validCount(value.forks_count)],
     ['topics', topics(value.topics)],
-    ['readme_url', normalizedUrl(value.readme_url)?.url],
+    ['readme_url', gitlabUrl(value.readme_url)?.url],
   ]
   const result: Record<string, string | number> = {}
   for (const [key, item] of values) {
@@ -93,6 +93,10 @@ function metadata(value: Record<string, unknown>): Record<string, string | numbe
 function topics(value: unknown): string | undefined {
   if (!Array.isArray(value)) return
   return boundedText(value.slice(0, PROVIDER_ADAPTER_LIMITS.metadataEntries).filter((item): item is string => typeof item === 'string').join(', '), PROVIDER_ADAPTER_LIMITS.metadataBytes)
+}
+function gitlabUrl(value: unknown): ReturnType<typeof normalizedUrl> {
+  const target = normalizedUrl(value)
+  return target?.domain === 'gitlab.com' && target.url.startsWith('https://gitlab.com/') ? target : undefined
 }
 function validCount(value: unknown): number | undefined { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? value : undefined }
 function validCredential(value: unknown): value is string { return typeof value === 'string' && value === value.trim() && value.length > 0 && !/[\u0000-\u001f\u007f]/.test(value) && new TextEncoder().encode(value).byteLength <= PROVIDER_ADAPTER_LIMITS.credentialBytes }
