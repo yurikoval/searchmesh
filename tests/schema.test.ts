@@ -139,6 +139,7 @@ describe('provider definition trust boundary', () => {
       ['serpapi', 'https://serpapi.com/', 'https://serpapi.com/search'],
       ['dataforseo', 'https://api.dataforseo.com/v3/serp/google/organic/live/', 'https://api.dataforseo.com/v3/serp/google/organic/live/advanced'],
       ['gitlab', 'https://gitlab.com/api/v4/', 'https://gitlab.com/api/v4/projects'],
+      ['github', 'https://api.github.com/', 'https://api.github.com/search/repositories'],
     ] as const
     for (const [id, base, endpoint] of policies) {
       expect(isAllowedAdapterUrl(id, base)).toBe(true)
@@ -149,7 +150,7 @@ describe('provider definition trust boundary', () => {
     }
     expect(isAllowedAdapterUrl('missing', 'https://api.search.brave.com/res/v1/')).toBe(false)
 
-    for (const id of ['you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab']) {
+    for (const id of ['you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab', 'github']) {
       const file = `providers/${id}.yaml`
       const parsed = parseProviderYaml(file, readFileSync(new URL(`../${file}`, import.meta.url)))
       if (!parsed.ok) throw new Error(`${file} failed to parse`)

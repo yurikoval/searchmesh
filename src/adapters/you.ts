@@ -51,7 +51,8 @@ function validRequest(request: NormalizedSearchRequest): boolean {
 }
 
 function unsupportedOption(request: NormalizedSearchRequest): boolean {
-  return (request.language !== undefined && !LANGUAGES.has(request.language))
+  return request.page !== undefined
+    || (request.language !== undefined && !LANGUAGES.has(request.language))
     || (request.region !== undefined && !REGIONS.has(request.region))
     || (request.safeSearch !== undefined && !['off', 'moderate', 'strict'].includes(request.safeSearch))
     || (request.timeRange !== undefined && !Object.hasOwn(TIME_RANGE, request.timeRange))

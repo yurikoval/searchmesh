@@ -43,6 +43,7 @@ describe('GitLab adapter', () => {
   })
 
   it.each([
+    { ...request, page: 2 },
     { ...request, language: 'en' },
     { ...request, region: 'US' },
     { ...request, safeSearch: 'strict' },

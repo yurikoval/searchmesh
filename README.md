@@ -19,6 +19,7 @@ Provider integrations and validated provider definitions for SearchMesh. This pa
 | [SerpApi](https://serpapi.com/) | [Docs](https://serpapi.com/search-api) |
 | [DataForSEO](https://dataforseo.com/) | [Docs](https://docs.dataforseo.com/v3/serp-se-type-live-advanced/) |
 | [GitLab](https://about.gitlab.com/) | [Docs](https://docs.gitlab.com/api/projects/) |
+| [GitHub Repository Search](https://github.com/) | [Docs](https://docs.github.com/en/rest/search/search) |
 
 ## Install
 

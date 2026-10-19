@@ -56,7 +56,8 @@ function validRequest(request) {
         && request.limit <= PROVIDER_ADAPTER_LIMITS.results;
 }
 function unsupportedOption(request) {
-    return request.language !== undefined
+    return request.page !== undefined
+        || request.language !== undefined
         || (request.region !== undefined && !/^[A-Z]{2}$/.test(request.region))
         || (request.safeSearch !== undefined && !['off', 'moderate', 'strict'].includes(request.safeSearch))
         || (request.timeRange !== undefined && !['day', 'week', 'month', 'year'].includes(request.timeRange));

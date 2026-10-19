@@ -10,6 +10,7 @@ export { mojeekAdapter } from './mojeek.js';
 export { serpApiAdapter } from './serpapi.js';
 export { dataForSeoAdapter } from './dataforseo.js';
 export { gitlabAdapter } from './gitlab.js';
+export { githubAdapter } from './github.js';
 export declare const providerAdapters: Readonly<Record<ExecutableProviderId, ProviderAdapter>>;
 export declare function getProviderAdapter(adapter: string): ProviderAdapter | undefined;
 export declare function runProviderAdapter(providerId: string, request: NormalizedSearchRequest, context: ProviderAdapterContext): Promise<ProviderAdapterOutcome>;

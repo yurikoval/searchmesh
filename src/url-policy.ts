@@ -17,6 +17,7 @@ const ADAPTER_POLICIES: Readonly<Record<string, AdapterOriginPolicy>> = Object.f
   serpapi: { origin: 'https://serpapi.com', basePath: '/', path: '/search', method: 'GET' },
   dataforseo: { origin: 'https://api.dataforseo.com', basePath: '/v3/serp/google/organic/live/', path: '/v3/serp/google/organic/live/advanced', method: 'POST' },
   gitlab: { origin: 'https://gitlab.com', basePath: '/api/v4/', path: '/api/v4/projects', method: 'GET' },
+  github: { origin: 'https://api.github.com', basePath: '/', path: '/search/repositories', method: 'GET' },
 })
 
 const FORBIDDEN_HOSTS = /(^|\.)(localhost|local|internal)$/i

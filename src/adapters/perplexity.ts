@@ -48,7 +48,8 @@ function validRequest(request: NormalizedSearchRequest): boolean {
 }
 
 function unsupportedOption(request: NormalizedSearchRequest): boolean {
-  return (request.language !== undefined && !/^[a-z]{2}$/.test(request.language))
+  return request.page !== undefined
+    || (request.language !== undefined && !/^[a-z]{2}$/.test(request.language))
     || (request.region !== undefined && !/^[A-Z]{2}$/.test(request.region))
     || request.safeSearch !== undefined
     || (request.timeRange !== undefined && !Object.hasOwn(TIME_RANGE, request.timeRange))
