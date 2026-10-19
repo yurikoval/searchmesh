@@ -1,0 +1,29 @@
+schema_version: '1'
+id: gitlab
+name: GitLab
+description: Public project search from the GitLab API.
+website_url: https://about.gitlab.com/
+documentation_url: https://docs.gitlab.com/api/projects/
+adapter: gitlab
+endpoint:
+  api_base_url: https://gitlab.com/api/v4/
+  method: GET
+  path: /api/v4/projects
+capabilities:
+  operations: [search]
+  optional_inputs: [time_range]
+authentication:
+  fields:
+    - name: api_key
+      label: Personal access token
+      required: false
+request_mapping:
+  query:
+    query: search
+    time_range: last_activity_after
+  body: {}
+response_mapping:
+  results: []
+  title: [name_with_namespace]
+  url: [web_url]
+  snippet: [description]

@@ -18,6 +18,7 @@ Provider integrations and validated provider definitions for SearchMesh. This pa
 | [Mojeek](https://www.mojeek.com/) | [Docs](https://www.mojeek.com/support/api/search/) |
 | [SerpApi](https://serpapi.com/) | [Docs](https://serpapi.com/search-api) |
 | [DataForSEO](https://dataforseo.com/) | [Docs](https://docs.dataforseo.com/v3/serp-se-type-live-advanced/) |
+| [GitLab](https://about.gitlab.com/) | [Docs](https://docs.gitlab.com/api/projects/) |
 
 ## Install
 

@@ -30,7 +30,7 @@ export type ProviderDefinition = {
   adapter: string
   endpoint: { api_base_url: string; method: 'GET' | 'POST'; path: string }
   capabilities: { operations: ['search']; optional_inputs: Array<'language' | 'region' | 'safe_search' | 'time_range'> }
-  authentication: { fields: Array<{ name: string; label: string }> }
+  authentication: { fields: Array<{ name: string; label: string; required?: boolean }> }
   request_mapping: {
     query: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
     body: Partial<Record<'query' | 'language' | 'region' | 'safe_search' | 'time_range', string>>
@@ -99,19 +99,20 @@ export function validateProviderDefinition(file: string, input: unknown): { ok: 
   const optionalInputs = capabilities ? stringList(capabilities.optional_inputs, 'capabilities.optional_inputs', OPTIONAL_INPUTS, add) : []
 
   const authentication = objectAt(root.authentication, 'authentication', ['fields'], add)
-  const fields: Array<{ name: string; label: string }> = []
+  const fields: Array<{ name: string; label: string; required?: boolean }> = []
   if (authentication) {
     if (!Array.isArray(authentication.fields) || authentication.fields.length > PROVIDER_LIMITS.credentials) add('authentication.fields', 'invalid_collection', 'Credential fields must be a bounded list')
     else {
       const names = new Set<string>()
       authentication.fields.forEach((value, index) => {
-        const field = objectAt(value, `authentication.fields.${index}`, ['name', 'label'], add)
+        const field = objectAt(value, `authentication.fields.${index}`, ['name', 'label', 'required'], add)
         if (!field) return
         const fieldName = text(field.name, `authentication.fields.${index}.name`, 64, add)
         const label = text(field.label, `authentication.fields.${index}.label`, 120, add)
+        const required = field.required === undefined ? undefined : booleanValue(field.required, `authentication.fields.${index}.required`, add)
         if (fieldName && (!FIELD.test(fieldName) || PROTOTYPE_KEYS.has(fieldName))) add(`authentication.fields.${index}.name`, 'unsafe_field', 'Credential field name is not allowed')
         if (fieldName && names.has(fieldName)) add(`authentication.fields.${index}.name`, 'duplicate', 'Credential field names must be unique')
-        if (fieldName && label) { names.add(fieldName); fields.push({ name: fieldName, label }) }
+        if (fieldName && label) { names.add(fieldName); fields.push(cleanObject({ name: fieldName, label, required })) }
       })
     }
   }
@@ -119,7 +120,7 @@ export function validateProviderDefinition(file: string, input: unknown): { ok: 
   const query = requestMapping ? mapping(requestMapping.query, 'request_mapping.query', add) : {}
   const body = requestMapping ? mapping(requestMapping.body, 'request_mapping.body', add) : {}
   const responseMapping = objectAt(root.response_mapping, 'response_mapping', ['results', 'title', 'url', 'snippet', 'rank'], add)
-  const results = responseMapping ? responsePath(responseMapping.results, 'response_mapping.results', add) : []
+  const results = responseMapping ? responsePath(responseMapping.results, 'response_mapping.results', add, true) : []
   const title = responseMapping ? responsePath(responseMapping.title, 'response_mapping.title', add) : []
   const url = responseMapping ? responsePath(responseMapping.url, 'response_mapping.url', add) : []
   const snippet = responseMapping ? responsePath(responseMapping.snippet, 'response_mapping.snippet', add) : []
@@ -198,6 +199,7 @@ function text(value: unknown, path: string, max: number, add: (path: string, cod
 }
 function optionalText(value: unknown, path: string, max: number, add: (path: string, code: string, message: string) => void): string | undefined { return value === undefined ? undefined : text(value, path, max, add) }
 function enumValue<const T extends readonly string[]>(value: unknown, path: string, values: T, add: (path: string, code: string, message: string) => void): T[number] | undefined { if (typeof value !== 'string' || !values.includes(value)) { add(path, 'invalid_value', 'Value is not allowed'); return }; return value as T[number] }
+function booleanValue(value: unknown, path: string, add: (path: string, code: string, message: string) => void): boolean | undefined { if (typeof value !== 'boolean') { add(path, 'invalid_value', 'Value must be a boolean'); return }; return value }
 function httpsUrl(value: unknown, path: string, add: (path: string, code: string, message: string) => void): string | undefined {
   const string = text(value, path, 2_048, add); if (!string) return
   try { const url = new URL(string); if (url.protocol !== 'https:' || url.username || url.password || url.hash || (url.port && url.port !== '443') || isUnsafeHostname(url.hostname)) throw new Error(); return url.toString() } catch { add(path, 'unsafe_url', 'Value must be a safe HTTPS URL'); return }
@@ -225,8 +227,8 @@ function mapping(value: unknown, path: string, add: (path: string, code: string,
   }
   return result
 }
-function responsePath(value: unknown, path: string, add: (path: string, code: string, message: string) => void): PathSegment[] {
-  if (!Array.isArray(value) || !value.length || value.length > PROVIDER_LIMITS.responsePathSegments) { add(path, 'invalid_path', 'Response path must be a bounded non-empty list'); return [] }
+function responsePath(value: unknown, path: string, add: (path: string, code: string, message: string) => void, allowRoot = false): PathSegment[] {
+  if (!Array.isArray(value) || (!allowRoot && !value.length) || value.length > PROVIDER_LIMITS.responsePathSegments) { add(path, 'invalid_path', `Response path must be a bounded ${allowRoot ? '' : 'non-empty '}list`); return [] }
   const result: PathSegment[] = []
   value.forEach((segment, index) => {
     if (typeof segment === 'number' && Number.isSafeInteger(segment) && segment >= 0) result.push(segment)

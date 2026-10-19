@@ -1,0 +1,21 @@
+[
+  {
+    "name_with_namespace": " GitLab / SearchMesh ",
+    "name": "SearchMesh",
+    "namespace": { "full_path": "gitlab-org" },
+    "web_url": "https://gitlab.com/gitlab-org/searchmesh",
+    "description": "A project search result.",
+    "last_activity_at": "2025-02-03T04:05:06Z",
+    "star_count": 12,
+    "forks_count": 3,
+    "topics": ["search", "typescript"],
+    "readme_url": "https://gitlab.com/gitlab-org/searchmesh/-/blob/main/README.md"
+  },
+  {
+    "name_with_namespace": "Missing URL"
+  },
+  {
+    "name_with_namespace": "GitLab / Third",
+    "web_url": "https://gitlab.com/gitlab-org/third"
+  }
+]

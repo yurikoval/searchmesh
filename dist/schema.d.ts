@@ -43,6 +43,7 @@ export type ProviderDefinition = {
         fields: Array<{
             name: string;
             label: string;
+            required?: boolean;
         }>;
     };
     request_mapping: {

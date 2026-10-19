@@ -73,18 +73,19 @@ export function validateProviderDefinition(file, input) {
         else {
             const names = new Set();
             authentication.fields.forEach((value, index) => {
-                const field = objectAt(value, `authentication.fields.${index}`, ['name', 'label'], add);
+                const field = objectAt(value, `authentication.fields.${index}`, ['name', 'label', 'required'], add);
                 if (!field)
                     return;
                 const fieldName = text(field.name, `authentication.fields.${index}.name`, 64, add);
                 const label = text(field.label, `authentication.fields.${index}.label`, 120, add);
+                const required = field.required === undefined ? undefined : booleanValue(field.required, `authentication.fields.${index}.required`, add);
                 if (fieldName && (!FIELD.test(fieldName) || PROTOTYPE_KEYS.has(fieldName)))
                     add(`authentication.fields.${index}.name`, 'unsafe_field', 'Credential field name is not allowed');
                 if (fieldName && names.has(fieldName))
                     add(`authentication.fields.${index}.name`, 'duplicate', 'Credential field names must be unique');
                 if (fieldName && label) {
                     names.add(fieldName);
-                    fields.push({ name: fieldName, label });
+                    fields.push(cleanObject({ name: fieldName, label, required }));
                 }
             });
         }
@@ -93,7 +94,7 @@ export function validateProviderDefinition(file, input) {
     const query = requestMapping ? mapping(requestMapping.query, 'request_mapping.query', add) : {};
     const body = requestMapping ? mapping(requestMapping.body, 'request_mapping.body', add) : {};
     const responseMapping = objectAt(root.response_mapping, 'response_mapping', ['results', 'title', 'url', 'snippet', 'rank'], add);
-    const results = responseMapping ? responsePath(responseMapping.results, 'response_mapping.results', add) : [];
+    const results = responseMapping ? responsePath(responseMapping.results, 'response_mapping.results', add, true) : [];
     const title = responseMapping ? responsePath(responseMapping.title, 'response_mapping.title', add) : [];
     const url = responseMapping ? responsePath(responseMapping.url, 'response_mapping.url', add) : [];
     const snippet = responseMapping ? responsePath(responseMapping.snippet, 'response_mapping.snippet', add) : [];
@@ -190,6 +191,10 @@ function enumValue(value, path, values, add) { if (typeof value !== 'string' || 
     add(path, 'invalid_value', 'Value is not allowed');
     return;
 } ; return value; }
+function booleanValue(value, path, add) { if (typeof value !== 'boolean') {
+    add(path, 'invalid_value', 'Value must be a boolean');
+    return;
+} ; return value; }
 function httpsUrl(value, path, add) {
     const string = text(value, path, 2_048, add);
     if (!string)
@@ -250,9 +255,9 @@ function mapping(value, path, add) {
     }
     return result;
 }
-function responsePath(value, path, add) {
-    if (!Array.isArray(value) || !value.length || value.length > PROVIDER_LIMITS.responsePathSegments) {
-        add(path, 'invalid_path', 'Response path must be a bounded non-empty list');
+function responsePath(value, path, add, allowRoot = false) {
+    if (!Array.isArray(value) || (!allowRoot && !value.length) || value.length > PROVIDER_LIMITS.responsePathSegments) {
+        add(path, 'invalid_path', `Response path must be a bounded ${allowRoot ? '' : 'non-empty '}list`);
         return [];
     }
     const result = [];
