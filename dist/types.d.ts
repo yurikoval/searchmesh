@@ -16,7 +16,7 @@ export declare const PROVIDER_ADAPTER_LIMITS: Readonly<{
     metadataBytes: 2048;
     retryAfterMs: 300000;
 }>;
-export type ExecutableProviderId = 'brave' | 'tavily' | 'yep' | 'exa' | 'kagi' | 'you' | 'perplexity' | 'mojeek' | 'serpapi' | 'dataforseo' | 'gitlab' | 'github';
+export type ExecutableProviderId = 'brave' | 'tavily' | 'yep' | 'exa' | 'kagi' | 'you' | 'perplexity' | 'mojeek' | 'serpapi' | 'dataforseo' | 'gitlab' | 'github' | 'x';
 export type NormalizedSearchRequest = Readonly<{
     query: string;
     limit: number;
