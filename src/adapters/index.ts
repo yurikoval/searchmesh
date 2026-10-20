@@ -13,6 +13,7 @@ import { dataForSeoAdapter } from './dataforseo.js'
 import { gitlabAdapter } from './gitlab.js'
 import { githubAdapter } from './github.js'
 import { xAdapter } from './x.js'
+import { openAlexAdapter } from './openalex.js'
 
 export { braveAdapter } from './brave.js'
 export { tavilyAdapter } from './tavily.js'
@@ -27,6 +28,7 @@ export { dataForSeoAdapter } from './dataforseo.js'
 export { gitlabAdapter } from './gitlab.js'
 export { githubAdapter } from './github.js'
 export { xAdapter } from './x.js'
+export { openAlexAdapter } from './openalex.js'
 
 export const providerAdapters: Readonly<Record<ExecutableProviderId, ProviderAdapter>> = Object.freeze({
   brave: braveAdapter,
@@ -42,6 +44,7 @@ export const providerAdapters: Readonly<Record<ExecutableProviderId, ProviderAda
   gitlab: gitlabAdapter,
   github: githubAdapter,
   x: xAdapter,
+  openalex: openAlexAdapter,
 })
 
 export function getProviderAdapter(adapter: string): ProviderAdapter | undefined {

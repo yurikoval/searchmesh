@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
 import { parseProviderYaml, runProviderAdapter, validateProviderRevision } from '../src/index.js'
 
-const providerFiles = ['brave', 'tavily', 'yep', 'exa', 'kagi', 'you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab', 'github', 'x'].map((id) => `providers/${id}.yaml`)
+const providerFiles = ['brave', 'tavily', 'yep', 'exa', 'kagi', 'you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab', 'github', 'openalex', 'x'].map((id) => `providers/${id}.yaml`)
 
 const emptyPayloads: Record<string, unknown> = {
   brave: { web: { results: [] } },
@@ -17,6 +17,7 @@ const emptyPayloads: Record<string, unknown> = {
   dataforseo: { status_code: 20000, tasks: [{ status_code: 20000, result: [{ items: [] }] }] },
   gitlab: [],
   github: { total_count: 0, incomplete_results: false, items: [] },
+  openalex: { results: [] },
   x: { meta: { result_count: 0 } },
 }
 
@@ -33,7 +34,7 @@ describe('published provider definitions', () => {
     expect(revision.ok).toBe(true)
     if (!revision.ok) return
     expect(revision.definitions.map(({ definition }) => definition.id)).toEqual([
-      'brave', 'dataforseo', 'exa', 'github', 'gitlab', 'kagi', 'mojeek', 'perplexity', 'serpapi', 'tavily', 'x', 'yep', 'you',
+      'brave', 'dataforseo', 'exa', 'github', 'gitlab', 'kagi', 'mojeek', 'openalex', 'perplexity', 'serpapi', 'tavily', 'x', 'yep', 'you',
     ])
 
     for (const { definition } of revision.definitions) {

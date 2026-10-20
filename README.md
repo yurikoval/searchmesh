@@ -20,6 +20,7 @@ Provider integrations and validated provider definitions for SearchMesh. This pa
 | [DataForSEO](https://dataforseo.com/) | [Docs](https://docs.dataforseo.com/v3/serp-se-type-live-advanced/) |
 | [GitLab](https://about.gitlab.com/) | [Docs](https://docs.gitlab.com/api/projects/) |
 | [GitHub Repository Search](https://github.com/) | [Docs](https://docs.github.com/en/rest/search/search) |
+| [OpenAlex](https://openalex.org/) | [Docs](https://docs.openalex.org/api-entities/works/search-works) |
 | [X Full-Archive Post Search](https://x.com/) | [Docs](https://docs.x.com/x-api/posts/search-all-posts) |
 
 

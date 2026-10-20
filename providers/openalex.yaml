@@ -1,0 +1,28 @@
+schema_version: '1'
+id: openalex
+name: OpenAlex
+description: Scholarly works search provider.
+website_url: https://openalex.org/
+documentation_url: https://docs.openalex.org/api-entities/works/search-works
+adapter: openalex
+endpoint:
+  api_base_url: https://api.openalex.org/
+  method: GET
+  path: /works
+capabilities:
+  operations: [search]
+  optional_inputs: [page]
+authentication:
+  fields:
+    - name: api_key
+      label: API key
+request_mapping:
+  query:
+    query: search
+    page: page
+  body: {}
+response_mapping:
+  results: [results]
+  title: [display_name]
+  url: [primary_location, landing_page_url]
+  snippet: [abstract_inverted_index]

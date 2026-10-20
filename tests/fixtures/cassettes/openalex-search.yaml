@@ -1,0 +1,1266 @@
+- request:
+    url: https://api.openalex.org/works?search=OpenAlex+scholarly+search&per-page=3&api_key=recorded-openalex-key
+    method: GET
+    headers:
+      accept: application/json
+    body: ""
+    bodyEncoding: utf8
+  response:
+    status: 200
+    statusText: OK
+    headers:
+      access-control-allow-headers: Accept, Accept-Language, Accept-Encoding,
+        Authorization, Content-Type, X-OpenAlex-UI, X-Impersonate-User
+      access-control-allow-methods: GET, HEAD, POST, PATCH, DELETE, OPTIONS
+      access-control-allow-origin: "*"
+      access-control-expose-headers: Cache-Control, X-RateLimit-Limit,
+        X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
+        X-RateLimit-Credits-Used, X-RateLimit-Credits-Required,
+        X-RateLimit-Reset, X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD,
+        X-RateLimit-Prepaid-Remaining-USD, X-RateLimit-Cost-USD,
+        X-RateLimit-Cost-Required-USD, Retry-After, Location,
+        Content-Disposition, X-OpenAlex-UI-Token
+      cf-cache-status: DYNAMIC
+      cf-ray: a4d5166869561025-BCN
+      connection: keep-alive
+      content-type: application/json
+      date: Tue, 20 Oct 2026 03:55:32 GMT
+      nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=43jO8Tz8XVq03BBl59JLTdjadyjpn1zGpDJpy1v%2FKW0%3D\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\u0026ts=1792468532"}],"max_age":3600}'
+      reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=43jO8Tz8XVq03BBl59JLTdjadyjpn1zGpDJpy1v%2FKW0%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1792468532"
+      server: cloudflare
+      transfer-encoding: chunked
+      via: 2.0 heroku-router
+      x-ratelimit-cost-usd: "0.001"
+      x-ratelimit-credits-used: "10"
+      x-ratelimit-limit: "10000"
+      x-ratelimit-limit-usd: "1"
+      x-ratelimit-onetime-remaining: "0"
+      x-ratelimit-prepaid-remaining-usd: "0"
+      x-ratelimit-remaining: "9980"
+      x-ratelimit-remaining-usd: "0.998"
+      x-ratelimit-reset: "72268"
+    body: "{\"meta\": {\"count\": 1873, \"db_response_time_ms\": 45, \"page\": 1,
+      \"per_page\": 3, \"groups_count\": null, \"x_query\": {\"oql\": \"get
+      works where full text has (OpenAlex scholarly search)\", \"x_new_oql\":
+      \"get works with (OpenAlex scholarly search) in the full text\", \"oqo\":
+      {\"get_rows\": \"works\", \"filter_rows\": [{\"column_id\":
+      \"fulltext.search\", \"value\": \"OpenAlex scholarly search\",
+      \"operator\": \"has\"}]}, \"url\":
+      \"/works?filter=fulltext.search:OpenAlex scholarly search&per_page=3\"},
+      \"cost_usd\": 0.001}, \"results\": [{\"id\":
+      \"https://openalex.org/W4412618517\", \"doi\":
+      \"https://doi.org/10.1177/23779608251361012\", \"title\": \"A Comparison
+      of OpenAlex With Scopus and Web of Science for Tracking Scholarly Nursing
+      Literature\", \"display_name\": \"A Comparison of OpenAlex With Scopus and
+      Web of Science for Tracking Scholarly Nursing Literature\",
+      \"relevance_score\": 61.199505, \"publication_year\": 2025,
+      \"publication_date\": \"2025-07-21\", \"ids\": {\"openalex\":
+      \"https://openalex.org/W4412618517\", \"doi\":
+      \"https://doi.org/10.1177/23779608251361012\", \"pmid\":
+      \"https://pubmed.ncbi.nlm.nih.gov/40697779\"}, \"language\": \"en\",
+      \"primary_location\": {\"id\": \"doi:10.1177/23779608251361012\", \"doi\":
+      \"https://doi.org/10.1177/23779608251361012\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.1177/23779608251361012\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4210168612\", \"display_name\": \"SAGE Open
+      Nursing\", \"issn_l\": \"2377-9608\", \"issn\": [\"2377-9608\"],
+      \"is_oa\": true, \"is_in_doaj\": true, \"is_core\": true, \"listed_in\":
+      [\"cwts-core\", \"doaj\", \"dongbi-d\", \"jufo-1\", \"ki-jl-1\",
+      \"norway-1\", \"poland-20\", \"russia-white-list-2\", \"vabb-shw\"],
+      \"host_organization\": \"https://openalex.org/P4310320017\",
+      \"host_organization_name\": \"SAGE Publishing\",
+      \"host_organization_lineage\": [\"https://openalex.org/P4310320017\"],
+      \"host_organization_lineage_names\": [\"SAGE Publishing\"], \"type\":
+      \"journal\"}, \"license\": \"cc-by-nc\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-nc\", \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": \"Sage Open Nursing\", \"raw_type\":
+      \"journal-article\"}, \"volume\": null, \"type\": \"article\",
+      \"indexed_in\": [\"crossref\", \"doaj\", \"pubmed\"], \"open_access\":
+      {\"is_oa\": true, \"oa_status\": \"gold\", \"oa_url\":
+      \"https://doi.org/10.1177/23779608251361012\",
+      \"any_repository_has_fulltext\": true}, \"authorships\":
+      [{\"author_position\": \"first\", \"author\": {\"id\":
+      \"https://openalex.org/A5007269285\", \"display_name\": \"Bel\\u00e9n
+      Mezquita\", \"orcid\": \"https://orcid.org/0000-0003-3180-3255\",
+      \"observed_orcids\": [\"https://orcid.org/0000-0003-3180-3255\"]},
+      \"institutions\": [{\"id\": \"https://openalex.org/I3123915005\",
+      \"display_name\": \"Universitat Internacional de Catalunya\", \"ror\":
+      \"https://ror.org/00tse2b39\", \"country_code\": \"ES\", \"type\":
+      \"education\", \"lineage\": [\"https://openalex.org/I3123915005\"]}],
+      \"countries\": [\"ES\"], \"is_corresponding\": false, \"raw_author_name\":
+      \"Bel\\u00e9n Mezquita\", \"raw_affiliation_strings\": [\"Universitat
+      Internacional de Catalunya\", \"Departament de Ci\\u00e8ncies
+      B\\u00e0siques, Universitat Internacional de Catalunya, Sant Cugat del
+      Vall\\u00e8s, Spain\"], \"raw_orcid\":
+      \"https://orcid.org/0000-0003-3180-3255\", \"affiliations\":
+      [{\"raw_affiliation_string\": \"Universitat Internacional de Catalunya\",
+      \"institution_ids\": [\"https://openalex.org/I3123915005\"]},
+      {\"raw_affiliation_string\": \"Departament de Ci\\u00e8ncies
+      B\\u00e0siques, Universitat Internacional de Catalunya, Sant Cugat del
+      Vall\\u00e8s, Spain\", \"institution_ids\":
+      [\"https://openalex.org/I3123915005\"]}]}, {\"author_position\":
+      \"middle\", \"author\": {\"id\": \"https://openalex.org/A5047359386\",
+      \"display_name\": \"Leandra Mart\\u00edn-Delgado\", \"orcid\":
+      \"https://orcid.org/0000-0001-6883-6144\", \"observed_orcids\":
+      [\"https://orcid.org/0000-0001-6883-6144\"]}, \"institutions\": [{\"id\":
+      \"https://openalex.org/I3123915005\", \"display_name\": \"Universitat
+      Internacional de Catalunya\", \"ror\": \"https://ror.org/00tse2b39\",
+      \"country_code\": \"ES\", \"type\": \"education\", \"lineage\":
+      [\"https://openalex.org/I3123915005\"]}], \"countries\": [\"ES\"],
+      \"is_corresponding\": false, \"raw_author_name\": \"Leandra
+      Mart\\u00edn-Delgado\", \"raw_affiliation_strings\": [\"Universitat
+      Internacional de Catalunya\", \"Departament d'Infermeria, Universitat
+      Internacional de Catalunya, Sant Cugat del Vall\\u00e8s, Spain\"],
+      \"raw_orcid\": \"https://orcid.org/0000-0001-6883-6144\",
+      \"affiliations\": [{\"raw_affiliation_string\": \"Universitat
+      Internacional de Catalunya\", \"institution_ids\":
+      [\"https://openalex.org/I3123915005\"]}, {\"raw_affiliation_string\":
+      \"Departament d'Infermeria, Universitat Internacional de Catalunya, Sant
+      Cugat del Vall\\u00e8s, Spain\", \"institution_ids\":
+      [\"https://openalex.org/I3123915005\"]}]}, {\"author_position\":
+      \"middle\", \"author\": {\"id\": \"https://openalex.org/A5048268238\",
+      \"display_name\": \"Laia Wennberg\\u2010Capellades\", \"orcid\":
+      \"https://orcid.org/0000-0002-6811-1343\", \"observed_orcids\":
+      [\"https://orcid.org/0000-0002-6811-1343\"]}, \"institutions\": [{\"id\":
+      \"https://openalex.org/I3123915005\", \"display_name\": \"Universitat
+      Internacional de Catalunya\", \"ror\": \"https://ror.org/00tse2b39\",
+      \"country_code\": \"ES\", \"type\": \"education\", \"lineage\":
+      [\"https://openalex.org/I3123915005\"]}], \"countries\": [\"ES\"],
+      \"is_corresponding\": false, \"raw_author_name\": \"Laia
+      Wennberg-Capellades\", \"raw_affiliation_strings\": [\"Universitat
+      Internacional de Catalunya\", \"Departament d'Infermeria, Universitat
+      Internacional de Catalunya, Sant Cugat del Vall\\u00e8s, Spain\"],
+      \"raw_orcid\": \"https://orcid.org/0000-0002-6811-1343\",
+      \"affiliations\": [{\"raw_affiliation_string\": \"Universitat
+      Internacional de Catalunya\", \"institution_ids\":
+      [\"https://openalex.org/I3123915005\"]}, {\"raw_affiliation_string\":
+      \"Departament d'Infermeria, Universitat Internacional de Catalunya, Sant
+      Cugat del Vall\\u00e8s, Spain\", \"institution_ids\":
+      [\"https://openalex.org/I3123915005\"]}]}, {\"author_position\": \"last\",
+      \"author\": {\"id\": \"https://openalex.org/A5079282617\",
+      \"display_name\": \"Angel Borrego\", \"orcid\":
+      \"https://orcid.org/0000-0002-6462-3966\", \"observed_orcids\":
+      [\"https://orcid.org/0000-0002-6462-3966\"]}, \"institutions\": [{\"id\":
+      \"https://openalex.org/I71999127\", \"display_name\": \"Universitat de
+      Barcelona\", \"ror\": \"https://ror.org/021018s57\", \"country_code\":
+      \"ES\", \"type\": \"education\", \"lineage\":
+      [\"https://openalex.org/I71999127\"]}], \"countries\": [\"ES\"],
+      \"is_corresponding\": true, \"raw_author_name\": \"\\u00c1ngel Borrego\",
+      \"raw_affiliation_strings\": [\"Universitat de Barcelona\", \"Facultat
+      d'Informaci\\u00f3 i Mitjans Audiovisuals, Universitat de Barcelona,
+      Barcelona, Spain\"], \"raw_orcid\":
+      \"https://orcid.org/0000-0002-6462-3966\", \"affiliations\":
+      [{\"raw_affiliation_string\": \"Universitat de Barcelona\",
+      \"institution_ids\": [\"https://openalex.org/I71999127\"]},
+      {\"raw_affiliation_string\": \"Facultat d'Informaci\\u00f3 i Mitjans
+      Audiovisuals, Universitat de Barcelona, Barcelona, Spain\",
+      \"institution_ids\": [\"https://openalex.org/I71999127\"]}]}],
+      \"institutions\": [], \"countries_distinct_count\": 1,
+      \"institutions_distinct_count\": 2, \"corresponding_author_ids\":
+      [\"https://openalex.org/A5079282617\"], \"corresponding_institution_ids\":
+      [\"https://openalex.org/I71999127\"], \"apc_list\": {\"value\": 1500,
+      \"currency\": \"USD\", \"value_usd\": 1500}, \"apc_paid\": {\"value\":
+      1500, \"currency\": \"USD\", \"value_usd\": 1500}, \"fwci\": 3.7217,
+      \"has_fulltext\": false, \"cited_by_count\": 6,
+      \"citation_normalized_percentile\": {\"value\": 0.94740356,
+      \"is_in_top_1_percent\": false, \"is_in_top_10_percent\": true},
+      \"cited_by_percentile_year\": {\"min\": 90, \"max\": 99}, \"biblio\":
+      {\"volume\": \"11\", \"issue\": null, \"first_page\":
+      \"23779608251361012\", \"last_page\": \"23779608251361012\"},
+      \"is_retracted\": false, \"is_paratext\": false, \"is_xpac\": false,
+      \"primary_topic\": {\"id\": \"https://openalex.org/T10102\",
+      \"display_name\": \"scientometrics and bibliometrics research\",
+      \"score\": 0.9976000189781189, \"subfield\": {\"id\":
+      \"https://openalex.org/subfields/1804\", \"display_name\": \"Statistics,
+      Probability and Uncertainty\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/18\", \"display_name\": \"Decision
+      Sciences\"}, \"domain\": {\"id\": \"https://openalex.org/domains/2\",
+      \"display_name\": \"Social Sciences\"}}, \"topics\": [{\"id\":
+      \"https://openalex.org/T10102\", \"display_name\": \"scientometrics and
+      bibliometrics research\", \"score\": 0.9976000189781189, \"subfield\":
+      {\"id\": \"https://openalex.org/subfields/1804\", \"display_name\":
+      \"Statistics, Probability and Uncertainty\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/18\", \"display_name\": \"Decision
+      Sciences\"}, \"domain\": {\"id\": \"https://openalex.org/domains/2\",
+      \"display_name\": \"Social Sciences\"}}, {\"id\":
+      \"https://openalex.org/T13673\", \"display_name\": \"Library Science and
+      Information\", \"score\": 0.0010000000474974513, \"subfield\": {\"id\":
+      \"https://openalex.org/subfields/1710\", \"display_name\": \"Information
+      Systems\"}, \"field\": {\"id\": \"https://openalex.org/fields/17\",
+      \"display_name\": \"Computer Science\"}, \"domain\": {\"id\":
+      \"https://openalex.org/domains/3\", \"display_name\": \"Physical
+      Sciences\"}}, {\"id\": \"https://openalex.org/T13976\", \"display_name\":
+      \"Web visibility and informetrics\", \"score\": 0.000699999975040555,
+      \"subfield\": {\"id\": \"https://openalex.org/subfields/1710\",
+      \"display_name\": \"Information Systems\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/17\", \"display_name\": \"Computer
+      Science\"}, \"domain\": {\"id\": \"https://openalex.org/domains/3\",
+      \"display_name\": \"Physical Sciences\"}}], \"keywords\": [{\"id\":
+      \"https://openalex.org/keywords/openalex\", \"display_name\":
+      \"OpenAlex\", \"score\": 1.0}, {\"id\":
+      \"https://openalex.org/keywords/scopus\", \"display_name\": \"Scopus\",
+      \"score\": 0.9990000128746033}, {\"id\":
+      \"https://openalex.org/keywords/web-of-science\", \"display_name\": \"Web
+      of Science\", \"score\": 1.0}, {\"id\":
+      \"https://openalex.org/keywords/nursing-literature\", \"display_name\":
+      \"nursing literature\", \"score\": 0.8240000009536743}, {\"id\":
+      \"https://openalex.org/keywords/bibliographic-database-coverage\",
+      \"display_name\": \"bibliographic database coverage\", \"score\":
+      0.828000009059906}, {\"id\":
+      \"https://openalex.org/keywords/citation-indexing\", \"display_name\":
+      \"citation indexing\", \"score\": 0.5590000152587891}, {\"id\":
+      \"https://openalex.org/keywords/open-access-journals\", \"display_name\":
+      \"open access journals\", \"score\": 0.6100000143051147}, {\"id\":
+      \"https://openalex.org/keywords/nursing-journals\", \"display_name\":
+      \"nursing journals\", \"score\": 0.6890000104904175}, {\"id\":
+      \"https://openalex.org/keywords/bibliographic-metadata\",
+      \"display_name\": \"bibliographic metadata\", \"score\":
+      0.38999998569488525}, {\"id\":
+      \"https://openalex.org/keywords/open-data-sources\", \"display_name\":
+      \"open data sources\", \"score\": 0.45899999141693115}], \"concepts\":
+      [{\"id\": \"https://openalex.org/C83867959\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q371467\", \"display_name\": \"Scopus\",
+      \"level\": 3, \"score\": 0.954330563545227}, {\"id\":
+      \"https://openalex.org/C3020774429\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q1201886\", \"display_name\": \"Web of
+      science\", \"level\": 3, \"score\": 0.5849233269691467}, {\"id\":
+      \"https://openalex.org/C2775936607\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q466845\", \"display_name\": \"Tracking
+      (education)\", \"level\": 2, \"score\": 0.5262621641159058}, {\"id\":
+      \"https://openalex.org/C15744967\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q9418\", \"display_name\": \"Psychology\",
+      \"level\": 0, \"score\": 0.4038347899913788}, {\"id\":
+      \"https://openalex.org/C136764020\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q466\", \"display_name\": \"World Wide
+      Web\", \"level\": 1, \"score\": 0.4019484519958496}, {\"id\":
+      \"https://openalex.org/C2779473830\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q1540899\", \"display_name\": \"MEDLINE\",
+      \"level\": 2, \"score\": 0.3829699754714966}, {\"id\":
+      \"https://openalex.org/C159110408\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q121176\", \"display_name\": \"Nursing\",
+      \"level\": 1, \"score\": 0.3248433470726013}, {\"id\":
+      \"https://openalex.org/C41008148\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q21198\", \"display_name\": \"Computer
+      science\", \"level\": 0, \"score\": 0.32142966985702515}, {\"id\":
+      \"https://openalex.org/C71924100\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q11190\", \"display_name\": \"Medicine\",
+      \"level\": 0, \"score\": 0.2918039858341217}, {\"id\":
+      \"https://openalex.org/C17744445\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q36442\", \"display_name\": \"Political
+      science\", \"level\": 0, \"score\": 0.21469655632972717}, {\"id\":
+      \"https://openalex.org/C19417346\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q7922\", \"display_name\": \"Pedagogy\",
+      \"level\": 1, \"score\": 0.09404411911964417}, {\"id\":
+      \"https://openalex.org/C199539241\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q7748\", \"display_name\": \"Law\",
+      \"level\": 1, \"score\": 0.0}], \"mesh\": [], \"locations_count\": 7,
+      \"locations\": [{\"id\": \"doi:10.1177/23779608251361012\", \"doi\":
+      \"https://doi.org/10.1177/23779608251361012\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.1177/23779608251361012\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4210168612\", \"display_name\": \"SAGE Open
+      Nursing\", \"issn_l\": \"2377-9608\", \"issn\": [\"2377-9608\"],
+      \"is_oa\": true, \"is_in_doaj\": true, \"is_core\": true, \"listed_in\":
+      [\"cwts-core\", \"doaj\", \"dongbi-d\", \"jufo-1\", \"ki-jl-1\",
+      \"norway-1\", \"poland-20\", \"russia-white-list-2\", \"vabb-shw\"],
+      \"host_organization\": \"https://openalex.org/P4310320017\",
+      \"host_organization_name\": \"SAGE Publishing\",
+      \"host_organization_lineage\": [\"https://openalex.org/P4310320017\"],
+      \"host_organization_lineage_names\": [\"SAGE Publishing\"], \"type\":
+      \"journal\"}, \"license\": \"cc-by-nc\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-nc\", \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": \"Sage Open Nursing\", \"raw_type\":
+      \"journal-article\"}, {\"id\": \"pmid:40697779\", \"doi\": null,
+      \"is_oa\": false, \"landing_page_url\":
+      \"https://pubmed.ncbi.nlm.nih.gov/40697779\", \"pdf_url\": null,
+      \"source\": {\"id\": \"https://openalex.org/S4306525036\",
+      \"display_name\": \"PubMed\", \"issn_l\": null, \"issn\": null, \"is_oa\":
+      false, \"is_in_doaj\": false, \"is_core\": false, \"listed_in\": [],
+      \"host_organization\": \"https://openalex.org/I1299303238\",
+      \"host_organization_name\": \"National Institutes of Health\",
+      \"host_organization_lineage\": [\"https://openalex.org/I1299303238\"],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": null, \"license_id\": null, \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": \"SAGE open nursing\", \"raw_type\": \"Journal
+      Article\"}, {\"id\": \"pmh:oai:hispana.mcu.es:62719338\", \"doi\": null,
+      \"is_oa\": true, \"landing_page_url\":
+      \"https://pmc.ncbi.nlm.nih.gov/articles/PMC12280546/>.\", \"pdf_url\":
+      null, \"source\": {\"id\": \"https://openalex.org/S4377196108\",
+      \"display_name\": \"Hispana\", \"issn_l\": null, \"issn\": null,
+      \"is_oa\": false, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\": null,
+      \"host_organization_name\": null, \"host_organization_lineage\": [],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": \"cc-by-nc\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-nc\", \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": null, \"raw_type\":
+      \"info:eu-repo/semantics/article\"}, {\"id\":
+      \"pmh:oai:europepmc.org:11092363\", \"doi\": null, \"is_oa\": true,
+      \"landing_page_url\":
+      \"https://www.ncbi.nlm.nih.gov/pmc/articles/12280546\", \"pdf_url\": null,
+      \"source\": {\"id\": \"https://openalex.org/S4306400806\",
+      \"display_name\": \"Europe PMC (PubMed Central)\", \"issn_l\": null,
+      \"issn\": null, \"is_oa\": false, \"is_in_doaj\": false, \"is_core\":
+      false, \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I1303153112\", \"host_organization_name\":
+      \"European Bioinformatics Institute\", \"host_organization_lineage\":
+      [\"https://openalex.org/I1303153112\"],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": \"cc-by-nc\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-nc\", \"version\":
+      \"submittedVersion\", \"is_accepted\": false, \"is_published\": false,
+      \"raw_source_name\": null, \"raw_type\": \"Text\"}, {\"id\":
+      \"pmh:oai:pubmedcentral.nih.gov:12280546\", \"doi\": null, \"is_oa\":
+      true, \"landing_page_url\":
+      \"https://www.ncbi.nlm.nih.gov/pmc/articles/12280546\", \"pdf_url\": null,
+      \"source\": {\"id\": \"https://openalex.org/S2764455111\",
+      \"display_name\": \"PubMed Central\", \"issn_l\": null, \"issn\": null,
+      \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false, \"listed_in\":
+      [], \"host_organization\": \"https://openalex.org/I1299303238\",
+      \"host_organization_name\": \"National Institutes of Health\",
+      \"host_organization_lineage\": [\"https://openalex.org/I1299303238\"],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": \"cc-by-nc\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-nc\", \"version\":
+      \"submittedVersion\", \"is_accepted\": false, \"is_published\": false,
+      \"raw_source_name\": \"SAGE Open Nurs\", \"raw_type\": \"Text\"}, {\"id\":
+      \"pmh:oai:doaj.org/article:59f38a65d463417f91b43cbdc85b9244\", \"doi\":
+      null, \"is_oa\": true, \"landing_page_url\":
+      \"https://doaj.org/article/59f38a65d463417f91b43cbdc85b9244\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306401280\", \"display_name\": \"DOAJ (DOAJ:
+      Directory of Open Access Journals)\", \"issn_l\": null, \"issn\": null,
+      \"is_oa\": false, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\": null,
+      \"host_organization_name\": null, \"host_organization_lineage\": [],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": \"cc-by-sa\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-sa\", \"version\":
+      \"submittedVersion\", \"is_accepted\": false, \"is_published\": false,
+      \"raw_source_name\": \"SAGE Open Nursing, Vol 11 (2025)\", \"raw_type\":
+      \"article\"}, {\"id\": \"pmh:oai:repositori.uic.es:20.500.12328/5142\",
+      \"doi\": null, \"is_oa\": true, \"landing_page_url\":
+      \"http://hdl.handle.net/20.500.12328/5142\", \"pdf_url\": null,
+      \"source\": {\"id\": \"https://openalex.org/S7407055113\",
+      \"display_name\": \"UIC Open Acces Archive\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": false, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\": null,
+      \"host_organization_name\": null, \"host_organization_lineage\": [],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": \"cc-by-nc\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-nc\", \"version\":
+      \"submittedVersion\", \"is_accepted\": false, \"is_published\": false,
+      \"raw_source_name\": null, \"raw_type\":
+      \"info:eu-repo/semantics/article\"}], \"best_oa_location\": {\"id\":
+      \"doi:10.1177/23779608251361012\", \"doi\":
+      \"https://doi.org/10.1177/23779608251361012\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.1177/23779608251361012\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4210168612\", \"display_name\": \"SAGE Open
+      Nursing\", \"issn_l\": \"2377-9608\", \"issn\": [\"2377-9608\"],
+      \"is_oa\": true, \"is_in_doaj\": true, \"is_core\": true, \"listed_in\":
+      [\"cwts-core\", \"doaj\", \"dongbi-d\", \"jufo-1\", \"ki-jl-1\",
+      \"norway-1\", \"poland-20\", \"russia-white-list-2\", \"vabb-shw\"],
+      \"host_organization\": \"https://openalex.org/P4310320017\",
+      \"host_organization_name\": \"SAGE Publishing\",
+      \"host_organization_lineage\": [\"https://openalex.org/P4310320017\"],
+      \"host_organization_lineage_names\": [\"SAGE Publishing\"], \"type\":
+      \"journal\"}, \"license\": \"cc-by-nc\", \"license_id\":
+      \"https://openalex.org/licenses/cc-by-nc\", \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": \"Sage Open Nursing\", \"raw_type\":
+      \"journal-article\"}, \"sustainable_development_goals\": [],
+      \"sustainable_development_goals_aurora\": [], \"study_designs\": [],
+      \"awards\": [], \"funders\": [], \"has_content\": {\"grobid_xml\": false,
+      \"pdf\": false}, \"content_urls\": null, \"referenced_works_count\": 15,
+      \"referenced_works\": [\"https://openalex.org/W1767272795\",
+      \"https://openalex.org/W2065157469\",
+      \"https://openalex.org/W2593110037\",
+      \"https://openalex.org/W2886599162\",
+      \"https://openalex.org/W2944642116\",
+      \"https://openalex.org/W3023758415\",
+      \"https://openalex.org/W3123554164\",
+      \"https://openalex.org/W3160856016\",
+      \"https://openalex.org/W3210395850\",
+      \"https://openalex.org/W4207002271\",
+      \"https://openalex.org/W4229010617\",
+      \"https://openalex.org/W4300964562\",
+      \"https://openalex.org/W4362668310\",
+      \"https://openalex.org/W4378575846\",
+      \"https://openalex.org/W4399607587\"], \"related_works\":
+      [\"https://openalex.org/W3014835053\",
+      \"https://openalex.org/W2509576449\",
+      \"https://openalex.org/W1598512166\",
+      \"https://openalex.org/W2120516750\",
+      \"https://openalex.org/W2968486945\",
+      \"https://openalex.org/W4295886540\",
+      \"https://openalex.org/W4404757881\",
+      \"https://openalex.org/W3140968591\",
+      \"https://openalex.org/W4285547396\",
+      \"https://openalex.org/W2735972601\"], \"abstract_inverted_index\":
+      {\"Background:\": [0], \"Researchers\": [1], \"have\": [2, 38],
+      \"traditionally\": [3], \"used\": [4], \"commercial\": [5], \"databases\":
+      [6], \"such\": [7, 35], \"as\": [8, 36, 185], \"Scopus\": [9, 133, 157],
+      \"and\": [10, 18, 64, 73, 86, 104, 115, 134, 158], \"Web\": [11, 65, 87,
+      135, 159], \"of\": [12, 22, 26, 44, 57, 66, 70, 79, 88, 99, 101, 109, 136,
+      149, 160, 180], \"Science\": [13, 67, 89], \"to\": [14, 92, 188],
+      \"track\": [15], \"scholarly\": [16, 58], \"literature\": [17, 60],
+      \"ascertain\": [19], \"the\": [20, 42, 55, 94, 118, 129, 144, 178, 186,
+      197], \"impact\": [21], \"publications\": [23], \"in\": [24, 68, 97, 117,
+      177], \"terms\": [25, 69, 98, 148], \"citations.\": [27], \"In\": [28,
+      147], \"recent\": [29], \"years,\": [30], \"new\": [31], \"open\": [32,
+      105], \"data\": [33, 193], \"sources,\": [34], \"OpenAlex,\": [37, 62,
+      84], \"appeared,\": [39], \"which\": [40], \"broaden\": [41], \"array\":
+      [43], \"tools\": [45], \"accessible\": [46], \"for\": [47, 168, 192, 200],
+      \"exploring\": [48], \"academic\": [49], \"literature.\": [50, 171],
+      \"Objective:\": [51], \"This\": [52], \"study\": [53], \"compares\": [54],
+      \"coverage\": [56], \"nursing\": [59, 80, 110, 170], \"by\": [61, 83,
+      132], \"Scopus,\": [63, 85], \"journals,\": [71], \"articles,\": [72,
+      151], \"citations\": [74, 155], \"indexed.\": [75], \"Methods:\": [76],
+      \"A\": [77], \"list\": [78], \"journals\": [81, 130], \"indexed\": [82],
+      \"was\": [90], \"compiled\": [91], \"compare\": [93], \"titles\": [95],
+      \"covered\": [96, 131], \"country\": [100], \"publication,\": [102],
+      \"publisher,\": [103], \"access\": [106], \"availability.\": [107],
+      \"Citations\": [108], \"articles\": [111], \"published\": [112],
+      \"between\": [113], \"2000\": [114], \"2022\": [116], \"three\": [119],
+      \"sources\": [120, 140], \"were\": [121], \"also\": [122], \"analyzed.\":
+      [123], \"Results:\": [124], \"OpenAlex\": [125, 152, 163], \"indexes\":
+      [126, 153], \"nearly\": [127], \"all\": [128], \"Science,\": [137],
+      \"plus\": [138], \"additional\": [139], \"from\": [141], \"countries\":
+      [142], \"outside\": [143], \"Western\": [145], \"world.\": [146],
+      \"individual\": [150], \"more\": [154], \"than\": [156], \"Science.\":
+      [161], \"Conclusion:\": [162], \"is\": [164], \"a\": [165, 181],
+      \"comprehensive\": [166], \"source\": [167], \"tracking\": [169],
+      \"Currently,\": [172], \"its\": [173], \"main\": [174], \"limitation\":
+      [175], \"lies\": [176], \"lack\": [179], \"user-friendly\": [182],
+      \"web\": [183], \"interface,\": [184], \"need\": [187], \"use\": [189],
+      \"an\": [190], \"API\": [191], \"retrieval\": [194], \"can\": [195],
+      \"complicate\": [196], \"search\": [198], \"process\": [199], \"end\":
+      [201], \"users.\": [202]}, \"counts_by_year\": [{\"year\": 2026,
+      \"cited_by_count\": 5}, {\"year\": 2025, \"cited_by_count\": 1}],
+      \"updated_date\": \"2026-09-30T09:27:27.532063\", \"created_date\":
+      \"2025-10-10T00:00:00\"}, {\"id\": \"https://openalex.org/W7162216146\",
+      \"doi\": \"https://doi.org/10.5281/zenodo.20355454\", \"title\":
+      \"openalex-mcp-server\", \"display_name\": \"openalex-mcp-server\",
+      \"relevance_score\": 59.16519, \"publication_year\": 2026,
+      \"publication_date\": \"2026-05-23\", \"ids\": {\"openalex\":
+      \"https://openalex.org/W7162216146\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20355454\"}, \"language\": null,
+      \"primary_location\": {\"id\": \"doi:10.5281/zenodo.20355454\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20355454\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20355454\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": false,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, \"volume\": null,
+      \"type\": \"software\", \"indexed_in\": [\"datacite\"], \"open_access\":
+      {\"is_oa\": true, \"oa_status\": \"green\", \"oa_url\":
+      \"https://doi.org/10.5281/zenodo.20355454\",
+      \"any_repository_has_fulltext\": true}, \"authorships\":
+      [{\"author_position\": \"first\", \"author\": {\"id\":
+      \"https://openalex.org/A5027755522\", \"display_name\": \"Casey Hand\",
+      \"orcid\": null, \"observed_orcids\": []}, \"institutions\": [],
+      \"countries\": [], \"is_corresponding\": true, \"raw_author_name\":
+      \"Hand, Casey\", \"raw_affiliation_strings\": [], \"raw_orcid\":
+      \"https://orcid.org/0009-0009-3726-568X\", \"affiliations\": []}],
+      \"institutions\": [], \"countries_distinct_count\": 0,
+      \"institutions_distinct_count\": 0, \"corresponding_author_ids\":
+      [\"https://openalex.org/A5027755522\"], \"corresponding_institution_ids\":
+      [], \"apc_list\": null, \"apc_paid\": null, \"fwci\": null,
+      \"has_fulltext\": false, \"cited_by_count\": 0,
+      \"citation_normalized_percentile\": null, \"cited_by_percentile_year\":
+      null, \"biblio\": {\"volume\": null, \"issue\": null, \"first_page\":
+      null, \"last_page\": null}, \"is_retracted\": false, \"is_paratext\":
+      false, \"is_xpac\": false, \"primary_topic\": {\"id\":
+      \"https://openalex.org/T14330\", \"display_name\": \"Library Science and
+      Information Systems\", \"score\": 0.5214999914169312, \"subfield\":
+      {\"id\": \"https://openalex.org/subfields/1710\", \"display_name\":
+      \"Information Systems\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/17\", \"display_name\": \"Computer
+      Science\"}, \"domain\": {\"id\": \"https://openalex.org/domains/3\",
+      \"display_name\": \"Physical Sciences\"}}, \"topics\": [{\"id\":
+      \"https://openalex.org/T14330\", \"display_name\": \"Library Science and
+      Information Systems\", \"score\": 0.5214999914169312, \"subfield\":
+      {\"id\": \"https://openalex.org/subfields/1710\", \"display_name\":
+      \"Information Systems\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/17\", \"display_name\": \"Computer
+      Science\"}, \"domain\": {\"id\": \"https://openalex.org/domains/3\",
+      \"display_name\": \"Physical Sciences\"}}, {\"id\":
+      \"https://openalex.org/T10102\", \"display_name\": \"scientometrics and
+      bibliometrics research\", \"score\": 0.17579999566078186, \"subfield\":
+      {\"id\": \"https://openalex.org/subfields/1804\", \"display_name\":
+      \"Statistics, Probability and Uncertainty\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/18\", \"display_name\": \"Decision
+      Sciences\"}, \"domain\": {\"id\": \"https://openalex.org/domains/2\",
+      \"display_name\": \"Social Sciences\"}}, {\"id\":
+      \"https://openalex.org/T13673\", \"display_name\": \"Library Science and
+      Information\", \"score\": 0.06790000200271606, \"subfield\": {\"id\":
+      \"https://openalex.org/subfields/1710\", \"display_name\": \"Information
+      Systems\"}, \"field\": {\"id\": \"https://openalex.org/fields/17\",
+      \"display_name\": \"Computer Science\"}, \"domain\": {\"id\":
+      \"https://openalex.org/domains/3\", \"display_name\": \"Physical
+      Sciences\"}}], \"keywords\": [{\"id\":
+      \"https://openalex.org/keywords/model-context-protocol\",
+      \"display_name\": \"Model Context Protocol\", \"score\":
+      0.949999988079071}, {\"id\": \"https://openalex.org/keywords/openalex\",
+      \"display_name\": \"OpenAlex\", \"score\": 0.9070000052452087}, {\"id\":
+      \"https://openalex.org/keywords/entity-search\", \"display_name\":
+      \"entity retrieval\", \"score\": 0.824999988079071}, {\"id\":
+      \"https://openalex.org/keywords/auto-completion\", \"display_name\":
+      \"autocomplete\", \"score\": 0.9909999966621399}, {\"id\":
+      \"https://openalex.org/keywords/scholarly-works\", \"display_name\":
+      \"scholarly works\", \"score\": 0.4490000009536743}, {\"id\":
+      \"https://openalex.org/keywords/authors\", \"display_name\": \"writers\",
+      \"score\": 0.7760000228881836}, {\"id\":
+      \"https://openalex.org/keywords/institutions\", \"display_name\":
+      \"institutions\", \"score\": 0.7570000290870667}, {\"id\":
+      \"https://openalex.org/keywords/topic\", \"display_name\": \"topic\",
+      \"score\": 0.6299999952316284}, {\"id\":
+      \"https://openalex.org/keywords/publishers\", \"display_name\":
+      \"publishers\", \"score\": 0.9620000123977661}, {\"id\":
+      \"https://openalex.org/keywords/funders\", \"display_name\": \"funders\",
+      \"score\": 0.9900000095367432}], \"concepts\": [{\"id\":
+      \"https://openalex.org/C2779343474\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q3109175\", \"display_name\": \"Context
+      (archaeology)\", \"level\": 2, \"score\": 0.5864999890327454}, {\"id\":
+      \"https://openalex.org/C41008148\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q21198\", \"display_name\": \"Computer
+      science\", \"level\": 0, \"score\": 0.517300009727478}, {\"id\":
+      \"https://openalex.org/C2780385302\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q367158\", \"display_name\": \"Protocol
+      (science)\", \"level\": 3, \"score\": 0.4465000033378601}, {\"id\":
+      \"https://openalex.org/C136764020\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q466\", \"display_name\": \"World Wide
+      Web\", \"level\": 1, \"score\": 0.2524999976158142}, {\"id\":
+      \"https://openalex.org/C26517878\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q228039\", \"display_name\": \"Key
+      (lock)\", \"level\": 2, \"score\": 0.2370000034570694}, {\"id\":
+      \"https://openalex.org/C154945302\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q11660\", \"display_name\": \"Artificial
+      intelligence\", \"level\": 1, \"score\": 0.22990000247955322}, {\"id\":
+      \"https://openalex.org/C138268822\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q1051925\", \"display_name\": \"Resolution
+      (logic)\", \"level\": 2, \"score\": 0.21950000524520874}, {\"id\":
+      \"https://openalex.org/C2778112365\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q3511065\", \"display_name\": \"Sequence
+      (biology)\", \"level\": 2, \"score\": 0.20980000495910645}, {\"id\":
+      \"https://openalex.org/C77618280\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q1155772\", \"display_name\": \"Scheme
+      (mathematics)\", \"level\": 2, \"score\": 0.20280000567436218}, {\"id\":
+      \"https://openalex.org/C180198813\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q121182\", \"display_name\": \"Information
+      system\", \"level\": 2, \"score\": 0.20020000636577606}], \"mesh\": [],
+      \"locations_count\": 21, \"locations\": [{\"id\":
+      \"doi:10.5281/zenodo.20355454\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20355454\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20355454\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20355455\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20355455\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20355455\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20375789\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20375789\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20375789\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20438801\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20438801\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20438801\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20457172\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20457172\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20457172\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20485654\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20485654\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20485654\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20487739\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20487739\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20487739\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20511815\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20511815\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20511815\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20538434\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20538434\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20538434\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20589521\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20589521\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20589521\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20590957\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20590957\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20590957\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20649953\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20649953\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20649953\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.20776932\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20776932\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20776932\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.21288431\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.21288431\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.21288431\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.21288798\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.21288798\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.21288798\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.21612682\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.21612682\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.21612682\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.21612980\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.21612980\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.21612980\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.21613462\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.21613462\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.21613462\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.21613578\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.21613578\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.21613578\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.22058220\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.22058220\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.22058220\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}, {\"id\":
+      \"doi:10.5281/zenodo.22270112\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.22270112\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.22270112\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": null,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"}],
+      \"best_oa_location\": {\"id\": \"doi:10.5281/zenodo.20355454\", \"doi\":
+      \"https://doi.org/10.5281/zenodo.20355454\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.5281/zenodo.20355454\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306400562\", \"display_name\": \"Zenodo (CERN
+      European Organization for Nuclear Research)\", \"issn_l\": null, \"issn\":
+      null, \"is_oa\": true, \"is_in_doaj\": false, \"is_core\": false,
+      \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I67311998\", \"host_organization_name\": \"European
+      Organization for Nuclear Research\", \"host_organization_lineage\":
+      [\"https://openalex.org/I67311998\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": null, \"is_accepted\": false, \"is_published\": false,
+      \"raw_source_name\": null, \"raw_type\": \"Software\"},
+      \"sustainable_development_goals\": [],
+      \"sustainable_development_goals_aurora\": [], \"study_designs\": [],
+      \"awards\": [], \"funders\": [], \"has_content\": {\"grobid_xml\": false,
+      \"pdf\": false}, \"content_urls\": null, \"referenced_works_count\": 0,
+      \"referenced_works\": [], \"related_works\": [],
+      \"abstract_inverted_index\": {\"Model\": [0], \"Context\": [1],
+      \"Protocol\": [2], \"(MCP)\": [3], \"server\": [4], \"for\": [5], \"the\":
+      [6], \"OpenAlex\": [7], \"scholarly\": [8], \"catalog\": [9], \"(270M+\":
+      [10], \"works,\": [11], \"authors,\": [12], \"sources,\": [13],
+      \"institutions,\": [14], \"topics,\": [15], \"publishers,\": [16],
+      \"funders),\": [17], \"providing\": [18], \"entity\": [19], \"search\":
+      [20], \"and\": [21, 26], \"filtering,\": [22], \"group-by\": [23],
+      \"trend\": [24], \"analysis,\": [25], \"name-to-ID\": [27],
+      \"resolution\": [28], \"via\": [29], \"autocomplete.\": [30]},
+      \"counts_by_year\": [], \"updated_date\": \"2026-10-09T09:14:12.587421\",
+      \"created_date\": \"2026-05-24T00:00:00\"}, {\"id\":
+      \"https://openalex.org/W4400136542\", \"doi\":
+      \"https://doi.org/10.1007/s11192-024-05034-y\", \"title\": \"The
+      indexation of retracted literature in seven principal scholarly databases:
+      a coverage comparison of dimensions, OpenAlex, PubMed, Scilit, Scopus, The
+      Lens and Web of Science\", \"display_name\": \"The indexation of retracted
+      literature in seven principal scholarly databases: a coverage comparison
+      of dimensions, OpenAlex, PubMed, Scilit, Scopus, The Lens and Web of
+      Science\", \"relevance_score\": 56.96061, \"publication_year\": 2024,
+      \"publication_date\": \"2024-06-28\", \"ids\": {\"openalex\":
+      \"https://openalex.org/W4400136542\", \"doi\":
+      \"https://doi.org/10.1007/s11192-024-05034-y\"}, \"language\": \"en\",
+      \"primary_location\": {\"id\": \"doi:10.1007/s11192-024-05034-y\",
+      \"doi\": \"https://doi.org/10.1007/s11192-024-05034-y\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.1007/s11192-024-05034-y\",
+      \"pdf_url\":
+      \"https://link.springer.com/content/pdf/10.1007/s11192-024-05034-y.pdf\",
+      \"source\": {\"id\": \"https://openalex.org/S148561398\",
+      \"display_name\": \"Scientometrics\", \"issn_l\": \"0138-9130\", \"issn\":
+      [\"0138-9130\", \"1588-2861\"], \"is_oa\": false, \"is_in_doaj\": false,
+      \"is_core\": true, \"listed_in\": [\"abdc-a\", \"anvur-class-a\",
+      \"anvur-scientific\", \"cwts-core\", \"erih-plus\", \"fnege-3\",
+      \"jufo-2\", \"ki-jl-1\", \"norway-1\", \"poland-100\",
+      \"russia-white-list-1\", \"vabb-shw\"], \"host_organization\":
+      \"https://openalex.org/P4310320108\", \"host_organization_name\":
+      \"Springer Nature (Netherlands)\", \"host_organization_lineage\":
+      [\"https://openalex.org/P4310320108\",
+      \"https://openalex.org/P4310319965\"],
+      \"host_organization_lineage_names\": [\"Springer Nature (Netherlands)\",
+      \"Springer Nature\"], \"type\": \"journal\"}, \"license\": \"cc-by\",
+      \"license_id\": \"https://openalex.org/licenses/cc-by\", \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": \"Scientometrics\", \"raw_type\":
+      \"journal-article\"}, \"volume\": null, \"type\": \"article\",
+      \"indexed_in\": [\"crossref\"], \"open_access\": {\"is_oa\": true,
+      \"oa_status\": \"hybrid\", \"oa_url\":
+      \"https://link.springer.com/content/pdf/10.1007/s11192-024-05034-y.pdf\",
+      \"any_repository_has_fulltext\": true}, \"authorships\":
+      [{\"author_position\": \"first\", \"author\": {\"id\":
+      \"https://openalex.org/A5034006700\", \"display_name\": \"Jos\\u00e9
+      Lu\\u00eds Ortega\", \"orcid\": \"https://orcid.org/0000-0001-9857-1511\",
+      \"observed_orcids\": [\"https://orcid.org/0000-0001-9857-1511\"]},
+      \"institutions\": [{\"id\": \"https://openalex.org/I134820265\",
+      \"display_name\": \"Consejo Superior de Investigaciones
+      Cient\\u00edficas\", \"ror\": \"https://ror.org/02gfc7t72\",
+      \"country_code\": \"ES\", \"type\": \"government\", \"lineage\":
+      [\"https://openalex.org/I134820265\"]}, {\"id\":
+      \"https://openalex.org/I4210160052\", \"display_name\": \"Instituto de
+      Estudios Sociales Avanzados\", \"ror\": \"https://ror.org/054df1z79\",
+      \"country_code\": \"ES\", \"type\": \"facility\", \"lineage\":
+      [\"https://openalex.org/I134820265\",
+      \"https://openalex.org/I4210160052\"]}], \"countries\": [\"ES\"],
+      \"is_corresponding\": true, \"raw_author_name\": \"Jos\\u00e9 Luis
+      Ortega\", \"raw_affiliation_strings\": [\"Institute for Advanced Social
+      Studies (IESA-CSIC), Camposanto de los M\\u00e1rtires, 7, 14004,
+      C\\u00f3rdoba, Spain\"], \"raw_orcid\":
+      \"https://orcid.org/0000-0001-9857-1511\", \"affiliations\":
+      [{\"raw_affiliation_string\": \"Institute for Advanced Social Studies
+      (IESA-CSIC), Camposanto de los M\\u00e1rtires, 7, 14004, C\\u00f3rdoba,
+      Spain\", \"institution_ids\": [\"https://openalex.org/I134820265\",
+      \"https://openalex.org/I4210160052\"]}]}, {\"author_position\": \"last\",
+      \"author\": {\"id\": \"https://openalex.org/A5083080053\",
+      \"display_name\": \"Lorena Delgado\\u2010Quir\\u00f3s\", \"orcid\":
+      \"https://orcid.org/0000-0001-8738-7276\", \"observed_orcids\":
+      [\"https://orcid.org/0000-0001-8738-7276\"]}, \"institutions\": [{\"id\":
+      \"https://openalex.org/I53110688\", \"display_name\": \"University of
+      C\\u00f3rdoba\", \"ror\": \"https://ror.org/05yc77b46\", \"country_code\":
+      \"ES\", \"type\": \"education\", \"lineage\":
+      [\"https://openalex.org/I53110688\"]}], \"countries\": [\"ES\"],
+      \"is_corresponding\": false, \"raw_author_name\": \"Lorena
+      Delgado-Quir\\u00f3s\", \"raw_affiliation_strings\": [\"Joint Research
+      Unit Knowledge Transfer and Innovation, (UCO-CSIC), C\\u00f3rdoba,
+      Spain\"], \"raw_orcid\": \"https://orcid.org/0000-0001-8738-7276\",
+      \"affiliations\": [{\"raw_affiliation_string\": \"Joint Research Unit
+      Knowledge Transfer and Innovation, (UCO-CSIC), C\\u00f3rdoba, Spain\",
+      \"institution_ids\": [\"https://openalex.org/I53110688\"]}]}],
+      \"institutions\": [], \"countries_distinct_count\": 1,
+      \"institutions_distinct_count\": 3, \"corresponding_author_ids\":
+      [\"https://openalex.org/A5034006700\"], \"corresponding_institution_ids\":
+      [\"https://openalex.org/I134820265\",
+      \"https://openalex.org/I4210160052\"], \"apc_list\": {\"value\": 2990,
+      \"currency\": \"USD\", \"value_usd\": 2990}, \"apc_paid\": {\"value\":
+      2990, \"currency\": \"USD\", \"value_usd\": 2990}, \"fwci\": 10.9427,
+      \"has_fulltext\": true, \"cited_by_count\": 39,
+      \"citation_normalized_percentile\": {\"value\": 0.99049494,
+      \"is_in_top_1_percent\": true, \"is_in_top_10_percent\": true},
+      \"cited_by_percentile_year\": {\"min\": 94, \"max\": 100}, \"biblio\":
+      {\"volume\": \"129\", \"issue\": \"7\", \"first_page\": \"3769\",
+      \"last_page\": \"3785\"}, \"is_retracted\": false, \"is_paratext\": false,
+      \"is_xpac\": false, \"primary_topic\": {\"id\":
+      \"https://openalex.org/T10102\", \"display_name\": \"scientometrics and
+      bibliometrics research\", \"score\": 0.9779999852180481, \"subfield\":
+      {\"id\": \"https://openalex.org/subfields/1804\", \"display_name\":
+      \"Statistics, Probability and Uncertainty\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/18\", \"display_name\": \"Decision
+      Sciences\"}, \"domain\": {\"id\": \"https://openalex.org/domains/2\",
+      \"display_name\": \"Social Sciences\"}}, \"topics\": [{\"id\":
+      \"https://openalex.org/T10102\", \"display_name\": \"scientometrics and
+      bibliometrics research\", \"score\": 0.9779999852180481, \"subfield\":
+      {\"id\": \"https://openalex.org/subfields/1804\", \"display_name\":
+      \"Statistics, Probability and Uncertainty\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/18\", \"display_name\": \"Decision
+      Sciences\"}, \"domain\": {\"id\": \"https://openalex.org/domains/2\",
+      \"display_name\": \"Social Sciences\"}}, {\"id\":
+      \"https://openalex.org/T13673\", \"display_name\": \"Library Science and
+      Information\", \"score\": 0.00430000014603138, \"subfield\": {\"id\":
+      \"https://openalex.org/subfields/1710\", \"display_name\": \"Information
+      Systems\"}, \"field\": {\"id\": \"https://openalex.org/fields/17\",
+      \"display_name\": \"Computer Science\"}, \"domain\": {\"id\":
+      \"https://openalex.org/domains/3\", \"display_name\": \"Physical
+      Sciences\"}}, {\"id\": \"https://openalex.org/T11492\", \"display_name\":
+      \"Academic integrity and plagiarism\", \"score\": 0.00419999985024333,
+      \"subfield\": {\"id\": \"https://openalex.org/subfields/3311\",
+      \"display_name\": \"Safety Research\"}, \"field\": {\"id\":
+      \"https://openalex.org/fields/33\", \"display_name\": \"Social
+      Sciences\"}, \"domain\": {\"id\": \"https://openalex.org/domains/2\",
+      \"display_name\": \"Social Sciences\"}}], \"keywords\": [{\"id\":
+      \"https://openalex.org/keywords/withdrawal\", \"display_name\":
+      \"withdrawal\", \"score\": 0.48899999260902405}, {\"id\":
+      \"https://openalex.org/keywords/openalex\", \"display_name\":
+      \"OpenAlex\", \"score\": 0.875}, {\"id\":
+      \"https://openalex.org/keywords/dimensions\", \"display_name\":
+      \"dimensions\", \"score\": 0.6000000238418579}, {\"id\":
+      \"https://openalex.org/keywords/scopus\", \"display_name\": \"Scopus\",
+      \"score\": 0.8489999771118164}, {\"id\":
+      \"https://openalex.org/keywords/web-of-science\", \"display_name\": \"Web
+      of Science\", \"score\": 0.9020000100135803}, {\"id\":
+      \"https://openalex.org/keywords/pubmed\", \"display_name\": \"PubMed\",
+      \"score\": 0.9879999756813049}], \"concepts\": [{\"id\":
+      \"https://openalex.org/C83867959\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q371467\", \"display_name\": \"Scopus\",
+      \"level\": 3, \"score\": 0.9623181223869324}, {\"id\":
+      \"https://openalex.org/C186311912\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q2038409\", \"display_name\":
+      \"Indexation\", \"level\": 3, \"score\": 0.6903226375579834}, {\"id\":
+      \"https://openalex.org/C3020774429\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q1201886\", \"display_name\": \"Web of
+      science\", \"level\": 3, \"score\": 0.6865461468696594}, {\"id\":
+      \"https://openalex.org/C23123220\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q816826\", \"display_name\": \"Information
+      retrieval\", \"level\": 1, \"score\": 0.5770156979560852}, {\"id\":
+      \"https://openalex.org/C41008148\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q21198\", \"display_name\": \"Computer
+      science\", \"level\": 0, \"score\": 0.5176092386245728}, {\"id\":
+      \"https://openalex.org/C144559511\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q2986279\", \"display_name\": \"Principal
+      (computer security)\", \"level\": 2, \"score\": 0.4940209984779358},
+      {\"id\": \"https://openalex.org/C77088390\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q8513\", \"display_name\": \"Database\",
+      \"level\": 1, \"score\": 0.4847104549407959}, {\"id\":
+      \"https://openalex.org/C2777382242\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q6017816\", \"display_name\": \"Index
+      (typography)\", \"level\": 2, \"score\": 0.4467957019805908}, {\"id\":
+      \"https://openalex.org/C61904560\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q1148359\", \"display_name\": \"Grey
+      literature\", \"level\": 3, \"score\": 0.4310431480407715}, {\"id\":
+      \"https://openalex.org/C2779455604\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q5330\", \"display_name\": \"Impact
+      factor\", \"level\": 2, \"score\": 0.42020758986473083}, {\"id\":
+      \"https://openalex.org/C161191863\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q199655\", \"display_name\": \"Library
+      science\", \"level\": 1, \"score\": 0.34144291281700134}, {\"id\":
+      \"https://openalex.org/C136764020\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q466\", \"display_name\": \"World Wide
+      Web\", \"level\": 1, \"score\": 0.30506497621536255}, {\"id\":
+      \"https://openalex.org/C17744445\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q36442\", \"display_name\": \"Political
+      science\", \"level\": 0, \"score\": 0.23663127422332764}, {\"id\":
+      \"https://openalex.org/C2779473830\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q1540899\", \"display_name\": \"MEDLINE\",
+      \"level\": 2, \"score\": 0.22820252180099487}, {\"id\":
+      \"https://openalex.org/C111919701\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q9135\", \"display_name\": \"Operating
+      system\", \"level\": 1, \"score\": 0.0}, {\"id\":
+      \"https://openalex.org/C162324750\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q8134\", \"display_name\": \"Economics\",
+      \"level\": 0, \"score\": 0.0}, {\"id\":
+      \"https://openalex.org/C126285488\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q178476\", \"display_name\": \"Monetary
+      policy\", \"level\": 2, \"score\": 0.0}, {\"id\":
+      \"https://openalex.org/C556758197\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q580018\", \"display_name\": \"Monetary
+      economics\", \"level\": 1, \"score\": 0.0}, {\"id\":
+      \"https://openalex.org/C199539241\", \"wikidata\":
+      \"https://www.wikidata.org/wiki/Q7748\", \"display_name\": \"Law\",
+      \"level\": 1, \"score\": 0.0}], \"mesh\": [], \"locations_count\": 4,
+      \"locations\": [{\"id\": \"doi:10.1007/s11192-024-05034-y\", \"doi\":
+      \"https://doi.org/10.1007/s11192-024-05034-y\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.1007/s11192-024-05034-y\",
+      \"pdf_url\":
+      \"https://link.springer.com/content/pdf/10.1007/s11192-024-05034-y.pdf\",
+      \"source\": {\"id\": \"https://openalex.org/S148561398\",
+      \"display_name\": \"Scientometrics\", \"issn_l\": \"0138-9130\", \"issn\":
+      [\"0138-9130\", \"1588-2861\"], \"is_oa\": false, \"is_in_doaj\": false,
+      \"is_core\": true, \"listed_in\": [\"abdc-a\", \"anvur-class-a\",
+      \"anvur-scientific\", \"cwts-core\", \"erih-plus\", \"fnege-3\",
+      \"jufo-2\", \"ki-jl-1\", \"norway-1\", \"poland-100\",
+      \"russia-white-list-1\", \"vabb-shw\"], \"host_organization\":
+      \"https://openalex.org/P4310320108\", \"host_organization_name\":
+      \"Springer Nature (Netherlands)\", \"host_organization_lineage\":
+      [\"https://openalex.org/P4310320108\",
+      \"https://openalex.org/P4310319965\"],
+      \"host_organization_lineage_names\": [\"Springer Nature (Netherlands)\",
+      \"Springer Nature\"], \"type\": \"journal\"}, \"license\": \"cc-by\",
+      \"license_id\": \"https://openalex.org/licenses/cc-by\", \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": \"Scientometrics\", \"raw_type\":
+      \"journal-article\"}, {\"id\": \"pmh:oai:digital.csic.es:10261/382751\",
+      \"doi\": null, \"is_oa\": true, \"landing_page_url\":
+      \"http://hdl.handle.net/10261/382751\", \"pdf_url\": null, \"source\":
+      {\"id\": \"https://openalex.org/S4306400616\", \"display_name\":
+      \"DIGITAL.CSIC (Spanish National Research Council (CSIC))\", \"issn_l\":
+      null, \"issn\": null, \"is_oa\": false, \"is_in_doaj\": false,
+      \"is_core\": false, \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I134820265\", \"host_organization_name\": \"Consejo
+      Superior de Investigaciones Cient\\u00edficas\",
+      \"host_organization_lineage\": [\"https://openalex.org/I134820265\"],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": \"other-oa\", \"license_id\":
+      \"https://openalex.org/licenses/other-oa\", \"version\":
+      \"acceptedVersion\", \"is_accepted\": true, \"is_published\": false,
+      \"raw_source_name\": null, \"raw_type\":
+      \"http://purl.org/coar/resource_type/c_6501\"}, {\"id\":
+      \"pmh:oai:RePEc:spr:scient:v:129:y:2024:i:7:d:10.1007_s11192-024-05034-y\
+      \", \"doi\": null, \"is_oa\": false, \"landing_page_url\":
+      \"http://link.springer.com/10.1007/s11192-024-05034-y\", \"pdf_url\":
+      null, \"source\": {\"id\": \"https://openalex.org/S4306401271\",
+      \"display_name\": \"RePEc: Research Papers in Economics\", \"issn_l\":
+      null, \"issn\": null, \"is_oa\": false, \"is_in_doaj\": false,
+      \"is_core\": false, \"listed_in\": [], \"host_organization\":
+      \"https://openalex.org/I77793887\", \"host_organization_name\": \"Federal
+      Reserve Bank of St. Louis\", \"host_organization_lineage\":
+      [\"https://openalex.org/I77793887\"], \"host_organization_lineage_names\":
+      [], \"type\": \"repository\"}, \"license\": null, \"license_id\": null,
+      \"version\": \"submittedVersion\", \"is_accepted\": false,
+      \"is_published\": false, \"raw_source_name\": null, \"raw_type\":
+      \"article\"}, {\"id\":
+      \"pmh:oai:share.osf.io:f702e7a2-f449-4eea-9953-6c473803e611\", \"doi\":
+      null, \"is_oa\": false, \"landing_page_url\": \"https://osf.io/26yzx\",
+      \"pdf_url\": null, \"source\": {\"id\":
+      \"https://openalex.org/S4306401127\", \"display_name\": \"OSF Preprints
+      (OSF Preprints)\", \"issn_l\": null, \"issn\": null, \"is_oa\": false,
+      \"is_in_doaj\": false, \"is_core\": false, \"listed_in\": [],
+      \"host_organization\": \"https://openalex.org/I2799848540\",
+      \"host_organization_name\": \"Center for Open Science\",
+      \"host_organization_lineage\": [\"https://openalex.org/I2799848540\"],
+      \"host_organization_lineage_names\": [], \"type\": \"repository\"},
+      \"license\": null, \"license_id\": null, \"version\":
+      \"submittedVersion\", \"is_accepted\": false, \"is_published\": false,
+      \"raw_source_name\": null, \"raw_type\": \"Project\"}],
+      \"best_oa_location\": {\"id\": \"doi:10.1007/s11192-024-05034-y\",
+      \"doi\": \"https://doi.org/10.1007/s11192-024-05034-y\", \"is_oa\": true,
+      \"landing_page_url\": \"https://doi.org/10.1007/s11192-024-05034-y\",
+      \"pdf_url\":
+      \"https://link.springer.com/content/pdf/10.1007/s11192-024-05034-y.pdf\",
+      \"source\": {\"id\": \"https://openalex.org/S148561398\",
+      \"display_name\": \"Scientometrics\", \"issn_l\": \"0138-9130\", \"issn\":
+      [\"0138-9130\", \"1588-2861\"], \"is_oa\": false, \"is_in_doaj\": false,
+      \"is_core\": true, \"listed_in\": [\"abdc-a\", \"anvur-class-a\",
+      \"anvur-scientific\", \"cwts-core\", \"erih-plus\", \"fnege-3\",
+      \"jufo-2\", \"ki-jl-1\", \"norway-1\", \"poland-100\",
+      \"russia-white-list-1\", \"vabb-shw\"], \"host_organization\":
+      \"https://openalex.org/P4310320108\", \"host_organization_name\":
+      \"Springer Nature (Netherlands)\", \"host_organization_lineage\":
+      [\"https://openalex.org/P4310320108\",
+      \"https://openalex.org/P4310319965\"],
+      \"host_organization_lineage_names\": [\"Springer Nature (Netherlands)\",
+      \"Springer Nature\"], \"type\": \"journal\"}, \"license\": \"cc-by\",
+      \"license_id\": \"https://openalex.org/licenses/cc-by\", \"version\":
+      \"publishedVersion\", \"is_accepted\": true, \"is_published\": true,
+      \"raw_source_name\": \"Scientometrics\", \"raw_type\":
+      \"journal-article\"}, \"sustainable_development_goals\": [],
+      \"sustainable_development_goals_aurora\": [{\"id\":
+      \"https://metadata.un.org/sdg/4\", \"score\": 0.6899999976158142,
+      \"display_name\": \"Quality education\"}], \"study_designs\": [],
+      \"awards\": [{\"id\": \"https://openalex.org/G2844657636\",
+      \"display_name\": null, \"funder_award_id\": \"PRPPDC2022-133700-I00\",
+      \"funder_id\": \"https://openalex.org/F4320335598\",
+      \"funder_display_name\": \"Agencia Estatal de Investigaci\\u00f3n\"},
+      {\"id\": \"https://openalex.org/G863021589\", \"display_name\": null,
+      \"funder_award_id\": \"PID2019\\u2010106510GB\\u2010I00\", \"funder_id\":
+      \"https://openalex.org/F4320335598\", \"funder_display_name\": \"Agencia
+      Estatal de Investigaci\\u00f3n\"}], \"funders\": [{\"id\":
+      \"https://openalex.org/F4320335598\", \"display_name\": \"Agencia Estatal
+      de Investigaci\\u00f3n\", \"ror\": \"https://ror.org/003x0zc53\"}],
+      \"has_content\": {\"grobid_xml\": true, \"pdf\": true}, \"content_urls\":
+      {\"pdf\": \"https://content.openalex.org/works/W4400136542.pdf\",
+      \"grobid_xml\":
+      \"https://content.openalex.org/works/W4400136542.grobid-xml\"},
+      \"referenced_works_count\": 35, \"referenced_works\":
+      [\"https://openalex.org/W1878922043\",
+      \"https://openalex.org/W1997443699\",
+      \"https://openalex.org/W2009265601\",
+      \"https://openalex.org/W2016914734\",
+      \"https://openalex.org/W2022493637\",
+      \"https://openalex.org/W2063357463\",
+      \"https://openalex.org/W2119132937\",
+      \"https://openalex.org/W2122827137\",
+      \"https://openalex.org/W2130917801\",
+      \"https://openalex.org/W2153924055\",
+      \"https://openalex.org/W2159977622\",
+      \"https://openalex.org/W2530875690\",
+      \"https://openalex.org/W2752317067\",
+      \"https://openalex.org/W2766037643\",
+      \"https://openalex.org/W2781520866\",
+      \"https://openalex.org/W2794232309\",
+      \"https://openalex.org/W2909301103\",
+      \"https://openalex.org/W2926459623\",
+      \"https://openalex.org/W2939045106\",
+      \"https://openalex.org/W2949505195\",
+      \"https://openalex.org/W2969275703\",
+      \"https://openalex.org/W2985520515\",
+      \"https://openalex.org/W3033055807\",
+      \"https://openalex.org/W3128789760\",
+      \"https://openalex.org/W3183106636\",
+      \"https://openalex.org/W4200394820\",
+      \"https://openalex.org/W4246354968\",
+      \"https://openalex.org/W4308471117\",
+      \"https://openalex.org/W4317816975\",
+      \"https://openalex.org/W4319073470\",
+      \"https://openalex.org/W4377087684\",
+      \"https://openalex.org/W4379016467\",
+      \"https://openalex.org/W4388044147\",
+      \"https://openalex.org/W4403322139\",
+      \"https://openalex.org/W4410300255\"], \"related_works\":
+      [\"https://openalex.org/W2108402763\",
+      \"https://openalex.org/W2037362719\",
+      \"https://openalex.org/W2019021555\",
+      \"https://openalex.org/W2606837165\",
+      \"https://openalex.org/W2911525845\",
+      \"https://openalex.org/W3014835053\",
+      \"https://openalex.org/W2509576449\",
+      \"https://openalex.org/W1598512166\",
+      \"https://openalex.org/W2120516750\",
+      \"https://openalex.org/W2148385331\"], \"abstract_inverted_index\":
+      {\"Abstract\": [0], \"In\": [1], \"this\": [2, 186], \"study,\": [3],
+      \"the\": [4, 23, 30, 37, 42, 57, 117, 125, 136, 150], \"coverage\": [5,
+      127], \"and\": [6, 13, 35, 62, 75, 86, 108, 121, 130, 145, 158, 175, 184],
+      \"overlap\": [7], \"of\": [8, 32, 46, 93, 119, 128, 139, 149],
+      \"retracted\": [9, 47, 58, 94, 140, 166], \"publications,\": [10, 59],
+      \"retraction\": [11, 60], \"notices\": [12, 61], \"withdrawals\": [14,
+      120], \"are\": [15, 116], \"compared\": [16], \"across\": [17], \"seven\":
+      [18], \"significant\": [19], \"scholarly\": [20, 50], \"databases,\":
+      [21], \"with\": [22], \"aim\": [24], \"to\": [25, 40, 54, 181], \"check\":
+      [26], \"for\": [27], \"discrepancies,\": [28, 34], \"pinpoint\": [29],
+      \"causes\": [31], \"those\": [33], \"choose\": [36], \"best\": [38],
+      \"product\": [39], \"produce\": [41], \"most\": [43], \"accurate\": [44],
+      \"picture\": [45], \"literature.\": [48], \"Seven\": [49], \"databases\":
+      [51, 82, 98], \"were\": [52, 70], \"searched\": [53], \"obtain\": [55],
+      \"all\": [56], \"withdrawal\": [63], \"from\": [64], \"2000.\": [65],
+      \"Only\": [66], \"web\": [67], \"search\": [68], \"interfaces\": [69],
+      \"used,\": [71], \"excepting\": [72], \"in\": [73, 142, 188],
+      \"OpenAlex\": [74, 129], \"Scilit.\": [76], \"The\": [77, 87, 110, 146,
+      160], \"findings\": [78], \"demonstrate\": [79], \"that\": [80, 99, 163,
+      176], \"non-selective\": [81], \"(Dimensions,\": [83], \"OpenAlex,\": [84,
+      156], \"Scilit,\": [85], \"Lens)\": [88], \"index\": [89], \"a\": [90],
+      \"greater\": [91], \"amount\": [92], \"literature\": [95, 167, 187],
+      \"than\": [96, 172], \"do\": [97], \"rely\": [100], \"their\": [101],
+      \"indexation\": [102, 118], \"on\": [103, 165], \"venue\": [104],
+      \"selection\": [105], \"(PubMed,\": [106], \"Scopus,\": [107, 143],
+      \"WoS).\": [109], \"key\": [111], \"factors\": [112], \"explaining\":
+      [113], \"these\": [114], \"discrepancies\": [115], \"proceeding\": [122],
+      \"articles.\": [123], \"Additionally,\": [124], \"high\": [126],
+      \"Scilit\": [131, 157], \"could\": [132], \"be\": [133, 179],
+      \"explained\": [134], \"by\": [135, 155], \"inaccurate\": [137],
+      \"labeling\": [138], \"documents\": [141], \"Dimensions,\": [144],
+      \"Lens.\": [147], \"99%\": [148], \"sample\": [151], \"is\": [152],
+      \"jointly\": [153], \"covered\": [154], \"WoS.\": [159], \"study\": [161],
+      \"suggests\": [162], \"research\": [164], \"would\": [168], \"require\":
+      [169], \"querying\": [170], \"more\": [171], \"one\": [173], \"source\":
+      [174], \"it\": [177], \"should\": [178], \"advisable\": [180],
+      \"accurately\": [182], \"identify\": [183], \"label\": [185],
+      \"academic\": [189], \"databases.\": [190]}, \"counts_by_year\":
+      [{\"year\": 2026, \"cited_by_count\": 14}, {\"year\": 2025,
+      \"cited_by_count\": 23}, {\"year\": 2024, \"cited_by_count\": 2}],
+      \"updated_date\": \"2026-10-08T09:06:37.294493\", \"created_date\":
+      \"2025-10-10T00:00:00\"}], \"group_by\": []}"
+    bodyEncoding: utf8
