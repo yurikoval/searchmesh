@@ -77,6 +77,7 @@ Provider definitions may use these controlled categories for coarse filtering:
 - `independent-index`: web search backed by the provider's own index
 - `semantic-search`: semantic or neural retrieval
 - `ai-research`: search structured for AI research workflows
+- `scholarly-search`: scholarly works and research-paper search
 - `serp-data`: structured search engine results page data
 
 Use existing categories before proposing a new value. Categories describe useful specializations; they do not rank providers or report live availability.

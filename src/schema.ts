@@ -5,6 +5,7 @@ export const PROVIDER_CATEGORIES = Object.freeze([
   'independent-index',
   'semantic-search',
   'ai-research',
+  'scholarly-search',
   'serp-data',
 ] as const)
 export type ProviderCategory = (typeof PROVIDER_CATEGORIES)[number]

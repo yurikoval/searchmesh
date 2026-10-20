@@ -11,7 +11,7 @@ const categoriesByProvider = {
   gitlab: ['general-web'],
   kagi: ['general-web'],
   mojeek: ['general-web', 'independent-index'],
-  openalex: ['ai-research'],
+  openalex: ['scholarly-search'],
   perplexity: ['general-web', 'ai-research'],
   serpapi: ['general-web', 'serp-data'],
   tavily: ['semantic-search', 'ai-research'],
