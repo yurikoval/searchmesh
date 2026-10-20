@@ -1,4 +1,4 @@
-export declare const PROVIDER_CATEGORIES: readonly ["general-web", "independent-index", "semantic-search", "ai-research", "serp-data"];
+export declare const PROVIDER_CATEGORIES: readonly ["general-web", "independent-index", "semantic-search", "ai-research", "scholarly-search", "serp-data"];
 export type ProviderCategory = (typeof PROVIDER_CATEGORIES)[number];
 export declare const PROVIDER_LIMITS: Readonly<{
     sourceBytes: number;

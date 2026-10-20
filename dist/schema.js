@@ -4,6 +4,7 @@ export const PROVIDER_CATEGORIES = Object.freeze([
     'independent-index',
     'semantic-search',
     'ai-research',
+    'scholarly-search',
     'serp-data',
 ]);
 export const PROVIDER_LIMITS = Object.freeze({
