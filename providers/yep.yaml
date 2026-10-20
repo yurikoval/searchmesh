@@ -1,7 +1,8 @@
 schema_version: '1'
 id: yep
 name: Yep Search
-description: Web search results from the Yep Search API.
+description: General web search backed by Yep's independent index.
+categories: [general-web, independent-index]
 website_url: https://yep.com/
 documentation_url: https://platform.yep.com/api-documentation
 adapter: yep

@@ -1,7 +1,8 @@
 schema_version: '1'
 id: exa
 name: Exa
-description: Neural web search provider.
+description: Semantic web search with page content for AI research workflows.
+categories: [semantic-search, ai-research]
 website_url: https://exa.ai/
 documentation_url: https://exa.ai/docs/reference/search
 adapter: exa

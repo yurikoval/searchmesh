@@ -2,6 +2,7 @@ schema_version: '1'
 id: gitlab
 name: GitLab
 description: Public project search from the GitLab API.
+categories: [general-web]
 website_url: https://about.gitlab.com/
 documentation_url: https://docs.gitlab.com/api/projects/
 adapter: gitlab

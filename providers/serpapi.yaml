@@ -1,7 +1,8 @@
 schema_version: '1'
 id: serpapi
 name: SerpApi
-description: Google organic web results through the SerpApi Search API.
+description: Structured Google organic results from the SerpApi Search API.
+categories: [general-web, serp-data]
 website_url: https://serpapi.com/
 documentation_url: https://serpapi.com/search-api
 adapter: serpapi

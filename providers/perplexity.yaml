@@ -1,7 +1,8 @@
 schema_version: "1"
 id: perplexity
 name: Perplexity Search
-description: Web search results from the Perplexity Search API.
+description: Web search results structured for AI research applications.
+categories: [general-web, ai-research]
 website_url: https://www.perplexity.ai/
 documentation_url: https://docs.perplexity.ai/api-reference/search-post
 adapter: perplexity

@@ -1,7 +1,8 @@
 schema_version: '1'
 id: dataforseo
 name: DataForSEO
-description: Google organic web results from the DataForSEO SERP API.
+description: Structured Google organic results from the DataForSEO SERP API.
+categories: [general-web, serp-data]
 website_url: https://dataforseo.com/
 documentation_url: https://docs.dataforseo.com/v3/serp-se-type-live-advanced/
 adapter: dataforseo

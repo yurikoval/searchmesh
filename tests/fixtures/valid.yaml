@@ -2,6 +2,7 @@ schema_version: "1"
 id: valid
 name: Valid Search
 description: A safe provider fixture.
+categories: [general-web, independent-index]
 website_url: https://example.com/
 documentation_url: https://example.com/docs
 adapter: brave

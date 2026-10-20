@@ -1,7 +1,8 @@
 schema_version: '1'
 id: mojeek
 name: Mojeek
-description: Independent web search results from the Mojeek Search API.
+description: Web search backed by Mojeek's independent index.
+categories: [general-web, independent-index]
 website_url: https://www.mojeek.com/
 documentation_url: https://www.mojeek.com/support/api/search/
 adapter: mojeek

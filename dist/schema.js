@@ -1,4 +1,11 @@
 import { getAdapterPolicy, isAllowedAdapterUrl } from './url-policy.js';
+export const PROVIDER_CATEGORIES = Object.freeze([
+    'general-web',
+    'independent-index',
+    'semantic-search',
+    'ai-research',
+    'serp-data',
+]);
 export const PROVIDER_LIMITS = Object.freeze({
     sourceBytes: 64 * 1024,
     filesPerRevision: 50,
@@ -16,7 +23,7 @@ export const PROVIDER_LIMITS = Object.freeze({
     errors: 20,
     errorReportBytes: 8 * 1024,
 });
-const TOP_KEYS = ['schema_version', 'id', 'name', 'description', 'website_url', 'documentation_url', 'adapter', 'endpoint', 'capabilities', 'authentication', 'request_mapping', 'response_mapping', 'metadata'];
+const TOP_KEYS = ['schema_version', 'id', 'name', 'description', 'categories', 'website_url', 'documentation_url', 'adapter', 'endpoint', 'capabilities', 'authentication', 'request_mapping', 'response_mapping', 'metadata'];
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const FIELD = /^[A-Za-z][A-Za-z0-9_.-]{0,63}$/;
 const PATH_SEGMENT = /^[A-Za-z0-9_-]+$/;
@@ -24,6 +31,7 @@ const SECRET_KEY = /(^|[_-])(authorization|cookie|password|secret|token|private[
 const SECRET_VALUE = /(?:\bBearer\s+\S+|-----BEGIN [A-Z ]*PRIVATE KEY-----|\bgh(?:p|o|u|s|r)_[A-Za-z0-9_]{16,}|\bgithub_pat_[A-Za-z0-9_]{16,}|\bsk_live_[A-Za-z0-9]{16,}|\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.)/i;
 const PROTOTYPE_KEYS = new Set(['__proto__', 'prototype', 'constructor']);
 const OPTIONAL_INPUTS = new Set(['page', 'language', 'region', 'safe_search', 'time_range']);
+const PROVIDER_CATEGORY_SET = new Set(PROVIDER_CATEGORIES);
 const SOURCE_FIELDS = new Set(['query', ...OPTIONAL_INPUTS]);
 export function validateProviderDefinition(file, input) {
     const errors = [];
@@ -45,6 +53,12 @@ export function validateProviderDefinition(file, input) {
         add('id', 'filename_mismatch', 'Provider id must match its filename');
     const name = text(root.name, 'name', 120, add);
     const description = text(root.description, 'description', 1_000, add);
+    let categories;
+    if (root.categories !== undefined) {
+        if (Array.isArray(root.categories) && root.categories.length === 0)
+            add('categories', 'invalid_collection', 'Categories must be a non-empty bounded list');
+        categories = stringList(root.categories, 'categories', PROVIDER_CATEGORY_SET, add);
+    }
     const websiteUrl = httpsUrl(root.website_url, 'website_url', add);
     const documentationUrl = httpsUrl(root.documentation_url, 'documentation_url', add);
     const adapter = text(root.adapter, 'adapter', 64, add);
@@ -116,7 +130,7 @@ export function validateProviderDefinition(file, input) {
     if (errors.length || !id || !name || !description || !websiteUrl || !documentationUrl || !adapter || !apiBaseUrl || !method || !requestPath)
         return { ok: false, errors };
     const definition = cleanObject({
-        schema_version: '1', id, name, description, website_url: websiteUrl, documentation_url: documentationUrl,
+        schema_version: '1', id, name, description, categories, website_url: websiteUrl, documentation_url: documentationUrl,
         adapter,
         endpoint: { api_base_url: apiBaseUrl, method, path: requestPath },
         capabilities: { operations: ['search'], optional_inputs: optionalInputs },

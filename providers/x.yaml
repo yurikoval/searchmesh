@@ -2,6 +2,7 @@ schema_version: "1"
 id: x
 name: X
 description: Search all public posts on X.
+categories: [general-web]
 website_url: https://x.com
 documentation_url: https://docs.x.com/x-api/posts/search-all-posts
 adapter: x

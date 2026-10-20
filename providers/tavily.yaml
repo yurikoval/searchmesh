@@ -1,7 +1,8 @@
 schema_version: "1"
 id: tavily
 name: Tavily Search
-description: Web search results from the Tavily Search API.
+description: Semantic web search and extracted content for AI research workflows.
+categories: [semantic-search, ai-research]
 website_url: https://www.tavily.com/
 documentation_url: https://docs.tavily.com/welcome
 adapter: tavily

@@ -1,8 +1,24 @@
 import { readFile } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
-import { parseProviderYaml, runProviderAdapter, validateProviderRevision } from '../src/index.js'
+import { PROVIDER_CATEGORIES, parseProviderYaml, runProviderAdapter, validateProviderRevision } from '../src/index.js'
 
 const providerFiles = ['brave', 'tavily', 'yep', 'exa', 'kagi', 'you', 'perplexity', 'mojeek', 'serpapi', 'dataforseo', 'gitlab', 'github', 'openalex', 'x'].map((id) => `providers/${id}.yaml`)
+const categoriesByProvider = {
+  brave: ['general-web', 'independent-index'],
+  dataforseo: ['general-web', 'serp-data'],
+  exa: ['semantic-search', 'ai-research'],
+  github: ['general-web'],
+  gitlab: ['general-web'],
+  kagi: ['general-web'],
+  mojeek: ['general-web', 'independent-index'],
+  openalex: ['general-web'],
+  perplexity: ['general-web', 'ai-research'],
+  serpapi: ['general-web', 'serp-data'],
+  tavily: ['semantic-search', 'ai-research'],
+  x: ['general-web'],
+  yep: ['general-web', 'independent-index'],
+  you: ['general-web', 'ai-research'],
+} as const
 
 const emptyPayloads: Record<string, unknown> = {
   brave: { web: { results: [] } },
@@ -38,6 +54,11 @@ describe('published provider definitions', () => {
     ])
 
     for (const { definition } of revision.definitions) {
+      expect(definition.categories).toEqual(categoriesByProvider[definition.id as keyof typeof categoriesByProvider])
+      expect(new Set(definition.categories).size).toBe(definition.categories?.length)
+      expect(definition.categories?.every((category) => PROVIDER_CATEGORIES.includes(category))).toBe(true)
+      expect(new TextEncoder().encode(definition.description).length).toBeLessThanOrEqual(1_000)
+      expect(definition.description.split(/\s+/).length).toBeGreaterThan(4)
       expect(definition).not.toHaveProperty('status')
       expect(definition).not.toHaveProperty('available')
       expect(definition).not.toHaveProperty('enabled_by_default')

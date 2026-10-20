@@ -1,7 +1,8 @@
 schema_version: "1"
 id: you
 name: You.com Search
-description: Web search results from the You.com Search API.
+description: Structured web and news results for AI research applications.
+categories: [general-web, ai-research]
 website_url: https://you.com/
 documentation_url: https://you.com/docs/api-reference/search/v1-search
 adapter: you

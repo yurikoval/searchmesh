@@ -1,7 +1,8 @@
 schema_version: '1'
 id: openalex
 name: OpenAlex
-description: Scholarly works search provider.
+description: Search provider for scholarly works and research metadata.
+categories: [general-web]
 website_url: https://openalex.org/
 documentation_url: https://docs.openalex.org/api-entities/works/search-works
 adapter: openalex

@@ -69,6 +69,18 @@ const outcome = await runProviderAdapter(
 
 The package includes compiled adapters for all supported providers. Callers supply only credentials and runtime controls; provider identity, endpoint, capabilities, mappings, and credential contracts are compiled into each adapter. Lean integration definitions live in `providers/` and are validated by the package test suite.
 
+### Provider categories
+
+Provider definitions may use these controlled categories for coarse filtering:
+
+- `general-web`: general web or publicly accessible web content search
+- `independent-index`: web search backed by the provider's own index
+- `semantic-search`: semantic or neural retrieval
+- `ai-research`: search structured for AI research workflows
+- `serp-data`: structured search engine results page data
+
+Use existing categories before proposing a new value. Categories describe useful specializations; they do not rank providers or report live availability.
+
 ## Development
 
 ```sh

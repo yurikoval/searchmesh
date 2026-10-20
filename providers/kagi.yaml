@@ -1,7 +1,8 @@
 schema_version: '1'
 id: kagi
 name: Kagi Search
-description: Web search results from the Kagi Search API.
+description: General web results from the Kagi Search API.
+categories: [general-web]
 website_url: https://kagi.com/
 documentation_url: https://help.kagi.com/kagi/api/search.html
 adapter: kagi

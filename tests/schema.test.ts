@@ -28,6 +28,8 @@ describe('provider definition trust boundary', () => {
     expect(validated.definition).not.toHaveProperty('enabled_by_default')
     expect(validated.definition.authentication).not.toHaveProperty('credential_mode')
     expect(validated.definition.authentication.fields).toEqual([{ name: 'api_key', label: 'API key' }])
+    expect(validated.definition.categories).toEqual(['general-web', 'independent-index'])
+    expect(validated.canonicalJson).toBe(canonicalStringify(validated.definition))
     expect(await checksumCanonicalJson(validated.canonicalJson)).toMatch(/^[a-f0-9]{64}$/)
     expect(canonicalStringify({ b: 1, a: { d: 2, c: 1 } })).toBe('{"a":{"c":1,"d":2},"b":1}')
     expect(canonicalStringify({ foobar: 1, foo_bar: 2 })).toBe('{"foo_bar":2,"foobar":1}')
@@ -45,6 +47,24 @@ describe('provider definition trust boundary', () => {
     expect(result).toEqual({ ok: false, errors: [expect.objectContaining({ file: 'providers/bad.yaml', code })] })
     expect(JSON.stringify(result)).not.toContain('thing')
     expect(JSON.stringify(result)).not.toContain('second')
+  })
+
+  it('keeps categories additive and rejects invalid category lists', () => {
+    const parsed = parseValid()
+    if (!parsed.ok) throw new Error('fixture failed to parse')
+    const legacy = structuredClone(parsed.value) as Record<string, unknown>
+    delete legacy.categories
+    const legacyResult = validateProviderDefinition('providers/valid.yaml', legacy)
+    expect(legacyResult.ok).toBe(true)
+    if (legacyResult.ok) expect(legacyResult.definition).not.toHaveProperty('categories')
+
+    for (const categories of [[], ['general-web', 'general-web'], ['unknown'], Array(51).fill('general-web')]) {
+      const value = structuredClone(parsed.value) as Record<string, unknown>
+      value.categories = categories
+      const result = validateProviderDefinition('providers/valid.yaml', value)
+      expect(result.ok).toBe(false)
+      if (!result.ok) expect(result.errors.some(({ path }) => path.startsWith('categories'))).toBe(true)
+    }
   })
 
   it('supports root result arrays and optional credentials without weakening nested paths', () => {

@@ -1,7 +1,8 @@
 schema_version: "1"
 id: brave
 name: Brave Search
-description: Web search results from the Brave Search API.
+description: Broad web search backed by Brave's independent index.
+categories: [general-web, independent-index]
 website_url: https://brave.com/search/api/
 documentation_url: https://api-dashboard.search.brave.com/documentation
 adapter: brave
