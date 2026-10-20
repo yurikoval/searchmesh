@@ -1,0 +1,14 @@
+{
+  "results": [
+    {
+      "display_name": "OpenAlex result",
+      "doi": "https://doi.org/10.1000/example",
+      "relevance_score": 0.95,
+      "publication_date": "2026-01-02",
+      "type": "article",
+      "authorships": [{ "author": { "display_name": "Example Author" } }],
+      "primary_location": { "landing_page_url": "https://example.org/article" },
+      "abstract_inverted_index": { "result": [1], "Abstract": [0] }
+    }
+  ]
+}
